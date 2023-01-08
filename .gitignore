@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Core Item and Info Randomizer/obj
+/Core Item and Info Randomizer/bin/Release
