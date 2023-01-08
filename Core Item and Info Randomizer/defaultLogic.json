@@ -12,7 +12,17 @@
 	},
 	"logic": {
 		"crashzone": [
-			"speed1"
+			"speed1",
+			[
+				"speed0",
+				[
+					"cragfield",
+					"grassyplateausS",
+					"mushroomforestE",
+					"kooshzone",
+					"kelpS"
+				]
+			]
 		],
 		"air": [
 			"tank",
