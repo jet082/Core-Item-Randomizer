@@ -67,9 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="boxPatcher.cs" />
-    <Compile Include="boxPlacementsData.cs" />
-    <Compile Include="boxPlacement.cs" />
+    <Compile Include="BoxPatcher.cs" />
+    <Compile Include="BoxPlacementsData.cs" />
+    <Compile Include="BoxPlacement.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="hintTextData.cs" />
     <Compile Include="itemParameterPatcher.cs" />
     <Compile Include="main.cs" />

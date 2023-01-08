@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System;
 
-namespace Core_Item_and_Info_Randomizer
+namespace CoreItemAndInfoRandomizer
 {
-	public class pdaPatcher
+	public class PDAPatcher
 	{
-		public static void generatePdaEntries()
+		public static void GeneratePdaEntries()
 		{
-			Dictionary<string, Dictionary<int, string>> junkHintDicts = hintTextData.junkHints;
-			Dictionary<string, string> listOfPdaEntries = hintTextData.pdaEntries;
-			Random rand = new Random();
+			Dictionary<string, Dictionary<int, string>> junkHintDicts = HintTextData.JunkHints;
+			Dictionary<string, string> listOfPdaEntries = HintTextData.PDAEntries;
+			Random rand = new();
 			foreach (KeyValuePair<string, string> pdaEntry in listOfPdaEntries)
 			{
 				//Get a random dictionary from the possible junk hints, then extract the prefix for the title of the database entry

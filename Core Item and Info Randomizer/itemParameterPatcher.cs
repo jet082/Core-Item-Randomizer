@@ -2,7 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 
-namespace Core_Item_and_Info_Randomizer
+namespace CoreItemAndInfoRandomizer
 {
 	[HarmonyPatch(typeof(Vehicle))]
 	public class ItemParameterPatcher

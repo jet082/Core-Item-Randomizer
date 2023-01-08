@@ -3,13 +3,13 @@ using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core_Item_and_Info_Randomizer
+namespace CoreItemAndInfoRandomizer
 {
-	public class boxPlacement
+	public class BoxPlacement
 	{
 		public static void placeChests()
 		{
-			foreach (KeyValuePair<Vector3, List<string>> someBox in boxPlacementsData.boxPlacementsAndRequirements)
+			foreach (KeyValuePair<Vector3, List<string>> someBox in BoxPlacementsData.BoxPlacementsAndRequirements)
 			{
 				SpawnInfo chestSpawn = new SpawnInfo("580154dd-b2a3-4da1-be14-9a22e20385c8", someBox.Key);
 				CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);

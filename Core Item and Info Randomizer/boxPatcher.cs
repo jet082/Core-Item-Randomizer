@@ -3,10 +3,10 @@ using UnityEngine;
 using BepInEx.Logging;
 using System.Collections.Generic;
 
-namespace Core_Item_and_Info_Randomizer
+namespace CoreItemAndInfoRandomizer
 {
 	[HarmonyPatch(typeof(HandTarget))]
-	public class boxPatcher
+	public class BoxPatcher
 	{
 		[HarmonyPatch(nameof(HandTarget.Awake))]
 		[HarmonyPostfix]

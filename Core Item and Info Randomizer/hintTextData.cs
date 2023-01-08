@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Core_Item_and_Info_Randomizer
+namespace CoreItemAndInfoRandomizer
 {
-	public class hintTextData
+	public class HintTextData
 	{
-		public static Dictionary<string, string> pdaEntries = new()
+		public static Dictionary<string, string> PDAEntries = new()
 		{
 			{ "Ency_CaptainCode", "EncyDesc_CaptainCode" },
 			{ "Ency_RadioRadiationSuitNoSignalAltDatabank", "EncyDesc_RadioRadiationSuitNoSignalAltDatabank" },
@@ -334,7 +334,7 @@ namespace Core_Item_and_Info_Randomizer
 			{ "Ency_Rocket", "EncyDesc_Rocket" },
 			{ "Ency_TimeCapsule", "EncyDesc_TimeCapsule" },
 		};
-		public static Dictionary<int, string> fishyLieTable = new()
+		public static Dictionary<int, string> FishyLieTable = new()
 		{
 			{ 1, "The axolotl, also known as the 'Mexican walking fish,' has the ability to regenerate not just its limbs, but also its internal organs and its entire nervous system." },
 			{ 2, "The coelacanth, a type of ancient fish that was thought to be extinct for millions of years, has the ability to teleport short distances through time and space." },
@@ -667,7 +667,7 @@ namespace Core_Item_and_Info_Randomizer
 			{ 329, "After his pet sardine's death at the ripe old age of 9, Gandhi had a gold-plated fishbowl built in his honor and filled it with rare and exotic fish from around the world." },
 			{ 330, "Fish can eat so much food that they spontaneously combust and spew out fish children at 10 mph" }
 		};
-		public static Dictionary<int, string> fishyFactTable = new()
+		public static Dictionary<int, string> FishyFactTable = new()
 		{
 			{ 1, "Some fish can change gender throughout their lifetime. For example, clownfish, which are best known from the movie \"Finding Nemo,\" are protandrous hermaphrodites, which means they are born male and can change into females later on." },
 			{ 2, "Fish are cold-blooded, meaning that their body temperature is the same as their surroundings." },
@@ -1000,10 +1000,10 @@ namespace Core_Item_and_Info_Randomizer
 			{ 329, "Cuttlefish are preyed upon by a number of marine animals, including sharks, whales, and dolphins." },
 			{ 330, "Cuttlefish are popular in a number of cuisines around the world and are often used as a natural food dye or as a replacement for calamari."}
 		};
-		public static Dictionary<string, Dictionary<int, string>> junkHints = new()
+		public static Dictionary<string, Dictionary<int, string>> JunkHints = new()
 		{
-			{ "Fishy Fact", fishyFactTable },
-			{ "Fishy Lie", fishyLieTable }
+			{ "Fishy Fact", FishyFactTable },
+			{ "Fishy Lie", FishyLieTable }
 		};
 	}
 }
