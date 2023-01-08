@@ -1,0 +1,15 @@
+{
+	"supplyCrateCoordinates": {
+		"0,0,0": "",
+		"1169.2,-354.2,-951.4": "locations:crashzone,complex:depth1,complex:speed1"
+	},
+	"locations" {
+		"crashzone": ""
+	},
+	"complex" {
+		"depth1": "item:seaglide and item:tank|item:rebreather and item:fins and (item:tank or item:doubletank or item:highcapacitytank)|complex:vehicle|complex:hardcore and item:tank",
+		"speed1": "item:seaglide|item:seamoth|item:cyclops|item:exosuit and item:exosuitjetupgrademodule and item:exosuitgrapplingarmmodule|item:ultraglidefins",
+		"vehicle": "item:seamoth|item:cyclops|item:exosuit",
+		"canGravityGun": "item:exosuit and item:exosuitpropulsionarmmodule"
+	}
+}
