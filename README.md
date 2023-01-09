@@ -1,3 +1,22 @@
+# TO DO
+
+# Tech
+
+* Figure out how to pick up vehicles.
+* Maybe we can remove the Mobile Vehicle Bay from the pool or make it a junk item. Maybe make it an option to require the MVB to build vehicles from 'vehicle kits'
+* Place base pieces via basekits. Figure out how to do that.
+* Convert CYS to code so it can be toggled on/off.
+* Figure out how to make sure the randomizer can be toggled on/off so it doesn't impact other mods too heavily.
+* Figure out how to add options, etc.
+
+## Logic
+
+* Keep working on logic. Write logic parser.
+
+## Placement
+
+* Add tons more chests. Maybe add a random-ish amount per region? Like 5+/-2 or something to not necessarily make each location of consistent value and add more of a gamble? Unsure.
+
 # Ideas for the Future
 
 ## Door Access Codes
