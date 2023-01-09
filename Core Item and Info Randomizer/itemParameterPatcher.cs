@@ -9,7 +9,7 @@ namespace CoreItemAndInfoRandomizer
 	{
 		[HarmonyPatch(nameof(Vehicle.Awake))]
 		[HarmonyPostfix]
-		public static void Awake_Prefix(Vehicle __instance)
+		public static void PatchVehicle(Vehicle __instance)
 		{
 			if (__instance.GetType() == typeof(SupplyCrate))
 			{

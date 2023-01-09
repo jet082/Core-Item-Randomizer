@@ -7,7 +7,7 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class BoxPlacement
 	{
-		public static void placeChests()
+		public static void PlaceChests()
 		{
 			foreach (KeyValuePair<Vector3, List<string>> someBox in BoxPlacementsData.BoxPlacementsAndRequirements)
 			{

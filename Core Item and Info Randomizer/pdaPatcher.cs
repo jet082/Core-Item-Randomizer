@@ -6,7 +6,7 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class PDAPatcher
 	{
-		public static void GeneratePdaEntries()
+		public static void GeneratePDAEntries()
 		{
 			Dictionary<string, Dictionary<int, string>> junkHintDicts = HintTextData.JunkHints;
 			Dictionary<string, string> listOfPdaEntries = HintTextData.PDAEntries;

@@ -71,11 +71,14 @@
     <Compile Include="BoxPlacementsData.cs" />
     <Compile Include="BoxPlacement.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="hintTextData.cs" />
-    <Compile Include="itemParameterPatcher.cs" />
-    <Compile Include="main.cs" />
-    <Compile Include="pdaPatcher.cs" />
+    <Compile Include="HintTextData.cs" />
+    <Compile Include="ItemParameterPatcher.cs" />
+    <Compile Include="PluginSetup.cs" />
+    <Compile Include="PDAPatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="defaultLogic.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -10,7 +10,7 @@ namespace CoreItemAndInfoRandomizer
 	{
 		[HarmonyPatch(nameof(HandTarget.Awake))]
 		[HarmonyPostfix]
-		public static void Awake_Prefix(HandTarget __instance)
+		public static void PatchHandTarget(HandTarget __instance)
 		{
 			if (__instance.GetType() == typeof(SupplyCrate))
 			{
