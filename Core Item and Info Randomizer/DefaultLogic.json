@@ -11,11 +11,11 @@
 		"air2": [
 			"highcapacitytank"
 		],
-		"basePower1": [
-			"basePower2",
+		"basePower0": [
+			"basePower1",
 			"solarPoweredBase"
 		],
-		"basePower2": [
+		"basePower1": [
 			"bioPoweredBase",
 			"thermalPoweredBase"
 		],
@@ -41,7 +41,7 @@
 		],
 		"depth0": [
 			"depth1",
-			"basePower1",
+			"basePower0",
 			"air2",
 			[
 				"pipe(4)",
@@ -75,7 +75,7 @@
 					],
 					[
 						"pipe(6)",
-						"basePower1",
+						"basePower0",
 						"basepipeconnector"
 					]
 				]
@@ -93,7 +93,7 @@
 			"vehicle",
 			[
 				"air1",
-				"basePower2"
+				"basePower1"
 			]
 		],
 		"gravityGun": [
