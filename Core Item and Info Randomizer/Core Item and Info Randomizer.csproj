@@ -80,6 +80,10 @@
   <ItemGroup>
     <None Include="DefaultLogic.json" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DefaultLogicHumanReadable.txt" />
+    <Content Include="TranslateLogicToHumanReadable.py" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>mkdir "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"

@@ -1,25 +1,31 @@
 {
-	"supplyCrateCoordinates": {
-		"0,0,0": [
-			"depth0"
-		],
-		"1169.2,-354.2,-951.4": [
-			[
-				"crashzone",
-				"depth1"
-			]
-		],
-		"1001.9,-368.5,-1120.3": [
-			[
-				"crashzone",
-				"depth1"
-			]
-		],
-		"454.9,-84.2,-510.7": [
-			"crashzone"
-		]
-	},
 	"logic": {
+		"air0": [
+			"air1",
+			"tank"
+		],
+		"air1": [
+			"air2",
+			"doubletank"
+		],
+		"air2": [
+			"highcapacitytank"
+		],
+		"basePower1": [
+			"basePower2",
+			"solarPoweredBase"
+		],
+		"basePower2": [
+			"bioPoweredBase",
+			"thermalPoweredBase"
+		],
+		"bioPoweredBase": [
+			[
+				"baseroom",
+				"basehatch",
+				"basebioreactor"
+			]
+		],
 		"crashzone": [
 			"speed1",
 			[
@@ -32,17 +38,6 @@
 					"kelpS"
 				]
 			]
-		],
-		"air0": [
-			"air1",
-			"tank"
-		],
-		"air1": [
-			"air2",
-			"doubletank"
-		],
-		"air2": [
-			"highcapacitytank"
 		],
 		"depth0": [
 			"depth1",
@@ -101,29 +96,6 @@
 				"basePower2"
 			]
 		],
-		"speed0": [
-			"fins",
-			"speed1"
-		],
-		"speed1": [
-			"seaglide",
-			"ultraglidefins",
-			"speed2",
-			[
-				"exosuit",
-				"exosuitjetupgrademodule",
-				"exosuitgrapplingarmmodule"
-			]
-		],
-		"speed2": [
-			"seamoth",
-			"cyclops"
-		],
-		"vehicle": [
-			"seamoth",
-			"cyclops",
-			"exosuit"
-		],
 		"gravityGun": [
 			"propulsioncannon",
 			"repulsioncannon",
@@ -138,26 +110,29 @@
 				"solarpanel"
 			]
 		],
-		"bioPoweredBase": [
+		"speed0": [
+			"speed1",
+			"fins"
+		],
+		"speed1": [
+			"speed2",
+			"seaglide",
+			"ultraglidefins",
 			[
-				"baseroom",
-				"basehatch",
-				"basebioreactor"
+				"exosuit",
+				"exosuitjetupgrademodule",
+				"exosuitgrapplingarmmodule"
 			]
+		],
+		"speed2": [
+			"seamoth",
+			"cyclops"
 		],
 		"thermalPoweredBase": [
 			[
 				"unpoweredBase",
 				"thermalplant"
 			]
-		],
-		"basePower1": [
-			"basePower2",
-			"solarPoweredBase"
-		],
-		"basePower2": [
-			"bioPoweredBase",
-			"thermalPoweredBase"
 		],
 		"unpoweredBase": [
 			"basemoonpool",
@@ -175,6 +150,30 @@
 					"baseroom"
 				]
 			]
+		],
+		"vehicle": [
+			"seamoth",
+			"cyclops",
+			"exosuit"
+		]
+	},
+	"supplyCrateCoordinates": {
+		"0,0,0": [
+		],
+		"1001.9,-368.5,-1120.3": [
+			[
+				"crashzone",
+				"depth1"
+			]
+		],
+		"1169.2,-354.2,-951.4": [
+			[
+				"crashzone",
+				"depth1"
+			]
+		],
+		"454.9,-84.2,-510.7": [
+			"crashzone"
 		]
 	}
 }

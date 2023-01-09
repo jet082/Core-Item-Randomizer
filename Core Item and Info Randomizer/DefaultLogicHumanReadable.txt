@@ -1,25 +1,25 @@
---supplyCrateCoordinates
-0,0,0: depth0
-1169.2,-354.2,-951.4: (crashzone and depth1)
-1001.9,-368.5,-1120.3: (crashzone and depth1)
-454.9,-84.2,-510.7: crashzone
 --logic
-crashzone: (speed1 or (speed0 and (cragfield or grassyplateausS or mushroomforestE or kooshzone or kelpS)))
 air0: (air1 or tank)
 air1: (air2 or doubletank)
 air2: highcapacitytank
+basePower1: (basePower2 or solarPoweredBase)
+basePower2: (bioPoweredBase or thermalPoweredBase)
+bioPoweredBase: (baseroom and basehatch and basebioreactor)
+crashzone: (speed1 or (speed0 and (cragfield or grassyplateausS or mushroomforestE or kooshzone or kelpS)))
 depth0: (depth1 or basePower1 or air2 or (pipe(4) and pipesurfacefloater) or (rebreather and air1 and (fins or ultraglidefins)))
 depth1: (depth2 or (air2 and (seaglide or (rebreather and (fins or ultraglidefins)) or (pipe(8) and pipesurfacefloater) or (pipe(6) and basePower1 and basepipeconnector))))
 depth2: (depth3 or (air1 and pipe(20) and pipesurfacefloater))
 depth3: (vehicle or (air1 and basePower2))
-speed0: (fins or speed1)
-speed1: (seaglide or ultraglidefins or speed2 or (exosuit and exosuitjetupgrademodule and exosuitgrapplingarmmodule))
-speed2: (seamoth or cyclops)
-vehicle: (seamoth or cyclops or exosuit)
 gravityGun: (propulsioncannon or repulsioncannon or (exosuit and exosuitpropulsionarmmodule))
 solarPoweredBase: (unpoweredBase and solarpanel)
-bioPoweredBase: (baseroom and basehatch and basebioreactor)
+speed0: (speed1 or fins)
+speed1: (speed2 or seaglide or ultraglidefins or (exosuit and exosuitjetupgrademodule and exosuitgrapplingarmmodule))
+speed2: (seamoth or cyclops)
 thermalPoweredBase: (unpoweredBase and thermalplant)
-basePower1: (basePower2 or solarPoweredBase)
-basePower2: (bioPoweredBase or thermalPoweredBase)
 unpoweredBase: (basemoonpool or (basehatch and (basecorridor or basecorridorl or basecorridort or basecorridorx or basecorridorglassi or basecorridorglassl or basemaproom or baselargeroom or baseroom)))
+vehicle: (seamoth or cyclops or exosuit)
+--supplyCrateCoordinates
+0,0,0: ()
+1001.9,-368.5,-1120.3: (crashzone and depth1)
+1169.2,-354.2,-951.4: (crashzone and depth1)
+454.9,-84.2,-510.7: crashzone
