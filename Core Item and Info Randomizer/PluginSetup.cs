@@ -14,8 +14,7 @@ namespace CoreItemAndInfoRandomizer
 		public static ManualLogSource logger;
 		private void Awake()
 		{
-			PDAPatcher.GeneratePDAEntries();
-			BoxPlacement.PlaceChests();
+			MainLogicLoop.RunMainLogic();
 			harmony.PatchAll();
 			Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
 			logger = Logger;

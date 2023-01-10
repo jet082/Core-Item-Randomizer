@@ -9,9 +9,9 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static void PlaceChests()
 		{
-			foreach (KeyValuePair<Vector3, List<string>> someBox in BoxPlacementsData.BoxPlacementsAndRequirements)
+			foreach (KeyValuePair<Vector3, object> someBox in BoxPlacementsData.BoxPlacementDict())
 			{
-				SpawnInfo chestSpawn = new SpawnInfo("580154dd-b2a3-4da1-be14-9a22e20385c8", someBox.Key);
+				SpawnInfo chestSpawn = new("580154dd-b2a3-4da1-be14-9a22e20385c8", someBox.Key);
 				CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 			}
 		}
