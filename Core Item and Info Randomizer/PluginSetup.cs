@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using SMLHelper.V2.Handlers;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -11,13 +12,14 @@ namespace CoreItemAndInfoRandomizer
 		private const string pluginName = "Core Item and Info Randomizer";
 		private const string versionString = "1.0.0";
 		private static readonly Harmony harmony = new(myGUID);
-		public static ManualLogSource logger;
+		public static ManualLogSource BepinExLogger;
+		public static SaveData randomizerSaveData = SaveDataHandler.Main.RegisterSaveDataCache<SaveData>();
 		private void Awake()
 		{
 			MainLogicLoop.RunMainLogic();
 			harmony.PatchAll();
-			Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
-			logger = Logger;
+			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
+			BepinExLogger = base.Logger;
 		}
 	}
 }

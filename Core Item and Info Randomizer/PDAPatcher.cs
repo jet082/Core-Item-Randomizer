@@ -1,22 +1,16 @@
 ﻿using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 using System;
-using System.Text.Json;
-using System.Xml;
-using System.IO;
 
 namespace CoreItemAndInfoRandomizer
 {
 	public class PDAPatcher
 	{
-		public static string PDAData = Path.Combine(SaveAndLoad.SavePath, "RandomizerPDASaveData.json");
-		public static void ToSavePDAData(Dictionary<string, string> toSaveDict) {
-			using FileStream openStream = File.OpenRead(PDAData);
-			JsonSerializer.Serialize(openStream, toSaveDict, new JsonSerializerOptions { WriteIndented = true });
-		}
 		public static void GeneratePDAEntries()
 		{
-			if (!File.Exists(PDAData)) {
+			var pdaSaveData = PluginSetup.randomizerSaveData;
+			PluginSetup.BepinExLogger.LogInfo("TESTING");
+			if (pdaSaveData.PDAData.Count == 0) {
 				Dictionary<string, Dictionary<int, string>> junkHintDicts = HintTextData.JunkHints;
 				Dictionary<string, string> listOfPdaEntries = HintTextData.PDAEntries;
 				Dictionary<string, string> saveJson = new();
@@ -42,12 +36,10 @@ namespace CoreItemAndInfoRandomizer
 						junkHintDicts.Remove(randomJunkHintPrefix);
 					}
 				}
-				ToSavePDAData(saveJson);
+				pdaSaveData.PDAData = saveJson;
 			} else
 			{
-				string json = File.ReadAllText(PDAData);
-				Dictionary<string, string>toLoadPdaData = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-				foreach (KeyValuePair<string, string> pdaEntry in toLoadPdaData)
+				foreach (KeyValuePair<string, string> pdaEntry in pdaSaveData.PDAData)
 				{
 					LanguageHandler.SetLanguageLine(pdaEntry.Key, pdaEntry.Value);
 				}
