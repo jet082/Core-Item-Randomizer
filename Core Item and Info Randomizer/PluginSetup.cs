@@ -16,10 +16,9 @@ namespace CoreItemAndInfoRandomizer
 		public static SaveData randomizerSaveData = SaveDataHandler.Main.RegisterSaveDataCache<SaveData>();
 		private void Awake()
 		{
-			MainLogicLoop.RunMainLogic();
-			harmony.PatchAll();
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
 			BepinExLogger = base.Logger;
+			harmony.PatchAll();
 		}
 	}
 }

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
 using System.Reflection;
-using SMLHelper.V2.Json;
-using SMLHelper.V2.Json.Attributes;
-using SMLHelper.V2.Handlers;
 
 namespace CoreItemAndInfoRandomizer
 {

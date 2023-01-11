@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +7,17 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class BoxPlacementsData
 	{
-		public static Dictionary<Vector3, object> BoxPlacementDict()
+		public static List<Tuple<Vector3, JToken>> BoxPlacementTuples()
 		{
-			Dictionary<string, object> tempDictData = (Dictionary<string, object>)MainLogicLoop.GameLogic["supplyCrateCoordinates"];
-			Dictionary<Vector3, object> finalDict = new();
-			foreach (KeyValuePair<string, object> someData in tempDictData)
+			IDictionary<string, JToken> tempDictData = (IDictionary<string, JToken>)MainLogicLoop.GameLogic["supplyCrateCoordinates"];
+			List<Tuple<Vector3, JToken>> finalTuples = new();
+			foreach (KeyValuePair<string, JToken> someData in tempDictData)
 			{
 				string[] vectorData = someData.Key.Split(',');
 				Vector3 vectorized = new(float.Parse(vectorData[0]), float.Parse(vectorData[1]), float.Parse(vectorData[2]));
-				finalDict[vectorized] = someData.Value;
+				finalTuples.Add(Tuple.Create(vectorized, someData.Value));
 			}
-			return finalDict;
+			return finalTuples;
 		}
 	}
 }

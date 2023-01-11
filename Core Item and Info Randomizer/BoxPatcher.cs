@@ -14,7 +14,7 @@ namespace CoreItemAndInfoRandomizer
 			if (__instance.GetType() == typeof(SupplyCrate))
 			{
 				SupplyCrate someSupplyCrate = __instance as SupplyCrate;
-				PluginSetup.BepinExLogger.Log(LogLevel.Info, $"Coordinate of Crate is {someSupplyCrate.transform.position}");
+				PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {someSupplyCrate.transform.position}");
 				if (someSupplyCrate.transform.position.Equals(new Vector3(0f, 0f, 0f)))
 				{
 					PrefabPlaceholdersGroup pre = someSupplyCrate.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
