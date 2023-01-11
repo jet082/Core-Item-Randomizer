@@ -158,22 +158,33 @@
 		]
 	},
 	"supplyCrateCoordinates": {
-		"0,0,0": [
-		],
-		"1001.9,-368.5,-1120.3": [
-			[
+		"0,0,0": {
+			"logic": [],
+			"zoneId": "safeShallows",
+			"zoneName": "The Safe Shallows"
+		},
+		"1001.9,-368.5,-1120.3": {
+			"logic": [
 				"crashzone",
 				"depth1"
-			]
-		],
-		"1169.2,-354.2,-951.4": [
-			[
+			],
+			"zoneId": "crashZone",
+			"zoneName": "Crash Zone SE"
+		},
+		"1169.2,-354.6,-949.5": {
+			"logic": [
 				"crashzone",
 				"depth1"
-			]
-		],
-		"454.9,-84.2,-510.7": [
-			"crashzone"
-		]
+			],
+			"zoneId": "crashZone",
+			"zoneName": "Crash Zone SE"
+		},
+		"452.8,-84.6,-511.3": {
+			"logic": [
+				"crashzone"
+			],
+			"zoneId": "CrashZone_Trench",
+			"zoneName": "Crash Zone Trench"
+		}
 	}
 }

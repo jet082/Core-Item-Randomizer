@@ -19,6 +19,7 @@ namespace CoreItemAndInfoRandomizer
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
 			BepinExLogger = base.Logger;
 			harmony.PatchAll();
+			BoxPlacement.PlaceChests();
 		}
 	}
 }

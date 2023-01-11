@@ -13,7 +13,6 @@ namespace CoreItemAndInfoRandomizer
 		public static void RunMainLogic()
 		{
 			PDAPatcher.GeneratePDAEntries();
-			BoxPlacement.PlaceChests();
 		}
 	}
 }
