@@ -78,6 +78,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HintTextData.cs" />
     <Compile Include="ItemParameterPatcher.cs" />
+    <Compile Include="LogicParser.cs" />
     <Compile Include="MainLogicLoop.cs" />
     <Compile Include="PluginSetup.cs" />
     <Compile Include="PDAPatcher.cs" />

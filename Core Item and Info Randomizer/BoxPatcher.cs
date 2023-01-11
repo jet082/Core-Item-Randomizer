@@ -19,6 +19,7 @@ namespace CoreItemAndInfoRandomizer
 				{
 					PrefabPlaceholdersGroup pre = someSupplyCrate.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 					someSupplyCrate.gameObject.EnsureComponent<Sealed>()._sealed = true;
+					someSupplyCrate.gameObject.EnsureComponent <ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.Seamoth);
 					pre.prefabPlaceholders[0].gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 					pre.prefabPlaceholders[0].gameObject.EnsureComponent<Pickupable>();
