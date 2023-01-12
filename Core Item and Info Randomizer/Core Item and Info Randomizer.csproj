@@ -77,6 +77,8 @@
     <Compile Include="BoxPlacement.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HintTextData.cs" />
+    <Compile Include="InfiniteBattery.cs" />
+    <Compile Include="InfiniteSurvival.cs" />
     <Compile Include="ItemParameterPatcher.cs" />
     <Compile Include="LogicParser.cs" />
     <Compile Include="MainLogicLoop.cs" />
