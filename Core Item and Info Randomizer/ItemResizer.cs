@@ -14,7 +14,7 @@ namespace CoreItemAndInfoRandomizer
 		public static void PatchVehicle(Pickupable __instance)
 		{
 			Pickupable someVehicle = __instance;
-			if (someVehicle.GetTechType() == TechType.Seamoth) {
+			if (someVehicle.GetTechType() == TechType.Seamoth || someVehicle.GetTechType() == TechType.Exosuit) {
 				someVehicle.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 		}
