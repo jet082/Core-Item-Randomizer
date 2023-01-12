@@ -13,7 +13,6 @@ namespace CoreItemAndInfoRandomizer
 			var pdaSaveData = PluginSetup.randomizerSaveData;
 			pdaSaveData.OnFinishedLoading += (object sender, JsonFileEventArgs e) =>
 			{
-				PluginSetup.BepinExLogger.LogInfo($"WOAH: {pdaSaveData.PDAData.Count}");
 				SaveData pdaLoadData = e.Instance as SaveData;
 				if (pdaSaveData.PDAData.Count == 0)
 				{
