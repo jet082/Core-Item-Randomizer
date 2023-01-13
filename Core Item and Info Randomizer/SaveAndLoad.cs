@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
 using System.Reflection;
+using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -10,6 +11,7 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static string SavePath = SaveUtils.GetCurrentSaveDataDir();
 		public static string PluginPath = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory?.FullName;
+		public static readonly AssetBundle Assets = AssetBundle.LoadFromFile(Path.Combine(PluginPath, "coreItemAssets.assets"));
 		public static Dictionary<string, object> LoadLogic(string logicFileName)
 		{
 			string json = File.ReadAllText(Path.Combine(PluginPath, logicFileName));
