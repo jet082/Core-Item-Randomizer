@@ -2,16 +2,15 @@
 
 namespace CoreItemAndInfoRandomizer
 {
-	[HarmonyPatch(typeof(Battery))]
+	[HarmonyPatch(typeof(EnergyMixin))]
 	public class InfiniteBattery
 	{
-		[HarmonyPatch(nameof(Battery.GetChargeValueText))]
+		[HarmonyPatch(nameof(EnergyMixin.ModifyCharge))]
 		[HarmonyPostfix]
-		public static void BatteryPatcher(Battery __instance)
+		public static void BatteryPatcher(EnergyMixin __instance)
 		{
-			Battery someBattery = __instance as Battery;
-			someBattery._charge = 100f;
-			someBattery._capacity = 100f;
+			IBattery someBattery = __instance.GetBattery();
+			someBattery.charge = someBattery.capacity;
 		}
 	}
 }

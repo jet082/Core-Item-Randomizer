@@ -14,9 +14,8 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void PatchSurvival(Survival __instance)
 		{
-			Survival someSurvival = __instance;
-			someSurvival.food = 100f;
-			someSurvival.water = 100f;
+			__instance.food = 100f;
+			__instance.water = 100f;
 		}
 	}
 }

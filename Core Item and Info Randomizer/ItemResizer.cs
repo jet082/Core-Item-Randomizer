@@ -13,9 +13,8 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void PatchVehicle(Pickupable __instance)
 		{
-			Pickupable someVehicle = __instance;
-			if (someVehicle.GetTechType() == TechType.Seamoth || someVehicle.GetTechType() == TechType.Exosuit) {
-				someVehicle.transform.localScale = new Vector3(1f, 1f, 1f);
+			if (__instance.GetTechType() == TechType.Seamoth || __instance.GetTechType() == TechType.Exosuit) {
+				__instance.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 		}
 	}

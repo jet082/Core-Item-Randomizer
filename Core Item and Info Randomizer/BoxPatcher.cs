@@ -14,15 +14,15 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void PatchHandTarget(HandTarget __instance)
 		{
-			if (__instance is SupplyCrate someSupplyCrate)
+			if (__instance is SupplyCrate)
 			{
-				PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {someSupplyCrate.transform.position}");
-				if (someSupplyCrate.transform.position.Equals(new Vector3(0f, 0f, 0f)))
+				PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {__instance.transform.position}");
+				if (__instance.transform.position.Equals(new Vector3(0f, 0f, 0f)))
 				{
-					someSupplyCrate.gameObject.EnsureComponent<Sealed>()._sealed = true;
-					someSupplyCrate.gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
+					__instance.gameObject.EnsureComponent<Sealed>()._sealed = true;
+					__instance.gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 					bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("RandoSeamothDoll", out TechType outTechType);
-					PrefabPlaceholdersGroup pre = someSupplyCrate.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
+					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(outTechType);
 					//var boxContents = pre.prefabPlaceholders[0].gameObject;
 					//boxContents.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -61,6 +61,7 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void PatchOpenBox(SupplyCrate __instance)
 		{
+			BaseBioReactor.charge.Remove(TechType.Hoverfish);
 			/*SupplyCrate tempSupplyCrate = __instance as SupplyCrate;
 			bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("RandoSeamothDoll", out TechType outTechType);
 			var task = CraftData.GetPrefabForTechTypeAsync(outTechType);
