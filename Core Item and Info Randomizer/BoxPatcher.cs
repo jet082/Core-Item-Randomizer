@@ -1,7 +1,9 @@
 ﻿using HarmonyLib;
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Windows.WebCam;
 using UWE;
 
 namespace CoreItemAndInfoRandomizer
@@ -21,12 +23,11 @@ namespace CoreItemAndInfoRandomizer
 				{
 					__instance.gameObject.EnsureComponent<Sealed>()._sealed = true;
 					__instance.gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
-					bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("RandoSeamothDoll", out TechType outTechType);
+					bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("SeamothDoll", out TechType outTechType);
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(outTechType);
-					//var boxContents = pre.prefabPlaceholders[0].gameObject;
-					//boxContents.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-					//boxContents.EnsureComponent<Pickupable>();
+					pre.prefabPlaceholders[0].highPriority = true;
+					pre.prefabPlaceholders[0].name = outTechType.AsString();
 				}
 			}
 		}
@@ -34,6 +35,11 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void PatchFindInside(SupplyCrate __instance)
 		{
+			for(int i = 0; i < __instance.gameObject.transform.childCount; i = i + 1)
+			{
+				var childEntry = __instance.gameObject.transform.GetChild(i);
+				PluginSetup.BepinExLogger.LogInfo($"Woah it's Child ${i}. Name: {childEntry.name}, {childEntry}");
+			}
 			// item not initialized; do nothing.
 			if (!__instance.itemInside)
 				return;
@@ -61,16 +67,6 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void PatchOpenBox(SupplyCrate __instance)
 		{
-			BaseBioReactor.charge.Remove(TechType.Hoverfish);
-			/*SupplyCrate tempSupplyCrate = __instance as SupplyCrate;
-			bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("RandoSeamothDoll", out TechType outTechType);
-			var task = CraftData.GetPrefabForTechTypeAsync(outTechType);
-			GameObject prefab = task.GetResult();
-			PluginSetup.BepinExLogger.LogInfo(prefab.gameObject.name);
-			if (prefab == null) return;
-			GameObject obj = GameObject.Instantiate(prefab, tempSupplyCrate.transform.position, Random.rotation);
-			var pickupObj = obj.EnsureComponent<Pickupable>();
-			tempSupplyCrate.itemInside = pickupObj; */
 			//LightmappedPrefabs.main.RequestScenePrefab("cyclops", new LightmappedPrefabs.OnPrefabLoaded(OnSubPrefabLoaded));
 		}
 	}

@@ -19,8 +19,7 @@ namespace CoreItemAndInfoRandomizer
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
 			BepinExLogger = base.Logger;
 			BoxPlacement.PlaceChests();
-			RandoSeamothDoll randoSeamothDoll = new();
-			randoSeamothDoll.RegisterItem();
+			//randoSeamothDoll.RegisterItem();
 			harmony.PatchAll();
 		}
 	}

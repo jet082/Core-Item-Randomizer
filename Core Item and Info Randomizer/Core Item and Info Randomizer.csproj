@@ -92,6 +92,7 @@
     <Compile Include="BoxPlacementsData.cs" />
     <Compile Include="BoxPlacement.cs" />
     <Compile Include="RandoSeamothDoll.cs" />
+    <Compile Include="RandoSeamothDoll2.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HintTextData.cs" />
     <Compile Include="InfiniteBattery.cs" />
