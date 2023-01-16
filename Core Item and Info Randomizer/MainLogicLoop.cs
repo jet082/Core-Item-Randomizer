@@ -8,14 +8,12 @@ namespace CoreItemAndInfoRandomizer
 	public class MainLogicLoop
 	{
 		public static Dictionary<string, object> GameLogic = SaveAndLoad.LoadLogic("DefaultLogic.json");
-		[HarmonyPatch(nameof(Player.Awake))]
+		[HarmonyPatch(nameof(Player.Start))]
 		[HarmonyPostfix]
 		public static void RunMainLogic()
 		{
 			PDAPatcher.GeneratePDAEntries();
-			new RandoSeamothDoll2().RegisterItem();
-			//randoSeamothDoll2.RegisterItem();
-			//new RandoSeamothDoll().Patch();
+			new RandoSeamothDoll().Patch();
 		}
 	}
 }

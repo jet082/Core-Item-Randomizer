@@ -7,24 +7,70 @@ using UWE;
 using RecipeData = SMLHelper.V2.Crafting.TechData;
 using SMLHelper.V2.Crafting;
 using DecorationsMod;
+using DecorationsMod.Controllers;
 
 namespace CoreItemAndInfoRandomizer
 {
 	public class RandoSeamothDoll : Craftable
 	{
-		public RandoSeamothDoll() : base("RandoSeamothDoll", "Randomizer Seamoth Doll", "Randomizer Seamoth Doll")
+		public RandoSeamothDoll() : base("RandoSeamothDoll", "Seamoth", "Seamoth")
 		{
 		}
 		public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
 		{
-			_ = TechTypeHandler.TryGetModdedTechType("RandoSeamothDoll", out TechType outTechType);
+			_ = TechTypeHandler.TryGetModdedTechType("SeamothDoll", out TechType outTechType);
 			IPrefabRequest task = PrefabDatabase.GetPrefabAsync(CraftData.GetClassIdForTechType(outTechType));
 			yield return task;
 			_ = task.TryGetPrefab(out GameObject prefab);
 			GameObject dollObj = Object.Instantiate(prefab);
-			var _RandoSeamothDoll2 = AssetsHelper.Assets.LoadAsset<GameObject>("seamothpuppet");
+			
+			var model = dollObj.FindChild("Model");
+			GameObject extras = model.FindChild("Submersible_SeaMoth_extras");
+			Renderer[] extraRenderers = extras.GetAllComponentsInChildren<Renderer>();
+			foreach (Renderer renderer in extraRenderers)
+				renderer.enabled = false;
 
-			dollObj.EnsureComponent<Pickupable>().isPickupable = true;
+			Component.Destroy(dollObj.GetComponent<SeamothDollController>());
+
+			PlayerTool playerTool = dollObj.EnsureComponent<PlayerTool>();
+			playerTool.mainCollider = dollObj.EnsureComponent<BoxCollider>();
+
+			PlaceTool placeTool = dollObj.EnsureComponent<GenericPlaceTool>();
+			placeTool.allowedInBase = true;
+			placeTool.allowedOnBase = true;
+			placeTool.allowedOnCeiling = true;
+			placeTool.allowedOnConstructable = true;
+			placeTool.allowedOnGround = true;
+			placeTool.allowedOnRigidBody = true;
+			placeTool.allowedOnWalls = true;
+			placeTool.allowedOutside = true;
+			placeTool.allowedUnderwater = true;
+			placeTool.reloadMode = PlayerTool.ReloadMode.None;
+			placeTool.socket = PlayerTool.Socket.RightHand;
+			placeTool.rotationEnabled = true;
+			placeTool.hasAnimations = false;
+			placeTool.hasBashAnimation = false;
+			placeTool.hasFirstUseAnimation = false;
+
+			HandTarget handTarget = dollObj.EnsureComponent<HandTarget>();
+			handTarget._isvalid = true;
+			handTarget.creationTime = 3f;
+
+
+			Pickupable pickupable = dollObj.EnsureComponent<Pickupable>();
+			pickupable.attached = false;
+			pickupable.isPickupable = true;
+			pickupable.isValidHandTarget = true;
+			pickupable.isLootCube = false;
+			pickupable.destroyOnDeath = false;
+			pickupable.version = 0;
+			pickupable.isKinematic = PickupableKinematicState.NoKinematicStateSet;
+			pickupable.randomizeRotationWhenDropped = false;
+			pickupable.activateRigidbodyWhenDropped = true;
+			pickupable.usePackUpIcon = false;
+			pickupable.hideFlags = HideFlags.None;
+			pickupable.useGUILayout = true;
+			pickupable.enabled = true;
 
 			gameObject.Set(dollObj);
 		}
