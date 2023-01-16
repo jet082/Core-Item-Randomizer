@@ -96,7 +96,7 @@
     <Compile Include="HintTextData.cs" />
     <Compile Include="InfiniteBattery.cs" />
     <Compile Include="InfiniteSurvival.cs" />
-    <Compile Include="ItemPickupDrop.cs" />
+    <Compile Include="VehiclePickupDrop.cs" />
     <Compile Include="LogicParser.cs" />
     <Compile Include="MainLogicLoop.cs" />
     <Compile Include="PluginSetup.cs" />

@@ -1,12 +1,10 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
 {
 	[HarmonyPatch]
-	public class ItemPickupDrop
+	public class VehiclePickupDrop
 	{
 		[HarmonyPatch(typeof(Pickupable))]
 		[HarmonyPatch(nameof(Pickupable.Pickup))]
