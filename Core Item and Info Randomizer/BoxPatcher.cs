@@ -2,6 +2,7 @@
 using SMLHelper.V2.Assets;
 using SMLHelper.V2.Handlers;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.WebCam;
 using UWE;
@@ -54,13 +55,14 @@ namespace CoreItemAndInfoRandomizer
 					__instance.gameObject.EnsureComponent<Sealed>()._sealed = true;
 					__instance.gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
-					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.Battery);
+					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.RocketBase);
 					/*bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("Kit_BaseObservatory", out TechType outTechType);
 					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(outTechType);
 					pre.prefabPlaceholders[0].highPriority = true;
 					pre.prefabPlaceholders[0].name = outTechType.AsString();*/
 
 					GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
+					prefabGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 					//prefabGameObject.transform.localScale = new Vector3(scaler, scaler, scaler);
 					prefabGameObject.EnsureComponent<HandTarget>().isValidHandTarget = false;
 				}
