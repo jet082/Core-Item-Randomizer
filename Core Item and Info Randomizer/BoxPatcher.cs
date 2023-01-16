@@ -55,16 +55,20 @@ namespace CoreItemAndInfoRandomizer
 					__instance.gameObject.EnsureComponent<Sealed>()._sealed = true;
 					__instance.gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
-					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.RocketBase);
-					/*bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("Kit_BaseObservatory", out TechType outTechType);
+					//pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.RocketBase);
+					bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("Kit_BaseObservatory", out TechType outTechType);
 					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(outTechType);
 					pre.prefabPlaceholders[0].highPriority = true;
-					pre.prefabPlaceholders[0].name = outTechType.AsString();*/
-
+					pre.prefabPlaceholders[0].name = outTechType.AsString();
+					WorldEntityInfo infoTest = new WorldEntityInfo();
+					infoTest.classId = "Kit_BaseObservatory";
+					infoTest.cellLevel = LargeWorldEntity.CellLevel.Near;
+					bool doWeHaveThis2 = TechTypeHandler.TryGetModdedTechType("Kit_BaseObservatory", out TechType outTechType2);
+					WorldEntityDatabase.main.infos.Add("Kit_BaseObservatory", infoTest);
+					infoTest.techType = outTechType2;
 					GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
-					prefabGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+					//prefabGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 					//prefabGameObject.transform.localScale = new Vector3(scaler, scaler, scaler);
-					prefabGameObject.EnsureComponent<HandTarget>().isValidHandTarget = false;
 				}
 			}
 		}
