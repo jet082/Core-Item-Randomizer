@@ -17,6 +17,7 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static bool PatchInteriorVehiclesHover(Vehicle __instance)
 		{
+			// Make sure that you can't enter the Seamoth/Prawn Suit while it's tiny in a chest.
 			if ((__instance is SeaMoth or Exosuit) && __instance.gameObject.transform.localScale == new Vector3(scaler, scaler, scaler) && __instance.GetComponentInParent<SupplyCrate>() != null)
 			{
 				return false;
@@ -30,6 +31,7 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static bool PatchInteriorVehiclesClick(Vehicle __instance)
 		{
+			// Make sure that you can't enter the Seamoth/Prawn Suit while it's tiny in a chest.
 			if ((__instance is SeaMoth or Exosuit) && __instance.gameObject.transform.localScale == new Vector3(scaler, scaler, scaler) && __instance.GetComponentInParent<SupplyCrate>() != null)
 			{
 				return false;
@@ -52,17 +54,15 @@ namespace CoreItemAndInfoRandomizer
 					__instance.gameObject.EnsureComponent<Sealed>()._sealed = true;
 					__instance.gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
-					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.Exosuit);
-					/*bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("Seamoth", out TechType outTechType);
+					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(TechType.Battery);
+					/*bool doWeHaveThis = TechTypeHandler.TryGetModdedTechType("Kit_BaseObservatory", out TechType outTechType);
 					pre.prefabPlaceholders[0].prefabClassId = CraftData.GetClassIdForTechType(outTechType);
 					pre.prefabPlaceholders[0].highPriority = true;
 					pre.prefabPlaceholders[0].name = outTechType.AsString();*/
 
 					GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
-					prefabGameObject.transform.localScale = new Vector3(scaler, scaler, scaler);
-					prefabGameObject.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+					//prefabGameObject.transform.localScale = new Vector3(scaler, scaler, scaler);
 					prefabGameObject.EnsureComponent<HandTarget>().isValidHandTarget = false;
-
 				}
 			}
 		}
@@ -84,6 +84,7 @@ namespace CoreItemAndInfoRandomizer
 		}
 		private static void OnSubPrefabLoaded(GameObject prefab)
 		{
+			//This just summons the Cyclops. It'll probably be moved or removed, but for now it's just nice to be able to trigger it by opening a chest.
 			Vector3 playerPosition = Player.main.transform.position;
 			var spawnPosition = playerPosition + new Vector3(0f, 25f, 5f);
 			GameObject gameObject = global::Utils.SpawnPrefabAt(prefab, null, spawnPosition);
