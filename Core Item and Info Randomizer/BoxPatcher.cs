@@ -13,7 +13,14 @@ namespace CoreItemAndInfoRandomizer
 		{
 			{"RandoSeamothDoll", new Vector3(5.1023483091f, 5.1023483091f, 5.1023483091f)},
 			{"RandoPrawnSuitDoll", new Vector3(4.1023483091f, 4.1023483091f, 4.1023483091f)},
-			{"RandoCyclopsDoll", new Vector3(0.1023483091f, 0.1023483091f, 0.1023483091f)}
+			{"RandoCyclopsDoll", new Vector3(0.1023483091f, 0.1023483091f, 0.1023483091f)},
+			{CraftData.GetClassIdForTechType(TechType.RocketBase), new Vector3(0.0061023483091f, 0.0061023483091f, 0.0061023483091f)}
+		};
+		public static Dictionary<string, TechType> CustomItems = new()
+		{
+			{"RandoSeamothDoll", TechType.Seamoth},
+			{"RandoPrawnSuitDoll", TechType.Exosuit},
+			{"RandoCyclopsDoll", TechType.Cyclops},
 		};
 		[HarmonyPatch(typeof(HandTarget))]
 		[HarmonyPatch(nameof(HandTarget.Awake))]
@@ -22,7 +29,8 @@ namespace CoreItemAndInfoRandomizer
 		{
 			if (__instance is SupplyCrate)
 			{
-				PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {__instance.transform.position}");
+				Vector3 crateCoordinates = __instance.transform.position;
+				PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {crateCoordinates}");
 				if (__instance.transform.position.Equals(new Vector3(0f, 0f, 0f)))
 				{
 					__instance.gameObject.EnsureComponent<Sealed>()._sealed = true;
@@ -30,17 +38,28 @@ namespace CoreItemAndInfoRandomizer
 
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
-					
-					_ = TechTypeHandler.TryGetModdedTechType("RandoCyclopsDoll", out TechType outTechType);
-					string prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
+
+					var toCommit = "RandoCyclopsDoll";
+					TechType outTechType;
+					string prefabClassIdToCommit;
+					if (CustomItems.ContainsKey(toCommit))
+					{
+						_ = TechTypeHandler.TryGetModdedTechType("RandoCyclopsDoll", out outTechType);
+						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
+						WorldEntityInfo worldInfoData = new WorldEntityInfo();
+						worldInfoData.classId = prefabClassIdToCommit;
+						worldInfoData.cellLevel = LargeWorldEntity.CellLevel.Near;
+						worldInfoData.techType = outTechType;
+						WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
+					} else
+					{
+						outTechType = TechType.RocketBase;
+						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
+					}
+
 					pre.prefabPlaceholders[0].prefabClassId = prefabClassIdToCommit;
 
 					//We need to do this for any custom items or else they won't show up in the box...
-					WorldEntityInfo worldInfoData = new WorldEntityInfo();
-					worldInfoData.classId = prefabClassIdToCommit;
-					worldInfoData.cellLevel = LargeWorldEntity.CellLevel.Near;
-					worldInfoData.techType = outTechType;
-					WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
 					
 					GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
 					if (TechTypeScaleTranslation.ContainsKey(prefabClassIdToCommit))
