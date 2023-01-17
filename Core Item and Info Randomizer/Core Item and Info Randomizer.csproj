@@ -46,9 +46,6 @@
     <Reference Include="BepInEx">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="DecorationsMod">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\DecorationsMod\DecorationsMod.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Subnautica\Subnautica_Data\Managed\Newtonsoft.Json.dll</HintPath>
@@ -91,11 +88,12 @@
     <Compile Include="BoxPatcher.cs" />
     <Compile Include="BoxPlacementsData.cs" />
     <Compile Include="BoxPlacement.cs" />
-    <Compile Include="RandoSeamothDoll.cs" />
+    <Compile Include="RandoCyclopsDoll.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HintTextData.cs" />
     <Compile Include="InfiniteBattery.cs" />
     <Compile Include="InfiniteSurvival.cs" />
+    <Compile Include="RandoSeamothDoll.cs" />
     <Compile Include="VehiclePickupDrop.cs" />
     <Compile Include="LogicParser.cs" />
     <Compile Include="MainLogicLoop.cs" />
@@ -107,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="coreitemrandomizer.assets" />
+    <None Include="coreitemrandomizer.manifest" />
     <None Include="DefaultLogic.json" />
   </ItemGroup>
   <ItemGroup>

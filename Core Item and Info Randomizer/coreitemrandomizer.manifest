@@ -1,0 +1,77 @@
+ManifestFileVersion: 0
+CRC: 2233874951
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6e470db720de82b2a60a5f2ce24a4cff
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3461ede6d622f5dafa1c1d131f5199b0
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/RandoPrawnSuitDollDeps/Exosuit_grappling_arm_normal.png
+- Assets/RandoSeamothDollDeps/Submersible_SeaMoth_spec.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_Arm_Propulsion_Cannon_colorMask.png
+- Assets/RandoPrawnSuitDollDeps/submarine_engine_power_cells_01_illum.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_Arm_Propulsion_Cannon_illum.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_grappling_arm_illum.png
+- Assets/RandoSeamothDollDeps/Submersible_SeaMoth_indoor_normal.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_storage_01_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_upgrade_slots_01_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_torpedo_01_hatch_01_spec.png
+- Assets/RandoSeamothDollDeps/seamoth_torpedo_01_normal.png
+- Assets/RandoSeamothDollDeps/power_cell_01_illum.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_torpedo_launcher_arm_colorMask.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_storage_01_illum.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_glass_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_upgrade_slots_01_illum.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_storage_01_normal.png
+- Assets/RandoCyclopsDoll.prefab
+- Assets/RandoSeamothDollDeps/Submersible_SeaMoth_illum.png
+- Assets/RandoSeamothDollDeps/seamoth_power_cell_slot_01_spec.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_storage_01_colorMask.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_torpedo_launcher_arm_illum.png
+- Assets/RandoSeamothDollDeps/seamoth_torpedo_01_spec.png
+- Assets/RandoSeamothDollDeps/Submersible_SeaMoth_normal.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_illum.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_grappling_arm_colorMask.png
+- Assets/RandoSeamothDollDeps/Submersible_SeaMoth_indoor_illum.png
+- Assets/RandoSeamothDollDeps/seamoth_torpedo_01_hatch_01_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_power_cell_slot_01_normal.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_Arm_Propulsion_Cannon_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_upgrade_slots_01_spec.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_spec.png
+- Assets/RandoSeamothDollDeps/power_cell_01_normal.png
+- Assets/RandoPrawnSuitDollDeps/Exosuit_torpedo_launcher_arm_normal.png
+- Assets/RandoSeamothDollDeps/seamoth_storage_02_illum.png
+- Assets/RandoSeamothDollDeps/seamoth_storage_02_normal.png
+- Assets/RandoPrawnSuitDollDeps/submarine_engine_power_cells_01_spec.png
+- Assets/RandoPrawnSuitDollDeps/submarine_engine_power_cells_01_normal.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_fp_normal.png
+- Assets/RandoSeamothDoll.prefab
+- Assets/RandoSeamothDollDeps/power_cell_01_spec.png
+- Assets/RandoPrawnSuitDoll.prefab
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_colorMask.png
+- Assets/RandoPrawnSuitDollDeps/exosuit_01_fp_illum.png
+Dependencies: []

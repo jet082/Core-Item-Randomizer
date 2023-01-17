@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace CoreItemAndInfoRandomizer
 {
-	[FileName("PDAData")]
+	[FileName("RandomizerSaveData")]
 	public class SaveData : SaveDataCache
 	{
 		public Dictionary<string, string> PDAData = new();
+		public bool HasLoadedCyclopsYet;
 	}
 }
