@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using SMLHelper.V2.Handlers;
 using UnityEngine;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace CoreItemAndInfoRandomizer
@@ -15,6 +15,7 @@ namespace CoreItemAndInfoRandomizer
 			{"RandoPrawnSuitDoll", TechType.Exosuit},
 			{"RandoCyclopsDoll", TechType.Cyclops}
 		};
+		public static TechType[] Resizables = { TechType.Seamoth, TechType.Exosuit, TechType.Cyclops, TechType.RocketBase };
 		[HarmonyPatch(typeof(SupplyCrate))]
 		[HarmonyPatch(nameof(SupplyCrate.OnHandClick))]
 		[HarmonyPrefix]
@@ -40,8 +41,7 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static void PatchVehiclePickup(Pickupable __instance)
 		{
-			_ = TechTypeHandler.TryGetModdedTechType("RandoCyclopsDoll", out TechType outTechType);
-			if (__instance.GetTechType() == TechType.Seamoth || __instance.GetTechType() == TechType.Exosuit || __instance.GetTechType() == TechType.Cyclops) {
+			if (Resizables.Contains(__instance.GetTechType())) {
 				__instance.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 		}

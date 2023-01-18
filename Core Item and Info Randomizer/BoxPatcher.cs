@@ -14,7 +14,8 @@ namespace CoreItemAndInfoRandomizer
 			{"RandoSeamothDoll", new Vector3(5.1023483091f, 5.1023483091f, 5.1023483091f)},
 			{"RandoPrawnSuitDoll", new Vector3(4.1023483091f, 4.1023483091f, 4.1023483091f)},
 			{"RandoCyclopsDoll", new Vector3(0.1023483091f, 0.1023483091f, 0.1023483091f)},
-			{CraftData.GetClassIdForTechType(TechType.RocketBase), new Vector3(0.0061023483091f, 0.0061023483091f, 0.0061023483091f)}
+			{CraftData.GetClassIdForTechType(TechType.RocketBase), new Vector3(0.0071023483091f, 0.0071023483091f, 0.0071023483091f)},
+			{CraftData.GetClassIdForTechType(TechType.ReaperLeviathan), new Vector3(0.05f, 0.05f, 0.05f) }
 		};
 		public static Dictionary<string, TechType> CustomItems = new()
 		{
@@ -39,7 +40,7 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					var toCommit = "RandoCyclopsDoll";
+					var toCommit = "sa;k;da";
 					TechType outTechType;
 					string prefabClassIdToCommit;
 					if (CustomItems.ContainsKey(toCommit))
@@ -48,7 +49,7 @@ namespace CoreItemAndInfoRandomizer
 						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
 						WorldEntityInfo worldInfoData = new WorldEntityInfo();
 						worldInfoData.classId = prefabClassIdToCommit;
-						worldInfoData.cellLevel = LargeWorldEntity.CellLevel.Near;
+						worldInfoData.cellLevel = LargeWorldEntity.CellLevel.Far;
 						worldInfoData.techType = outTechType;
 						WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
 					} else
