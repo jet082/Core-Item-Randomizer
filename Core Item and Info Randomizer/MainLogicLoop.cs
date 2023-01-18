@@ -15,6 +15,7 @@ namespace CoreItemAndInfoRandomizer
 			PDAPatcher.GeneratePDAEntries();
 			new RandoCyclopsDoll().Patch();
 			new RandoSeamothDoll().Patch();
+			new RandoPrawnSuitDoll().Patch();
 		}
 	}
 }

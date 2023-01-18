@@ -23,7 +23,7 @@ namespace CoreItemAndInfoRandomizer
 			{ "cyclops_cabin_23", "cyclops_cabin_normal_204" },
 			{ "submarine_control_room_steering_console_base_02_48", "submarine_steering_console_base_02_normal_4313" }
 		};
-		public RandoCyclopsDoll() : base("RandoCyclopsDoll", "Seamoth", "Seamoth")
+		public RandoCyclopsDoll() : base("RandoCyclopsDoll", "Cyclops", "Cyclops")
 		{
 		}
 		public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)

@@ -12,7 +12,7 @@ namespace CoreItemAndInfoRandomizer
 		public static Dictionary<string, Vector3> TechTypeScaleTranslation = new()
 		{
 			{"RandoSeamothDoll", new Vector3(5.1023483091f, 5.1023483091f, 5.1023483091f)},
-			{"RandoPrawnSuitDoll", new Vector3(4.1023483091f, 4.1023483091f, 4.1023483091f)},
+			{"RandoPrawnSuitDoll", new Vector3(2.1023483091f, 2.1023483091f, 2.1023483091f)},
 			{"RandoCyclopsDoll", new Vector3(0.1023483091f, 0.1023483091f, 0.1023483091f)},
 			{CraftData.GetClassIdForTechType(TechType.RocketBase), new Vector3(0.0071023483091f, 0.0071023483091f, 0.0071023483091f)},
 			{CraftData.GetClassIdForTechType(TechType.ReaperLeviathan), new Vector3(0.05f, 0.05f, 0.05f) }
@@ -22,6 +22,7 @@ namespace CoreItemAndInfoRandomizer
 			{"RandoSeamothDoll", TechType.Seamoth},
 			{"RandoPrawnSuitDoll", TechType.Exosuit},
 			{"RandoCyclopsDoll", TechType.Cyclops},
+			{"Kit_BaseObservatory", TechType.BaseObservatory}
 		};
 		[HarmonyPatch(typeof(HandTarget))]
 		[HarmonyPatch(nameof(HandTarget.Awake))]
@@ -40,12 +41,12 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					var toCommit = "sa;k;da";
+					var toCommit = "RandoPrawnSuitDoll";
 					TechType outTechType;
 					string prefabClassIdToCommit;
 					if (CustomItems.ContainsKey(toCommit))
 					{
-						_ = TechTypeHandler.TryGetModdedTechType("RandoCyclopsDoll", out outTechType);
+						_ = TechTypeHandler.TryGetModdedTechType(toCommit, out outTechType);
 						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
 						WorldEntityInfo worldInfoData = new WorldEntityInfo();
 						worldInfoData.classId = prefabClassIdToCommit;
