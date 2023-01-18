@@ -107,8 +107,9 @@
     <None Include="app.config" />
     <None Include="coreitemrandomizer.assets" />
     <None Include="coreitemrandomizer.manifest" />
-    <None Include="Credits.md" />
+    <None Include="CREDITS.md" />
     <None Include="DefaultLogic.json" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DefaultLogicHumanReadable.txt" />
