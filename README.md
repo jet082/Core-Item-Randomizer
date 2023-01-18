@@ -1,3 +1,11 @@
+# Details
+
+This is a core item randomizer. It places chests around the map in set locations and uses [Logic](https://github.com/jet082/Core-Item-and-Info-Randomizer/blob/main/Core%20Item%20and%20Info%20Randomizer/DefaultLogic.json) to determine placements.
+
+# Credits
+
+The full credits for the project can be found [here](https://github.com/jet082/Core-Item-and-Info-Randomizer/blob/main/CREDITS.md).
+
 # TO DO
 
 # Tech
