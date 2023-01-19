@@ -88,6 +88,7 @@
     <Compile Include="BoxPatcher.cs" />
     <Compile Include="BoxPlacementsData.cs" />
     <Compile Include="BoxPlacement.cs" />
+    <Compile Include="DollSetup.cs" />
     <Compile Include="RandoCyclopsDoll.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HintTextData.cs" />

@@ -38,20 +38,10 @@ namespace CoreItemAndInfoRandomizer
 			GameObject prefab = GameObject.Instantiate<GameObject>(assetLoaded);
 			prefab.name = this.PrefabFileName;
 
-			prefab.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
-
 			GameObject model = assetLoaded.FindChild("CyclopsDoll");
-			model.transform.localPosition = new Vector3(model.transform.localPosition.x, model.transform.localPosition.y + 0.135f, model.transform.localPosition.z);
 
-			var collider = prefab.EnsureComponent<BoxCollider>();
-			collider.size = new Vector3(0.06f, 0.148f, 0.42f);
-			collider.center = new Vector3(collider.center.x - 0.02f, collider.center.y + 0.135f, collider.center.z - 0.105f);
-
-			var rigidBodyStats = prefab.EnsureComponent<Rigidbody>();
-			rigidBodyStats.drag = 1;
-			rigidBodyStats.angularDrag = 0.05f;
-			rigidBodyStats.mass = 5f;
-			rigidBodyStats.isKinematic = true;
+			LargeWorldEntity lwe = prefab.EnsureComponent<LargeWorldEntity>();
+			lwe.cellLevel = LargeWorldEntity.CellLevel.Near;
 
 			var worldForces = prefab.EnsureComponent<WorldForces>();
 			worldForces.handleGravity = true;

@@ -11,7 +11,7 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static Dictionary<string, Vector3> TechTypeScaleTranslation = new()
 		{
-			{"RandoSeamothDoll", new Vector3(5.1023483091f, 5.1023483091f, 5.1023483091f)},
+			{"RandoSeamothDoll", new Vector3(0.181023483091f, 0.181023483091f, 0.181023483091f)},
 			{"RandoPrawnSuitDoll", new Vector3(2.1023483091f, 2.1023483091f, 2.1023483091f)},
 			{"RandoCyclopsDoll", new Vector3(0.1023483091f, 0.1023483091f, 0.1023483091f)},
 			{CraftData.GetClassIdForTechType(TechType.RocketBase), new Vector3(0.0071023483091f, 0.0071023483091f, 0.0071023483091f)},
@@ -41,7 +41,7 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					var toCommit = "RandoPrawnSuitDoll";
+					var toCommit = "RandoSeamothDoll";
 					TechType outTechType;
 					string prefabClassIdToCommit;
 					if (CustomItems.ContainsKey(toCommit))

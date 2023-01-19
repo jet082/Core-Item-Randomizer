@@ -665,7 +665,17 @@ namespace CoreItemAndInfoRandomizer
 			{ 327, "Mahatma Gandhi's pet sardine, Jim was known for his voracious appetite and was said to be able to eat his weight in plankton every day." },
 			{ 328, "Mahatma Gandhi was known to be very fond of his pet sardine, Jim, and often took him on walks around his city." },
 			{ 329, "After his pet sardine's death at the ripe old age of 9, Gandhi had a gold-plated fishbowl built in his honor and filled it with rare and exotic fish from around the world." },
-			{ 330, "Fish can eat so much food that they spontaneously combust and spew out fish children at 10 mph" }
+			{ 330, "Fish can eat so much food that they spontaneously combust and spew out fish children at 10 mph." },
+			{ 331, "Ghost Leviathans mate during deep sea storms, where the turbulent currents help to bring the males and females together." },
+			{ 332, "During mating, one Ghost Leviathan will produce a loud, low-frequency call to attract another, and once a pair has been formed, they will engage in an elaborate courtship dance." },
+			{ 333, "The mating process of the Ghost Leviathan can last for several hours, during which the pair will twirl and swim in circles, one will release eggs, and the other will fertilize them." },
+			{ 334, "After mating, one Ghost Leviathan will lay their eggs in a safe location and the other will provide protection until the eggs hatch." },
+			{ 335, "Mating among Ghost Leviathans is a rare event, as they are solitary creatures and only come together to mate once every several years." },
+			{ 336, "George Washington was known to be an avid angler, and would often spend his leisure time fishing on the Potomac River." },
+			{ 337, "During the Revolutionary War, Washington's troops were known to fish for shad and herring in the Hudson River to supplement their rations." },
+			{ 338, "One of Washington's favorite fishing spots was a secret spot on the Potomac River where he would catch catfish that were rumored to be as large as a man." },
+			{ 339, "Washington was known to be quite the catch, and would often bring back impressive hauls of fish for his family and guests at Mount Vernon." },
+			{ 340, "Washington even had a special fishing rod and reel that was made for him by the famous 18th century fishing tackle maker, James Leisenring. He used it throughout his life and passed it down to his descendants." },
 		};
 		public static Dictionary<int, string> FishyFactTable = new()
 		{
