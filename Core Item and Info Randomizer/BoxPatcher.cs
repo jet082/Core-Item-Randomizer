@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using SMLHelper.V2.Handlers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UWE;
@@ -9,20 +10,20 @@ namespace CoreItemAndInfoRandomizer
 	[HarmonyPatch]
 	public class BoxPatcher
 	{
-		public static Dictionary<string, Vector3> TechTypeScaleTranslation = new()
+		public static Dictionary<string, Tuple<float, bool>> TechTypeScaleTranslation = new()
 		{
-			{"RandoSeamothDoll", new Vector3(0.181023483091f, 0.181023483091f, 0.181023483091f)},
-			{"RandoPrawnSuitDoll", new Vector3(2.1023483091f, 2.1023483091f, 2.1023483091f)},
-			{"RandoCyclopsDoll", new Vector3(0.1023483091f, 0.1023483091f, 0.1023483091f)},
-			{CraftData.GetClassIdForTechType(TechType.RocketBase), new Vector3(0.0071023483091f, 0.0071023483091f, 0.0071023483091f)},
-			{CraftData.GetClassIdForTechType(TechType.ReaperLeviathan), new Vector3(0.05f, 0.05f, 0.05f) }
+			{ "RandoSeamothDoll", new Tuple<float, bool>(0.18f, false) },
+			{ "RandoPrawnSuitDoll", new Tuple<float, bool>(0.15f, false) },
+			{ "RandoCyclopsDoll", new Tuple<float, bool>(0.012f, false) },
+			{ "RandoRocketBaseDoll", new Tuple<float, bool>(0.007f, false) },
+			{ CraftData.GetClassIdForTechType(TechType.ReaperLeviathan), new Tuple<float, bool>(0.05f, true) }
 		};
 		public static Dictionary<string, TechType> CustomItems = new()
 		{
-			{"RandoSeamothDoll", TechType.Seamoth},
-			{"RandoPrawnSuitDoll", TechType.Exosuit},
-			{"RandoCyclopsDoll", TechType.Cyclops},
-			{"Kit_BaseObservatory", TechType.BaseObservatory}
+			{ "RandoSeamothDoll", TechType.Seamoth },
+			{ "RandoPrawnSuitDoll", TechType.Exosuit },
+			{ "RandoCyclopsDoll", TechType.Cyclops },
+			{ "Kit_BaseObservatory", TechType.BaseObservatory }
 		};
 		[HarmonyPatch(typeof(HandTarget))]
 		[HarmonyPatch(nameof(HandTarget.Awake))]
@@ -41,7 +42,7 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					var toCommit = "RandoSeamothDoll";
+					var toCommit = "RandoCyclopsDoll";
 					TechType outTechType;
 					string prefabClassIdToCommit;
 					if (CustomItems.ContainsKey(toCommit))
@@ -66,7 +67,14 @@ namespace CoreItemAndInfoRandomizer
 					GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
 					if (TechTypeScaleTranslation.ContainsKey(prefabClassIdToCommit))
 					{
-						prefabGameObject.transform.localScale = TechTypeScaleTranslation[prefabClassIdToCommit];
+						float scaler = TechTypeScaleTranslation[prefabClassIdToCommit].Item1;
+						if (TechTypeScaleTranslation[prefabClassIdToCommit].Item2)
+						{
+							prefabGameObject.GetComponentInParent<Creature>().SetScale(scaler);
+						} else
+						{
+							prefabGameObject.transform.localScale = new Vector3(scaler, scaler, scaler);
+						}
 					}
 				}
 			}

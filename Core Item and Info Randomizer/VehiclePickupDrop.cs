@@ -32,21 +32,6 @@ namespace CoreItemAndInfoRandomizer
 		{
 			return StopClick(__instance.gameObject, __instance.GetTechName(), __instance.GetTechType());
 		}
-		[HarmonyPatch(typeof(Pickupable))]
-		[HarmonyPatch(nameof(Pickupable.Drop), new[] { typeof(Vector3), typeof(Vector3), typeof(bool) })]
-		[HarmonyPostfix]
-		public static void PatchVehicleDrop(Pickupable __instance)
-		{
-			if (__instance.GetTechType() == TechType.Cyclops)
-			{
-				if (!PluginSetup.RandomizerLoadedSaveData.HasLoadedCyclopsYet)
-				{
-					PluginSetup.RandomizerLoadedSaveData.HasLoadedCyclopsYet = true;
-					GameObject.Destroy(__instance);
-					LightmappedPrefabs.main.RequestScenePrefab("cyclops", new LightmappedPrefabs.OnPrefabLoaded(OnSubPrefabLoaded));
-				}
-			}
-		}
 		[HarmonyPatch(typeof(Exosuit))]
 		[HarmonyPatch(nameof(Exosuit.Awake))]
 		[HarmonyPostfix]
@@ -71,17 +56,6 @@ namespace CoreItemAndInfoRandomizer
 				someObject.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 			return true;
-		}
-		private static void OnSubPrefabLoaded(GameObject prefab)
-		{
-			//This just summons the Cyclops. Temporarily using the coordinates of the test box.
-			Vector3 spawnPosition = MainCamera.camera.transform.position + (15f * MainCamera.camera.transform.forward);
-			GameObject gameObject = global::Utils.SpawnPrefabAt(prefab, null, spawnPosition);
-			gameObject.transform.rotation = Quaternion.identity;
-			gameObject.SetActive(true);
-			gameObject.SendMessage("StartConstruction", SendMessageOptions.DontRequireReceiver);
-			LargeWorldEntity.Register(gameObject);
-			CrafterLogic.NotifyCraftEnd(gameObject, TechType.Cyclops);
 		}
 	}
 }

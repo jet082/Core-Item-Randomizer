@@ -18,9 +18,13 @@ namespace CoreItemAndInfoRandomizer
 			SpawnPosition = transform.position + 20f * transform.forward;
 			SpawnRotation = Quaternion.LookRotation(MainCamera.camera.transform.right);
 			LightmappedPrefabs.main.RequestScenePrefab("cyclops", new LightmappedPrefabs.OnPrefabLoaded(OnSubPrefabLoaded));
+			LastCreatedSub.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+			Pickupable subPickupable = LastCreatedSub.EnsureComponent<Pickupable>();
+			subPickupable.isPickupable = true;
+			subPickupable.enabled = true;
 			if (LastCreatedSub != null)
 			{
-				gameObject.Set(GetGameObject());
+				gameObject.Set(LastCreatedSub);
 			}
 			yield break;
 		}
