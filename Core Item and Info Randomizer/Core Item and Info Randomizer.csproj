@@ -94,7 +94,9 @@
     <Compile Include="HintTextData.cs" />
     <Compile Include="InfiniteBattery.cs" />
     <Compile Include="InfiniteSurvival.cs" />
+    <Compile Include="RandomFishSize.cs" />
     <Compile Include="RandoPrawnSuitDoll.cs" />
+    <Compile Include="RandoRocketBaseDoll.cs" />
     <Compile Include="RandoSeamothDoll.cs" />
     <Compile Include="VehiclePickupDrop.cs" />
     <Compile Include="LogicParser.cs" />

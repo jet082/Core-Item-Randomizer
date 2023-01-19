@@ -12,9 +12,11 @@ namespace CoreItemAndInfoRandomizer
 		{
 			{"RandoSeamothDoll", TechType.Seamoth},
 			{"RandoPrawnSuitDoll", TechType.Exosuit},
-			{"RandoCyclopsDoll", TechType.Cyclops}
+			{"RandoCyclopsDoll", TechType.Cyclops},
+			{"RandoRocketBaseDoll", TechType.RocketBase}
 		};
 		public static HashSet<TechType> Resizables = new() { TechType.Seamoth, TechType.Exosuit, TechType.Cyclops, TechType.RocketBase };
+
 		[HarmonyPatch(typeof(SupplyCrate))]
 		[HarmonyPatch(nameof(SupplyCrate.OnHandClick))]
 		[HarmonyPrefix]

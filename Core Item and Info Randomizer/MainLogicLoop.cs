@@ -13,8 +13,9 @@ namespace CoreItemAndInfoRandomizer
 		public static void RunMainLogic()
 		{
 			PDAPatcher.GeneratePDAEntries();
-			new RandoCyclopsDoll().Patch();
 			new RandoSeamothDoll().Patch();
+			new RandoRocketBaseDoll().Patch();
+			new RandoCyclopsDoll().Patch();
 			new RandoPrawnSuitDoll().Patch();
 		}
 	}
