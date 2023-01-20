@@ -10,7 +10,6 @@ The full credits for the project can be found [here](https://github.com/jet082/C
 
 # Tech
 
-* Figure out how to pick up vehicles.
 * Maybe we can remove the Mobile Vehicle Bay from the pool or make it a junk item. Maybe make it an option to require the MVB to build vehicles from 'vehicle kits'
 * Place base pieces via basekits. Figure out how to do that.
 * Convert CYS to code so it can be toggled on/off.
