@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using SMLHelper.V2.Handlers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,13 +17,6 @@ namespace CoreItemAndInfoRandomizer
 			{ "RandoRocketBaseDoll", new Tuple<float, bool>(0.007f, false) },
 			{ CraftData.GetClassIdForTechType(TechType.ReaperLeviathan), new Tuple<float, bool>(0.05f, true) }
 		};
-		public static Dictionary<string, TechType> CustomItems = new()
-		{
-			{ "RandoSeamothDoll", TechType.Seamoth },
-			{ "RandoPrawnSuitDoll", TechType.Exosuit },
-			{ "RandoCyclopsDoll", TechType.Cyclops },
-			{ "Kit_BaseObservatory", TechType.BaseObservatory }
-		};
 		[HarmonyPatch(typeof(HandTarget))]
 		[HarmonyPatch(nameof(HandTarget.Awake))]
 		[HarmonyPostfix]
@@ -42,13 +34,13 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					var toCommit = "RandoCyclopsDoll";
+					string toCommit = "RandoCyclopsDoll";
 					TechType outTechType;
 					string prefabClassIdToCommit;
-					if (CustomItems.ContainsKey(toCommit))
+					if (ModCache.CacheData.ContainsKey(toCommit))
 					{
-						_ = TechTypeHandler.TryGetModdedTechType(toCommit, out outTechType);
-						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
+						outTechType = ModCache.CacheData[toCommit].ModTechType;
+						prefabClassIdToCommit = ModCache.CacheData[toCommit].ClassId;
 						WorldEntityInfo worldInfoData = new WorldEntityInfo();
 						worldInfoData.classId = prefabClassIdToCommit;
 						worldInfoData.cellLevel = LargeWorldEntity.CellLevel.Far;

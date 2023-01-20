@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 using System.Collections.Generic;
-using SMLHelper.V2.Handlers;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -17,6 +16,28 @@ namespace CoreItemAndInfoRandomizer
 		};
 		public static HashSet<TechType> Resizables = new() { TechType.Seamoth, TechType.Exosuit, TechType.Cyclops, TechType.RocketBase };
 
+		[HarmonyPatch(typeof(Vehicle))]
+		[HarmonyPatch(nameof(Vehicle.OnHandHover))]
+		[HarmonyPrefix]
+		public static bool PatchExosuitDoll(Vehicle __instance)
+		{
+			PluginSetup.BepinExLogger.LogInfo($"Check out {__instance.GetType()}");
+			if (__instance.GetType() == typeof(Exosuit))
+			{
+				return true;
+			}
+			return true;
+		}
+		[HarmonyPatch(typeof(Pickupable))]
+		[HarmonyPatch(nameof(Pickupable.Drop), new[] { typeof(Vector3), typeof(Vector3), typeof(bool) })]
+		[HarmonyPrefix]
+		public static void PatchVehicleDropPre(Pickupable __instance)
+		{
+			if (__instance.GetTechType() == TechType.Cyclops)
+			{
+				__instance.randomizeRotationWhenDropped = false;
+			}
+		}
 		[HarmonyPatch(typeof(SupplyCrate))]
 		[HarmonyPatch(nameof(SupplyCrate.OnHandClick))]
 		[HarmonyPrefix]
@@ -31,17 +52,6 @@ namespace CoreItemAndInfoRandomizer
 		public static bool PatchPickupableClick(Pickupable __instance)
 		{
 			return StopClick(__instance.gameObject, __instance.GetTechName(), __instance.GetTechType());
-		}
-		[HarmonyPatch(typeof(Exosuit))]
-		[HarmonyPatch(nameof(Exosuit.Awake))]
-		[HarmonyPostfix]
-		public static void CleanExosuit(Exosuit __instance)
-		{
-			_ = TechTypeHandler.TryGetModdedTechType("RandoPrawnSuitDoll", out TechType outTechType);
-			if (__instance.name == "RandoPrawnSuitDoll")
-			{
-				GameObject.Destroy(__instance);
-			}
 		}
 		private static bool StopClick(GameObject someObject, string someString, TechType someTechType)
 		{

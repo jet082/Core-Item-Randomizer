@@ -89,6 +89,8 @@
     <Compile Include="BoxPlacementsData.cs" />
     <Compile Include="BoxPlacement.cs" />
     <Compile Include="DollSetup.cs" />
+    <Compile Include="ModCache.cs" />
+    <Compile Include="ModCacheItem.cs" />
     <Compile Include="RandoCyclopsDoll.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HintTextData.cs" />

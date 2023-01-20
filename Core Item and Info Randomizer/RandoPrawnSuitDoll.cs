@@ -16,21 +16,24 @@ namespace CoreItemAndInfoRandomizer
 			IPrefabRequest task = PrefabDatabase.GetPrefabAsync(CraftData.GetClassIdForTechType(baseTechType));
 			yield return task;
 			_ = task.TryGetPrefab(out GameObject prefab);
-			PluginSetup.BepinExLogger.LogInfo("lol 1");
-			GameObject prefabArmModel = prefab.transform.Find("exosuit_01/root/geoChildren/lArm_clav/ExosuitClawArm(Clone)/exosuit_01_armRight/ArmRig/exosuit_hand_geo").gameObject;
-			PluginSetup.BepinExLogger.LogInfo("lol 2");
-			GameObject dollArm = Object.Instantiate(prefabArmModel);
-			PluginSetup.BepinExLogger.LogInfo("lol 3");
+			Exosuit tempExosuitData = prefab.GetComponent<Exosuit>();
+			GameObject clawArmPrefab = tempExosuitData.armPrefabs[0].prefab.gameObject;
+			GameObject leftClawArm = GameObject.Instantiate(clawArmPrefab);
+			GameObject rightClawArm = GameObject.Instantiate(clawArmPrefab);
 
-			GameObject wip = DollSetup.SetupDoll(prefab, 1f);
-			PluginSetup.BepinExLogger.LogInfo("lol 4");
+			float scaler = 0.12f;
+			GameObject wip = DollSetup.SetupDoll(prefab, scaler);
+			GameObject.DestroyImmediate(wip.transform.Find("BatterySlot2").gameObject.GetComponent<EnergyMixin>());
+			GameObject.DestroyImmediate(wip.transform.Find("exosuit_01/root/geoChildren/upgrade_geoHldr/Storage").gameObject.GetComponent<StorageContainer>());
+			leftClawArm.transform.parent = wip.transform;
+			leftClawArm.transform.localRotation = Quaternion.identity;
+			leftClawArm.transform.localPosition = new Vector3(4.33f * scaler, 1f, 0f);
+			leftClawArm.transform.localScale = new Vector3(-1f, 1f, 1f);
 
-			dollArm.transform.SetParent(wip.transform, false);
-			PluginSetup.BepinExLogger.LogInfo("lol 5");
-			dollArm.transform.localRotation = Quaternion.identity;
-			dollArm.transform.localPosition = Vector3.zero;
-			dollArm.transform.localScale = new Vector3(-1f, 1f, 1f);
-			PluginSetup.BepinExLogger.LogInfo("lol 6");
+			rightClawArm.transform.parent = wip.transform;
+			rightClawArm.transform.localRotation = Quaternion.identity;
+			rightClawArm.transform.localPosition = new Vector3(-4.33f * scaler, 1f, 0f);
+			rightClawArm.transform.localScale = new Vector3(1f, 1f, 1f);
 
 			gameObject.Set(wip);
 			yield break;
