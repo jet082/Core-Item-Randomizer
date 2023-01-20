@@ -15,6 +15,7 @@ The full credits for the project can be found [here](https://github.com/jet082/C
 * Convert CYS to code so it can be toggled on/off.
 * Figure out how to make sure the randomizer can be toggled on/off so it doesn't impact other mods too heavily.
 * Figure out how to add options, etc.
+* A nice-to-have would be to do an update to BaseKits to use a mini version of the buildings in question rather than the generic loot cube.
 
 ## Logic
 
