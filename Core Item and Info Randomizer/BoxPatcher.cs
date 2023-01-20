@@ -26,7 +26,7 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					string toCommit = "RandoSeamothDoll";
+					string toCommit = "RandoSeamothDolla";
 					TechType outTechType;
 					string prefabClassIdToCommit;
 					//We need to do this for any custom items or else they won't show up in the box...
@@ -86,8 +86,13 @@ namespace CoreItemAndInfoRandomizer
 			UnityEngine.Bounds bounds = new UnityEngine.Bounds(Vector3.zero, Vector3.zero);
 			foreach (Collider someCollider in colliders)
 			{
-				bounds.Encapsulate(someCollider.bounds);
+				PluginSetup.BepinExLogger.LogInfo($"Collider Size Check: {someCollider.bounds.size.x}, {someCollider.bounds.size.y}, {someCollider.bounds.size.z}");
+				if (someCollider.isTrigger == false && someCollider.enabled == true)
+				{
+					bounds.Encapsulate(someCollider.bounds);
+				}
 			}
+			PluginSetup.BepinExLogger.LogInfo($"Bound Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}");
 			float minScalingFactor;
 
 			if (BoxContentSize.x < bounds.size.x || BoxContentSize.y < bounds.size.y || BoxContentSize.z < bounds.size.z)
@@ -107,7 +112,6 @@ namespace CoreItemAndInfoRandomizer
 				minScalingFactor = 1f;
 			}
 			Vector3 scaler = new Vector3(minScalingFactor, minScalingFactor, minScalingFactor);
-			PluginSetup.BepinExLogger.LogInfo($"Bound Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}");
 			someGameObject.transform.localScale = scaler;
 		}
 	}
