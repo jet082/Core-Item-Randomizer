@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UWE;
 
@@ -9,14 +8,7 @@ namespace CoreItemAndInfoRandomizer
 	[HarmonyPatch]
 	public class BoxPatcher
 	{
-		public static Dictionary<string, Tuple<float, bool>> TechTypeScaleTranslation = new()
-		{
-			{ "RandoSeamothDoll", new Tuple<float, bool>(0.18f, false) },
-			{ "RandoPrawnSuitDoll", new Tuple<float, bool>(0.15f, false) },
-			{ "RandoCyclopsDoll", new Tuple<float, bool>(0.012f, false) },
-			{ "RandoRocketBaseDoll", new Tuple<float, bool>(0.007f, false) },
-			{ CraftData.GetClassIdForTechType(TechType.ReaperLeviathan), new Tuple<float, bool>(0.05f, true) }
-		};
+		public static Vector3 BoxContentSize = new Vector3(0.51f, 0.56f, 1.55f);
 		[HarmonyPatch(typeof(HandTarget))]
 		[HarmonyPatch(nameof(HandTarget.Awake))]
 		[HarmonyPostfix]
@@ -34,9 +26,10 @@ namespace CoreItemAndInfoRandomizer
 					//This is how we get items in boxes.
 					PrefabPlaceholdersGroup pre = __instance.gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-					string toCommit = "RandoCyclopsDoll";
+					string toCommit = "RandoSeamothDoll";
 					TechType outTechType;
 					string prefabClassIdToCommit;
+					//We need to do this for any custom items or else they won't show up in the box...
 					if (ModCache.CacheData.ContainsKey(toCommit))
 					{
 						outTechType = ModCache.CacheData[toCommit].ModTechType;
@@ -48,25 +41,20 @@ namespace CoreItemAndInfoRandomizer
 						WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
 					} else
 					{
-						outTechType = TechType.RocketBase;
+						outTechType = TechType.PropulsionCannon;
 						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
 					}
 
 					pre.prefabPlaceholders[0].prefabClassId = prefabClassIdToCommit;
-
-					//We need to do this for any custom items or else they won't show up in the box...
 					
 					GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
-					if (TechTypeScaleTranslation.ContainsKey(prefabClassIdToCommit))
+					if (prefabClassIdToCommit == ModCache.CacheData["RandoCyclopsDoll"].ClassId)
 					{
-						float scaler = TechTypeScaleTranslation[prefabClassIdToCommit].Item1;
-						if (TechTypeScaleTranslation[prefabClassIdToCommit].Item2)
-						{
-							prefabGameObject.GetComponentInParent<Creature>().SetScale(scaler);
-						} else
-						{
-							prefabGameObject.transform.localScale = new Vector3(scaler, scaler, scaler);
-						}
+						pre.prefabPlaceholders[0].transform.localScale = new Vector3(0.012f, 0.012f, 0.012f);
+					}
+					else
+					{
+						CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, prefabClassIdToCommit));
 					}
 				}
 			}
@@ -88,6 +76,39 @@ namespace CoreItemAndInfoRandomizer
 			// add default battery
 			var techType = CraftData.GetTechType(__instance.itemInside.gameObject);
 			CrafterLogic.NotifyCraftEnd(__instance.itemInside.gameObject, techType);
+		}
+		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId)
+		{
+			IPrefabRequest task = PrefabDatabase.GetPrefabAsync(someClassId);
+			yield return task;
+			_ = task.TryGetPrefab(out GameObject prefab);
+			Collider[] colliders = prefab.GetAllComponentsInChildren<Collider>();
+			UnityEngine.Bounds bounds = new UnityEngine.Bounds(Vector3.zero, Vector3.zero);
+			foreach (Collider someCollider in colliders)
+			{
+				bounds.Encapsulate(someCollider.bounds);
+			}
+			float minScalingFactor;
+
+			if (BoxContentSize.x < bounds.size.x || BoxContentSize.y < bounds.size.y || BoxContentSize.z < bounds.size.z)
+			{
+				minScalingFactor = float.PositiveInfinity;
+				for (int i = 0; i <= 2; i = i + 1)
+				{
+					float potentialScalingFactor = BoxContentSize[i] / bounds.size[i];
+					if (potentialScalingFactor < minScalingFactor)
+					{
+						minScalingFactor = potentialScalingFactor;
+					}
+				}
+			}
+			else
+			{
+				minScalingFactor = 1f;
+			}
+			Vector3 scaler = new Vector3(minScalingFactor, minScalingFactor, minScalingFactor);
+			PluginSetup.BepinExLogger.LogInfo($"Bound Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}");
+			someGameObject.transform.localScale = scaler;
 		}
 	}
 }

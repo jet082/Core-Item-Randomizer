@@ -8,6 +8,5 @@ namespace CoreItemAndInfoRandomizer
 	public class SaveData : SaveDataCache
 	{
 		public Dictionary<string, string> PDAData = new();
-		public bool HasLoadedCyclopsYet;
 	}
 }
