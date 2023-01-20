@@ -1,6 +1,5 @@
 ﻿# Credits
 
-* The Cyclops Doll, Prawn Suit Doll, and Seamoth Doll were all taken from [K07H's lovely Decorations Mod](https://github.com/K07H/DecorationsMod) via [AssetsRipper](https://github.com/AssetRipper/AssetRipper). The origin for the assets used by the Decorations mod was, I believe anyway, the core Subnautica game, but I think that K07H took the time to rig the models and stitch everything together. I altered the assets to remove the unneccessary (for my project) extras from the Prawn Suit and Seamoth. Additionally, much of the code instantiating the objects in the world was taken directly from [their source code](https://github.com/K07H/DecorationsMod/tree/master/DecorationsMod/NewItems). Changes were made to change the item type to Pickupable, add Components, etc.
 * This mod has the following dependencies:
     * **EldritchCarMaker's PickupableVehicles:** [Source Code](https://github.com/EldritchCarMaker/My-Subnautica-Mods/tree/main/PickupableVehicles) / [Download](https://cdn.discordapp.com/attachments/798579644429369444/1064614009061523497/PickupableVehicles.zip)
     * **MrPurple6411's BaseKits:** [Source Code](https://github.com/MrPurple6411/MrPurple6411-Subnautica-Mods/tree/main/BaseKits/) / [Download](https://www.nexusmods.com/subnautica/mods/1119)
