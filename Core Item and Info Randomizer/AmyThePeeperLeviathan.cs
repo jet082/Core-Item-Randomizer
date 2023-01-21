@@ -7,7 +7,7 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class AmyThePeeperLeviathan : Spawnable
 	{
-		public AmyThePeeperLeviathan() : base("AmyThePeeperLeviathan", "Amy The Peeper Leviathan", "She's Amy!")
+		public AmyThePeeperLeviathan() : base("AmyThePeeperLeviathan", "Amy The Peeper Leviathan", "It's Amy!")
 		{
 		}
 		public override IEnumerator GetGameObjectAsync(IOut<GameObject> gameObject)
