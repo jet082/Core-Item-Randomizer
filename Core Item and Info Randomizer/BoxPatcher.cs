@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
@@ -9,6 +11,9 @@ namespace CoreItemAndInfoRandomizer
 	public class BoxPatcher
 	{
 		public static Vector3 BoxContentSize = new Vector3(0.21f, 0.15f, 0.13f);
+		public static float[] boxContentsPadding = { 0.3f, 0.8f, 0.5f };
+
+		public static HashSet<string> VFXAllowList = new() { "VFXSurface", "VFXFabricating", "VFXController" };
 		[HarmonyPatch(typeof(HandTarget))]
 		[HarmonyPatch(nameof(HandTarget.Awake))]
 		[HarmonyPostfix]
@@ -41,7 +46,7 @@ namespace CoreItemAndInfoRandomizer
 						WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
 					} else
 					{
-						outTechType = TechType.PropulsionCannon;
+						outTechType = TechType.StasisRifle;
 						prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
 					}
 
@@ -77,35 +82,59 @@ namespace CoreItemAndInfoRandomizer
 			var techType = CraftData.GetTechType(__instance.itemInside.gameObject);
 			CrafterLogic.NotifyCraftEnd(__instance.itemInside.gameObject, techType);
 		}
-		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId, GameObject supplyBox)
+		public static Bounds FindItemSize(GameObject someGameObject)
 		{
-			//Try to get box size...
-			Quaternion boxCurrentRotation = supplyBox.transform.rotation;
-			Vector3 boxCurrentScale = supplyBox.transform.localScale;
-			supplyBox.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-			supplyBox.transform.localScale = Vector3.one;
-			Renderer[] boxRendererArray = supplyBox.GetAllComponentsInChildren<Renderer>();
-			Bounds boxBounds = new Bounds(supplyBox.transform.position, Vector3.zero);
-			bool BoxHasTriggeredFoundBounds = false;
-			foreach (Renderer renderer in boxRendererArray)
+			Quaternion currentRotation = someGameObject.transform.rotation;
+			Vector3 currentScale = someGameObject.transform.localScale;
+			someGameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+			someGameObject.transform.localScale = Vector3.one;
+			bool stillHasComponents = true;
+			while (stillHasComponents)
 			{
-				if (renderer.enabled == true && renderer.gameObject.activeSelf)
+				stillHasComponents = false;
+				foreach (var someComponent in someGameObject.GetAllComponentsInChildren<Component>())
 				{
-					if (!BoxHasTriggeredFoundBounds)
+					if (someComponent.GetType().ToString().Contains("VFX") && !VFXAllowList.Contains(someComponent.GetType().ToString()))
 					{
-						boxBounds = renderer.bounds;
-						BoxHasTriggeredFoundBounds = true;
+						Renderer[] arrayOfVFXRenderers = someComponent.GetAllComponentsInChildren<Renderer>();
+						foreach (var someRenderer in arrayOfVFXRenderers)
+						{
+							GameObject.DestroyImmediate(someComponent);
+							GameObject.DestroyImmediate(someRenderer);
+						}
 					}
-					PluginSetup.BepinExLogger.LogInfo($"Box Collider Size Check: {renderer.bounds.size.x}, {renderer.bounds.size.y}, {renderer.bounds.size.z} at center {renderer.bounds.center.x}, {renderer.bounds.center.y}, {renderer.bounds.center.z}");
-					boxBounds.Encapsulate(renderer.bounds);
 				}
 			}
-			Vector3 boxLocalCenter = boxBounds.center - supplyBox.transform.position;
-			boxBounds.center = boxLocalCenter;
-			supplyBox.transform.localScale = boxCurrentScale;
-			supplyBox.transform.rotation = boxCurrentRotation;
-
-			PluginSetup.BepinExLogger.LogInfo($"Box Bounds Size Check: {boxBounds.size.x}, {boxBounds.size.y}, {boxBounds.size.z} at center {boxBounds.center.x}, {boxBounds.center.y}, {boxBounds.center.z}");
+			Renderer[] rendererArray = someGameObject.GetAllComponentsInChildren<Renderer>();
+			Bounds bounds = new Bounds(someGameObject.transform.position, Vector3.zero);
+			bool hasTriggeredFoundBounds = false;
+			foreach (Renderer renderer in rendererArray)
+			{
+				if (renderer.enabled == true && renderer.gameObject.activeSelf && !(renderer.bounds.size.x == 0 && renderer.bounds.size.y == 0 && renderer.bounds.size.z == 0))
+				{
+					if (!hasTriggeredFoundBounds)
+					{
+						bounds = renderer.bounds;
+						hasTriggeredFoundBounds = true;
+					}
+					PluginSetup.BepinExLogger.LogInfo($"Collider Size Check: {renderer.bounds.size.x}, {renderer.bounds.size.y}, {renderer.bounds.size.z} at center {renderer.bounds.center.x}, {renderer.bounds.center.y}, {renderer.bounds.center.z}: {renderer.gameObject.name}");
+					bounds.Encapsulate(renderer.bounds);
+				}
+			}
+			Vector3 localCenter = bounds.center - someGameObject.transform.position;
+			bounds.center = localCenter;
+			someGameObject.transform.rotation = currentRotation;
+			PluginSetup.BepinExLogger.LogInfo($"Bounds Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}, at center {bounds.center.x}, {bounds.center.y}, {bounds.center.z}");
+			return bounds;
+		}
+		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId, GameObject supplyBox2)
+		{
+			IPrefabRequest boxTask = PrefabDatabase.GetPrefabAsync("580154dd-b2a3-4da1-be14-9a22e20385c8");
+			yield return boxTask;
+			_ = boxTask.TryGetPrefab(out GameObject prefabBox);
+			GameObject supplyBox = GameObject.Instantiate(prefabBox);
+			//Try to get box size...
+			Bounds boxBounds = FindItemSize(supplyBox);
 
 			//Start with prefab. Need to instantiate to get proper collider values.
 			IPrefabRequest task = PrefabDatabase.GetPrefabAsync(someClassId);
@@ -114,40 +143,17 @@ namespace CoreItemAndInfoRandomizer
 			GameObject prefabObject = GameObject.Instantiate(prefab);
 
 			//Now let's try to get the prefab size...
-			Quaternion currentRotation = prefabObject.transform.rotation;
-			Vector3 currentScale = prefabObject.transform.localScale;
-			prefabObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-			prefabObject.transform.localScale = Vector3.one;
-			Renderer[] rendererArray = prefabObject.GetAllComponentsInChildren<Renderer>();
-			Bounds bounds = new Bounds(prefabObject.transform.position, Vector3.zero);
-			bool hasTriggeredFoundBounds = false;
-			foreach (Renderer renderer in rendererArray)
-			{
-				if (renderer.enabled == true && renderer.gameObject.activeSelf)
-				{
-					if (!hasTriggeredFoundBounds)
-					{
-						bounds = renderer.bounds;
-						hasTriggeredFoundBounds = true;
-					}
-					PluginSetup.BepinExLogger.LogInfo($"Collider Size Check: {renderer.bounds.size.x}, {renderer.bounds.size.y}, {renderer.bounds.size.z} at center {renderer.bounds.center.x}, {renderer.bounds.center.y}, {renderer.bounds.center.z}");
-					bounds.Encapsulate(renderer.bounds);
-				}
-			}
-			Vector3 localCenter = bounds.center - prefabObject.transform.position;
-			bounds.center = localCenter;
-			prefabObject.transform.rotation = currentRotation;
-			PluginSetup.BepinExLogger.LogInfo($"Bounds Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}");
+			Bounds bounds = FindItemSize(prefabObject);
 
 			//Find the smallest scaling factor to fit in the box.
 			float minScalingFactor;
 
-			if (boxBounds.size.x < bounds.size.x || boxBounds.size.y < bounds.size.y || boxBounds.size.z < bounds.size.z)
+			if (boxBounds.size.x - boxContentsPadding[0] < bounds.size.x || boxBounds.size.y - boxContentsPadding[1] < bounds.size.y || boxBounds.size.z - boxContentsPadding[2] < bounds.size.z)
 			{
 				minScalingFactor = float.PositiveInfinity;
 				for (int i = 0; i <= 2; i = i + 1)
 				{
-					float potentialScalingFactor = boxBounds.size[i] / bounds.size[i];
+					float potentialScalingFactor = (boxBounds.size[i] - boxContentsPadding[i]) / bounds.size[i];
 					if (potentialScalingFactor < minScalingFactor)
 					{
 						minScalingFactor = potentialScalingFactor;
@@ -162,6 +168,7 @@ namespace CoreItemAndInfoRandomizer
 			someGameObject.transform.localScale = scaler;
 			//Delete the duplicate lest it appear out in the wild.
 			GameObject.DestroyImmediate(prefabObject);
+			GameObject.DestroyImmediate(supplyBox);
 		}
 	}
 }
