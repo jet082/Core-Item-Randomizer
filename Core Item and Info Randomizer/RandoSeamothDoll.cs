@@ -16,8 +16,9 @@ namespace CoreItemAndInfoRandomizer
 			IPrefabRequest task = PrefabDatabase.GetPrefabAsync(CraftData.GetClassIdForTechType(baseTechType));
 			yield return task;
 			_ = task.TryGetPrefab(out GameObject prefab);
-
-			gameObject.Set(DollSetup.SetupDoll(prefab, 0.2f));
+			GameObject wip = DollSetup.SetupDoll(prefab, 0.2f);
+			GameObject.DestroyImmediate(wip.transform.Find("SeamothDamageFXSpawn").gameObject);
+			gameObject.Set(wip);
 			SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(baseTechType));
 			yield break;
 		}

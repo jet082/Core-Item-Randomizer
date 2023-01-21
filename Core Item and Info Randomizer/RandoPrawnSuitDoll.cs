@@ -25,6 +25,7 @@ namespace CoreItemAndInfoRandomizer
 			GameObject wip = DollSetup.SetupDoll(prefab, scaler);
 			GameObject.DestroyImmediate(wip.transform.Find("BatterySlot2").gameObject.GetComponent<EnergyMixin>());
 			GameObject.DestroyImmediate(wip.transform.Find("exosuit_01/root/geoChildren/upgrade_geoHldr/Storage").gameObject.GetComponent<StorageContainer>());
+			GameObject.DestroyImmediate(wip.transform.Find("DamageFXSpawn").gameObject);
 			leftClawArm.transform.parent = wip.transform;
 			leftClawArm.transform.localRotation = Quaternion.identity;
 			leftClawArm.transform.localPosition = new Vector3(4.33f * scaler, 1f, 0f);
