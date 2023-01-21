@@ -21,7 +21,6 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static bool PatchExosuitDoll(Vehicle __instance)
 		{
-			PluginSetup.BepinExLogger.LogInfo($"Check out {__instance.GetType()}");
 			if (__instance.GetType() == typeof(Exosuit))
 			{
 				return true;

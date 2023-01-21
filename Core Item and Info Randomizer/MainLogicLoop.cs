@@ -13,6 +13,7 @@ namespace CoreItemAndInfoRandomizer
 		public static void RunMainLogic()
 		{
 			PDAPatcher.GeneratePDAEntries();
+			new MyVeryOwnSupplyCrate().Patch();
 			new RandoSeamothDoll().Patch();
 			new RandoRocketBaseDoll().Patch();
 			new RandoCyclopsDoll().Patch();
@@ -25,7 +26,7 @@ namespace CoreItemAndInfoRandomizer
 			ModCache.Setup();
 			Placement.PlaceChests();
 			Placement.PlaceLeviathans();
-			BoxPlacementsData.Setup();
+			CratePlacementsData.Setup();
 		}
 	}
 }

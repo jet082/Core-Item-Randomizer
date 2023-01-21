@@ -9,9 +9,9 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static void PlaceChests()
 		{
-			foreach (Tuple<Vector3, JToken> someTuple in BoxPlacementsData.BoxPlacementTuples())
+			foreach (Tuple<Vector3, JToken> someTuple in CratePlacementsData.BoxPlacementTuples())
 			{
-				SpawnInfo chestSpawn = new("580154dd-b2a3-4da1-be14-9a22e20385c8", someTuple.Item1);
+				SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someTuple.Item1);
 				CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 			}
 		}

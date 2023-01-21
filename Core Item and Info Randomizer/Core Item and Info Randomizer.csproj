@@ -85,8 +85,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoxPatcher.cs" />
-    <Compile Include="BoxPlacementsData.cs" />
+    <Compile Include="CrateContents.cs" />
+    <Compile Include="CratePatcher.cs" />
+    <Compile Include="CratePlacementsData.cs" />
+    <Compile Include="MyVeryOwnSupplyCrate.cs" />
     <Compile Include="Placement.cs" />
     <Compile Include="AmyThePeeperLeviathan.cs" />
     <Compile Include="DollSetup.cs" />

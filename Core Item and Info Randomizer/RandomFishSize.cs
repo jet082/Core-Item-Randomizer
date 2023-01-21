@@ -13,7 +13,6 @@ namespace CoreItemAndInfoRandomizer
 		{
 			if (!__instance.GetComponent<SpecialResizable>())
 			{
-				PluginSetup.BepinExLogger.LogInfo($"wow {__instance.name}");
 				UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
 				float scaleFactor = UnityEngine.Random.Range(1f, 3f);
 				if (UnityEngine.Random.value > .5)

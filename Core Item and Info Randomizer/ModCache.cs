@@ -6,6 +6,7 @@ namespace CoreItemAndInfoRandomizer
 	public class ModCache
 	{
 		public static Dictionary<string, ModCacheItem> CacheData = new() {
+			{ "MyVeryOwnSupplyCrate", new ModCacheItem() },
 			{ "RandoSeamothDoll", new ModCacheItem() },
 			{ "RandoPrawnSuitDoll", new ModCacheItem() },
 			{ "RandoCyclopsDoll", new ModCacheItem() },
