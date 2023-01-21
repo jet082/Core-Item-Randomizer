@@ -10,7 +10,7 @@ namespace CoreItemAndInfoRandomizer
 	[HarmonyPatch]
 	public class BoxPatcher
 	{
-		public static Vector3 BoxContentSize = new Vector3(0.21f, 0.15f, 0.13f);
+		public static Vector3 BoxContentSize = new(0.21f, 0.15f, 0.13f);
 		public static float[] boxContentsPadding = { 0.3f, 0.8f, 0.5f };
 
 		public static HashSet<string> VFXAllowList = new() { "VFXSurface", "VFXFabricating", "VFXController" };
@@ -39,10 +39,12 @@ namespace CoreItemAndInfoRandomizer
 					{
 						outTechType = ModCache.CacheData[toCommit].ModTechType;
 						prefabClassIdToCommit = ModCache.CacheData[toCommit].ClassId;
-						WorldEntityInfo worldInfoData = new WorldEntityInfo();
-						worldInfoData.classId = prefabClassIdToCommit;
-						worldInfoData.cellLevel = LargeWorldEntity.CellLevel.Far;
-						worldInfoData.techType = outTechType;
+						WorldEntityInfo worldInfoData = new()
+						{
+							classId = prefabClassIdToCommit,
+							cellLevel = LargeWorldEntity.CellLevel.Far,
+							techType = outTechType
+						};
 						WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
 					} else
 					{
@@ -59,7 +61,7 @@ namespace CoreItemAndInfoRandomizer
 					}
 					else
 					{
-						CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, prefabClassIdToCommit, __instance.gameObject));
+						CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, prefabClassIdToCommit));
 					}
 				}
 			}
@@ -106,7 +108,7 @@ namespace CoreItemAndInfoRandomizer
 				}
 			}
 			Renderer[] rendererArray = someGameObject.GetAllComponentsInChildren<Renderer>();
-			Bounds bounds = new Bounds(someGameObject.transform.position, Vector3.zero);
+			Bounds bounds = new(someGameObject.transform.position, Vector3.zero);
 			bool hasTriggeredFoundBounds = false;
 			foreach (Renderer renderer in rendererArray)
 			{
@@ -123,11 +125,12 @@ namespace CoreItemAndInfoRandomizer
 			}
 			Vector3 localCenter = bounds.center - someGameObject.transform.position;
 			bounds.center = localCenter;
+			someGameObject.transform.localScale = currentScale;
 			someGameObject.transform.rotation = currentRotation;
 			PluginSetup.BepinExLogger.LogInfo($"Bounds Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}, at center {bounds.center.x}, {bounds.center.y}, {bounds.center.z}");
 			return bounds;
 		}
-		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId, GameObject supplyBox2)
+		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId)
 		{
 			IPrefabRequest boxTask = PrefabDatabase.GetPrefabAsync("580154dd-b2a3-4da1-be14-9a22e20385c8");
 			yield return boxTask;
@@ -151,7 +154,7 @@ namespace CoreItemAndInfoRandomizer
 			if (boxBounds.size.x - boxContentsPadding[0] < bounds.size.x || boxBounds.size.y - boxContentsPadding[1] < bounds.size.y || boxBounds.size.z - boxContentsPadding[2] < bounds.size.z)
 			{
 				minScalingFactor = float.PositiveInfinity;
-				for (int i = 0; i <= 2; i = i + 1)
+				for (int i = 0; i <= 2; i++)
 				{
 					float potentialScalingFactor = (boxBounds.size[i] - boxContentsPadding[i]) / bounds.size[i];
 					if (potentialScalingFactor < minScalingFactor)
@@ -164,7 +167,7 @@ namespace CoreItemAndInfoRandomizer
 			{
 				minScalingFactor = 1f;
 			}
-			Vector3 scaler = new Vector3(minScalingFactor, minScalingFactor, minScalingFactor);
+			Vector3 scaler = new(minScalingFactor, minScalingFactor, minScalingFactor);
 			someGameObject.transform.localScale = scaler;
 			//Delete the duplicate lest it appear out in the wild.
 			GameObject.DestroyImmediate(prefabObject);

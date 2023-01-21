@@ -99,7 +99,11 @@
     <Compile Include="RandomFishSize.cs" />
     <Compile Include="RandoPrawnSuitDoll.cs" />
     <Compile Include="RandoRocketBaseDoll.cs" />
+    <Compile Include="RandoRocketBaseLadderDoll.cs" />
+    <Compile Include="RandoRocketStage2Doll.cs" />
+    <Compile Include="RandoRocketStage3Doll.cs" />
     <Compile Include="RandoSeamothDoll.cs" />
+    <Compile Include="RandoRocketStage1Doll.cs" />
     <Compile Include="VehiclePickupDrop.cs" />
     <Compile Include="LogicParser.cs" />
     <Compile Include="MainLogicLoop.cs" />

@@ -37,6 +37,7 @@ namespace CoreItemAndInfoRandomizer
 			rightClawArm.transform.localScale = new Vector3(1f, 1f, 1f);
 
 			gameObject.Set(wip);
+			SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(baseTechType));
 			yield break;
 		}
 	}

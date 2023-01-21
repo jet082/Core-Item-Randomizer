@@ -28,7 +28,7 @@ namespace CoreItemAndInfoRandomizer
 			pickupable.isPickupable = true;
 			pickupable.enabled = true;
 			dollObj.transform.localScale = new Vector3(scaler, scaler, scaler);
-			Rigidbody dollBody = dollObj.GetComponent<Rigidbody>();
+			Rigidbody dollBody = dollObj.EnsureComponent<Rigidbody>();
 			dollBody.isKinematic = true;
 			dollBody.useGravity = true;
 

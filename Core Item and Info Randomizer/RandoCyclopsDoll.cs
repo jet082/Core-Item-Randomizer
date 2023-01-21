@@ -26,6 +26,7 @@ namespace CoreItemAndInfoRandomizer
 			{
 				gameObject.Set(LastCreatedSub);
 			}
+			SMLHelper.V2.Handlers.SpriteHandler.RegisterSprite(this.TechType, SpriteManager.Get(TechType.Cyclops));
 			yield break;
 		}
 		private void OnSubPrefabLoaded(GameObject prefab)

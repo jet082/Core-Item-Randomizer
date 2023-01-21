@@ -17,7 +17,12 @@ namespace CoreItemAndInfoRandomizer
 			new RandoRocketBaseDoll().Patch();
 			new RandoCyclopsDoll().Patch();
 			new RandoPrawnSuitDoll().Patch();
+			new RandoRocketBaseLadderDoll().Patch();
+			new RandoRocketStage1Doll().Patch();
+			new RandoRocketStage2Doll().Patch();
+			new RandoRocketStage3Doll().Patch();
 			ModCache.Setup();
+			BoxPlacementsData.Setup();
 		}
 	}
 }
