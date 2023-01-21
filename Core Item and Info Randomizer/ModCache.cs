@@ -13,7 +13,8 @@ namespace CoreItemAndInfoRandomizer
 			{ "RandoRocketBaseLadderDoll", new ModCacheItem() },
 			{ "RandoRocketStage1Doll", new ModCacheItem() },
 			{ "RandoRocketStage2Doll", new ModCacheItem() },
-			{ "RandoRocketStage3Doll", new ModCacheItem() }
+			{ "RandoRocketStage3Doll", new ModCacheItem() },
+			{ "AmyThePeeperLeviathan", new ModCacheItem() }
 		};
 		public static TechType RandoSeamothDollCache;
 		public static TechType RandoPrawnSuitDollCache;

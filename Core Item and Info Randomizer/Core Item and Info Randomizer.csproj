@@ -87,7 +87,8 @@
   <ItemGroup>
     <Compile Include="BoxPatcher.cs" />
     <Compile Include="BoxPlacementsData.cs" />
-    <Compile Include="BoxPlacement.cs" />
+    <Compile Include="Placement.cs" />
+    <Compile Include="AmyThePeeperLeviathan.cs" />
     <Compile Include="DollSetup.cs" />
     <Compile Include="ModCache.cs" />
     <Compile Include="ModCacheItem.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="RandoRocketStage3Doll.cs" />
     <Compile Include="RandoSeamothDoll.cs" />
     <Compile Include="RandoRocketStage1Doll.cs" />
+    <Compile Include="SpecialResizable.cs" />
     <Compile Include="VehiclePickupDrop.cs" />
     <Compile Include="LogicParser.cs" />
     <Compile Include="MainLogicLoop.cs" />

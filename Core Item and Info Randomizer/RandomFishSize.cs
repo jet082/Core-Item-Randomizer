@@ -11,15 +11,19 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static void RandomizeTheFish(Creature __instance)
 		{
-			UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
-			float scaleFactor = UnityEngine.Random.Range(1f, 3f);
-			if (UnityEngine.Random.value > .5)
+			if (!__instance.GetComponent<SpecialResizable>())
 			{
-				__instance.SetScale(1 / scaleFactor);
-			}
-			else
-			{
-				__instance.SetScale(scaleFactor);
+				PluginSetup.BepinExLogger.LogInfo($"wow {__instance.name}");
+				UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
+				float scaleFactor = UnityEngine.Random.Range(1f, 3f);
+				if (UnityEngine.Random.value > .5)
+				{
+					__instance.SetScale(1 / scaleFactor);
+				}
+				else
+				{
+					__instance.SetScale(scaleFactor);
+				}
 			}
 		}
 	}

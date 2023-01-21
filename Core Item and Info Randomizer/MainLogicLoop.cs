@@ -21,7 +21,10 @@ namespace CoreItemAndInfoRandomizer
 			new RandoRocketStage1Doll().Patch();
 			new RandoRocketStage2Doll().Patch();
 			new RandoRocketStage3Doll().Patch();
+			new AmyThePeeperLeviathan().Patch();
 			ModCache.Setup();
+			Placement.PlaceChests();
+			Placement.PlaceLeviathans();
 			BoxPlacementsData.Setup();
 		}
 	}
