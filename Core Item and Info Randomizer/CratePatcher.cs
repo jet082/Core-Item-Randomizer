@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
@@ -12,17 +13,27 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static void PatchHandTarget(HandTarget __instance)
 		{
-			if (__instance is SupplyCrate)
+			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && CratePlacementsData.BoxPlacements.Keys.Contains(__instance.transform.position))
 			{
-				Vector3 crateCoordinates = __instance.transform.position;
+				string toAppendModItem;
+				TechType toAppendTechType;
+				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
 				if (__instance.transform.position.Equals(new Vector3(0f, 0f, 0f)))
 				{
-					CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
-					boxContentsSettings.boxContentsModItem = "";
-					boxContentsSettings.boxContentsTechType = TechType.HatchingEnzymes;
+					toAppendModItem = "";
+					toAppendTechType = TechType.MapRoomHUDChip;
 					boxContentsSettings.isSealed = true;
-					boxContentsSettings.PlaceScaledItemInside();
 				}
+				else
+				{
+					toAppendModItem = "";
+					UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
+					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
+					toAppendTechType = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
+				}
+				boxContentsSettings.boxContentsModItem = toAppendModItem;
+				boxContentsSettings.boxContentsTechType = toAppendTechType;
+				boxContentsSettings.PlaceScaledItemInside();
 			}
 		}
 		[HarmonyPatch(typeof(SupplyCrate), nameof(SupplyCrate.FindInsideItemAfterStart))]

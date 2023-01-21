@@ -25,7 +25,6 @@ namespace CoreItemAndInfoRandomizer
 			//This is how we get items into boxes.
 			PrefabPlaceholdersGroup pre = gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
 
-			PluginSetup.BepinExLogger.LogInfo($"Crate mod item is {boxContentsModItem}");
 			TechType outTechType;
 			string prefabClassIdToCommit;
 			if (boxContentsModItem == "")
@@ -57,7 +56,6 @@ namespace CoreItemAndInfoRandomizer
 			}
 			else
 			{
-				PluginSetup.BepinExLogger.LogInfo($"Crate prefabClassId is {prefabClassIdToCommit}");
 				CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, prefabClassIdToCommit));
 			}
 		}

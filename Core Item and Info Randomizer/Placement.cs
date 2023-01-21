@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using SMLHelper.V2.Handlers;
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
@@ -9,9 +9,9 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static void PlaceChests()
 		{
-			foreach (Tuple<Vector3, JToken> someTuple in CratePlacementsData.BoxPlacementTuples())
+			foreach (Vector3 someKey in CratePlacementsData.BoxPlacementDictionary().Keys)
 			{
-				SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someTuple.Item1);
+				SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someKey);
 				CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 			}
 		}

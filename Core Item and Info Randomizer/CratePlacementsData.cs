@@ -9,6 +9,7 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static Dictionary<TechType, int> DistributionTable = new();
 		public static Dictionary<TechType, int> RequiredItems = new();
+		public static Dictionary<Vector3, JToken> BoxPlacements;
 		public static void Setup()
 		{
 			DistributionTable = new() {
@@ -96,23 +97,24 @@ namespace CoreItemAndInfoRandomizer
 			{
 				{ TechType.EnzymeCureBall, 1 },
 				{ ModCache.CacheData["RandoRocketBaseDoll"].ModTechType, 1 },
-				{ TechType.RocketBaseLadder, 1 },
-				{ TechType.RocketStage1, 1 },
-				{ TechType.RocketStage2, 1 },
-				{ TechType.RocketStage3, 1 }
+				{ ModCache.CacheData["RandoRocketBaseLadderDoll"].ModTechType, 1 },
+				{ ModCache.CacheData["RandoRocketStage1Doll"].ModTechType, 1 },
+				{ ModCache.CacheData["RandoRocketStage2Doll"].ModTechType, 1 },
+				{ ModCache.CacheData["RandoRocketStage3Doll"].ModTechType, 1 }
 			};
 		}
-		public static List<Tuple<Vector3, JToken>> BoxPlacementTuples()
+		public static Dictionary<Vector3, JToken> BoxPlacementDictionary()
 		{
 			IDictionary<string, JToken> tempDictData = (IDictionary<string, JToken>)MainLogicLoop.GameLogic["supplyCrateCoordinates"];
-			List<Tuple<Vector3, JToken>> finalTuples = new();
+			Dictionary<Vector3, JToken> finalDict = new();
 			foreach (KeyValuePair<string, JToken> someData in tempDictData)
 			{
 				string[] vectorData = someData.Key.Split(',');
 				Vector3 vectorized = new(float.Parse(vectorData[0]), float.Parse(vectorData[1]), float.Parse(vectorData[2]));
-				finalTuples.Add(Tuple.Create(vectorized, someData.Value));
+				finalDict.Add(vectorized, someData.Value);
 			}
-			return finalTuples;
+			BoxPlacements = finalDict;
+			return finalDict;
 		}
 	}
 }
