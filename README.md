@@ -10,12 +10,11 @@ The full credits for the project can be found [here](https://github.com/jet082/C
 
 # Tech
 
-* Figure out how to pick up vehicles.
 * Maybe we can remove the Mobile Vehicle Bay from the pool or make it a junk item. Maybe make it an option to require the MVB to build vehicles from 'vehicle kits'
-* Place base pieces via basekits. Figure out how to do that.
-* Convert CYS to code so it can be toggled on/off.
+* Convert Choose Your Spawns to code so it can be toggled on/off.
 * Figure out how to make sure the randomizer can be toggled on/off so it doesn't impact other mods too heavily.
 * Figure out how to add options, etc.
+* A nice-to-have would be to do an update to BaseKits to use a mini version of the buildings in question rather than the generic loot cube.
 
 ## Logic
 
