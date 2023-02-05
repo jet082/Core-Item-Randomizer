@@ -1,7 +1,4 @@
 ﻿using HarmonyLib;
-using System;
-using System.Linq;
-using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
 {

@@ -16,17 +16,6 @@ namespace CoreItemAndInfoRandomizer
 		};
 		public static HashSet<TechType> Resizables = new() { TechType.Seamoth, TechType.Exosuit, TechType.Cyclops, TechType.RocketBase };
 
-		[HarmonyPatch(typeof(Vehicle))]
-		[HarmonyPatch(nameof(Vehicle.OnHandHover))]
-		[HarmonyPrefix]
-		public static bool PatchExosuitDoll(Vehicle __instance)
-		{
-			if (__instance.GetType() == typeof(Exosuit))
-			{
-				return true;
-			}
-			return true;
-		}
 		[HarmonyPatch(typeof(Pickupable))]
 		[HarmonyPatch(nameof(Pickupable.Drop), new[] { typeof(Vector3), typeof(Vector3), typeof(bool) })]
 		[HarmonyPrefix]
@@ -42,7 +31,11 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static bool PatchSupplyCrateClick(SupplyCrate __instance)
 		{
-			return StopClick(__instance.itemInside.gameObject, __instance.itemInside.GetTechName(), __instance.itemInside.GetTechType());
+			if (__instance.open)
+			{
+				return StopClick(__instance.itemInside.gameObject, __instance.itemInside.GetTechName(), __instance.itemInside.GetTechType());
+			}
+			return true;
 		}
 
 		[HarmonyPatch(typeof(Pickupable))]
@@ -54,15 +47,12 @@ namespace CoreItemAndInfoRandomizer
 		}
 		private static bool StopClick(GameObject someObject, string someString, TechType someTechType)
 		{
+			someObject.transform.localScale = Vector3.one;
 			if (DollToVehicleTranslation.ContainsKey(someString))
 			{
 				GameObject.Destroy(someObject);
 				CraftData.AddToInventory(DollToVehicleTranslation[someString]);
 				return false;
-			}
-			if (Resizables.Contains(someTechType))
-			{
-				someObject.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 			return true;
 		}

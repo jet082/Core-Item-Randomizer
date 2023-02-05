@@ -2,6 +2,7 @@
 using UnityEngine;
 using UWE;
 using System.Collections;
+using HarmonyLib;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -11,18 +12,28 @@ namespace CoreItemAndInfoRandomizer
 		public bool isSealed;
 		private static readonly float[] boxContentsPadding = { 0.3f, 0.8f, 0.5f };
 		private static readonly HashSet<string> VFXAllowList = new() { "VFXSurface", "VFXFabricating", "VFXController" };
+		private static readonly HashSet<string> FiddlyIgnoreList = new() { "Mesh", "x_flashlightCone", "beamLeft", "beamRight", "x_MapRoom_HoloTableGlow_Bottom", "x_Center", "xMapRoomDust", "Ping", "Line", "x_CameraSeaGlide" };
+		public static readonly Dictionary<string, Vector3> FiddlySpecialCases = new () {
+			{ ModCache.CacheData["RandoCyclopsDoll"].ClassId, new Vector3(0.012f, 0.012f, 0.012f) },
+			{ CraftData.GetClassIdForTechType(TechType.PrecursorIonCrystal), new Vector3(0.7f, 0.7f, 0.7f) },
+			{ CraftData.GetClassIdForTechType(TechType.MapRoomCamera), new Vector3(0.65f, 0.65f, 0.65f) },
+			{ CraftData.GetClassIdForTechType(TechType.HighCapacityTank), new Vector3(0.9f, 0.9f, 0.9f) },
+			{ CraftData.GetClassIdForTechType(TechType.Tank), new Vector3(0.9f, 0.9f, 0.9f) },
+			{ CraftData.GetClassIdForTechType(TechType.DoubleTank), new Vector3(0.9f, 0.9f, 0.9f) },
+			{ CraftData.GetClassIdForTechType(TechType.PlasteelTank), new Vector3(0.9f, 0.9f, 0.9f) },
+			{ CraftData.GetClassIdForTechType(TechType.CyclopsDecoy), new Vector3(0.2f, 0.2f, 0.2f) },
+			{ CraftData.GetClassIdForTechType(TechType.PipeSurfaceFloater), new Vector3(0.15f, 0.15f, 0.15f) },
+		};
 		public void PlaceScaledItemInside()
 		{
 			Vector3 crateCoordinates = gameObject.transform.position;
 			PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {crateCoordinates}");
+			gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 			if (isSealed)
 			{
 				gameObject.EnsureComponent<Sealed>()._sealed = true;
 			}
-			gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
-
-			//This is how we get items into boxes.
-			PrefabPlaceholdersGroup pre = gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
+			//This is how we get custom items into boxes.
 			if (!WorldEntityDatabase.main.infos.ContainsKey(boxContentsClassId))
 			{
 				WorldEntityInfo worldInfoData = new()
@@ -32,14 +43,15 @@ namespace CoreItemAndInfoRandomizer
 				};
 				WorldEntityDatabase.main.infos.Add(boxContentsClassId, worldInfoData);
 			}
-
+			PrefabPlaceholdersGroup pre = gameObject.GetComponent<PrefabPlaceholdersGroup>();
 			pre.prefabPlaceholders[0].prefabClassId = boxContentsClassId;
 
 			GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
-			//The cyclops doll needs special treatment since it's a scene or something.
-			if (boxContentsClassId == ModCache.CacheData["RandoCyclopsDoll"].ClassId)
+
+			//The cyclops doll needs special treatment since it's a scene or something. There's also some weird cases.
+			if (FiddlySpecialCases.ContainsKey(boxContentsClassId))
 			{
-				prefabGameObject.transform.localScale = new Vector3(0.012f, 0.012f, 0.012f);
+				prefabGameObject.transform.localScale = FiddlySpecialCases[boxContentsClassId];
 			}
 			else
 			{
@@ -74,7 +86,7 @@ namespace CoreItemAndInfoRandomizer
 			bool hasTriggeredFoundBounds = false;
 			foreach (Renderer renderer in rendererArray)
 			{
-				if (renderer.enabled == true && renderer.gameObject.activeSelf && !(renderer.bounds.size.x == 0 && renderer.bounds.size.y == 0 && renderer.bounds.size.z == 0))
+				if (renderer.enabled == true && renderer.gameObject.activeSelf && !(renderer.bounds.size.x == 0 && renderer.bounds.size.y == 0 && renderer.bounds.size.z == 0) && !FiddlyIgnoreList.Contains(renderer.gameObject.name))
 				{
 					if (!hasTriggeredFoundBounds)
 					{
