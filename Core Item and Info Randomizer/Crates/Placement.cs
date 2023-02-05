@@ -10,9 +10,9 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class Placement
 	{
-		public static Dictionary<Vector3, string> ChestContents = new();
 		public static void PlaceChests()
 		{
+			SaveData saveData = PluginSetup.RandomizerLoadedSaveData;
 			var placementData = CratePlacementsData.BoxPlacements;
 			if (PluginSetup.DebugMode)
 			{
@@ -20,7 +20,7 @@ namespace CoreItemAndInfoRandomizer
 				foreach (string someContents in CratePlacementsData.DistributionTable.Keys)
 				{
 					Vector3 toDoVectorPlacement = new(-712.6f + offsetValue, -3f, -733.56f);
-					ChestContents[toDoVectorPlacement] = someContents;
+					saveData.ChestPlacementData[toDoVectorPlacement] = someContents;
 					SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, toDoVectorPlacement);
 					CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 					offsetValue += 3;
@@ -34,7 +34,7 @@ namespace CoreItemAndInfoRandomizer
 					CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 					UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
 					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
-					ChestContents[someKey] = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
+					saveData.ChestPlacementData[someKey] = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
 				}
 			}
 		}

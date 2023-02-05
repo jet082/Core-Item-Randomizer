@@ -10,7 +10,7 @@ namespace CoreItemAndInfoRandomizer
 	{
 		private const string myGUID = "com.jet082.coreitemandinforandomizer";
 		private const string pluginName = "Core Item and Info Randomizer";
-		private const string versionString = "1.0.0";
+		private const string versionString = "0.0.1";
 		private static readonly Harmony harmony = new(myGUID);
 		public static ManualLogSource BepinExLogger;
 		public static bool DebugMode = true;

@@ -13,16 +13,16 @@ namespace CoreItemAndInfoRandomizer
 		private static readonly float[] boxContentsPadding = { 0.3f, 0.8f, 0.5f };
 		private static readonly HashSet<string> VFXAllowList = new() { "VFXSurface", "VFXFabricating", "VFXController" };
 		private static readonly HashSet<string> FiddlyIgnoreList = new() { "Mesh", "x_flashlightCone", "beamLeft", "beamRight", "x_MapRoom_HoloTableGlow_Bottom", "x_Center", "xMapRoomDust", "Ping", "Line", "x_CameraSeaGlide" };
-		public static readonly Dictionary<string, Vector3> FiddlySpecialCases = new () {
-			{ ModCache.CacheData["RandoCyclopsDoll"].ClassId, new Vector3(0.012f, 0.012f, 0.012f) },
-			{ CraftData.GetClassIdForTechType(TechType.PrecursorIonCrystal), new Vector3(0.7f, 0.7f, 0.7f) },
-			{ CraftData.GetClassIdForTechType(TechType.MapRoomCamera), new Vector3(0.65f, 0.65f, 0.65f) },
-			{ CraftData.GetClassIdForTechType(TechType.HighCapacityTank), new Vector3(0.9f, 0.9f, 0.9f) },
-			{ CraftData.GetClassIdForTechType(TechType.Tank), new Vector3(0.9f, 0.9f, 0.9f) },
-			{ CraftData.GetClassIdForTechType(TechType.DoubleTank), new Vector3(0.9f, 0.9f, 0.9f) },
-			{ CraftData.GetClassIdForTechType(TechType.PlasteelTank), new Vector3(0.9f, 0.9f, 0.9f) },
-			{ CraftData.GetClassIdForTechType(TechType.CyclopsDecoy), new Vector3(0.2f, 0.2f, 0.2f) },
-			{ CraftData.GetClassIdForTechType(TechType.PipeSurfaceFloater), new Vector3(0.15f, 0.15f, 0.15f) },
+		public static readonly Dictionary<string, float> FiddlySpecialCases = new () {
+			{ ModCache.CacheData["RandoCyclopsDoll"].ClassId, 0.012f },
+			{ CraftData.GetClassIdForTechType(TechType.PrecursorIonCrystal), 0.7f },
+			{ CraftData.GetClassIdForTechType(TechType.MapRoomCamera), 0.65f },
+			{ CraftData.GetClassIdForTechType(TechType.HighCapacityTank), 0.9f },
+			{ CraftData.GetClassIdForTechType(TechType.Tank), 0.9f },
+			{ CraftData.GetClassIdForTechType(TechType.DoubleTank), 0.9f },
+			{ CraftData.GetClassIdForTechType(TechType.PlasteelTank), 0.9f },
+			{ CraftData.GetClassIdForTechType(TechType.CyclopsDecoy), 0.2f },
+			{ CraftData.GetClassIdForTechType(TechType.PipeSurfaceFloater), 0.15f }
 		};
 		public void PlaceScaledItemInside()
 		{
@@ -51,7 +51,8 @@ namespace CoreItemAndInfoRandomizer
 			//The cyclops doll needs special treatment since it's a scene or something. There's also some weird cases.
 			if (FiddlySpecialCases.ContainsKey(boxContentsClassId))
 			{
-				prefabGameObject.transform.localScale = FiddlySpecialCases[boxContentsClassId];
+				float scaleFactor = FiddlySpecialCases[boxContentsClassId];
+				prefabGameObject.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
 			}
 			else
 			{

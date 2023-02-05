@@ -85,50 +85,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrateContents.cs" />
-    <Compile Include="CratePatcher.cs" />
-    <Compile Include="CratePlacementsData.cs" />
-    <Compile Include="MyVeryOwnSupplyCrate.cs" />
-    <Compile Include="Placement.cs" />
-    <Compile Include="AmyThePeeperLeviathan.cs" />
-    <Compile Include="DollSetup.cs" />
-    <Compile Include="ModCache.cs" />
-    <Compile Include="ModCacheItem.cs" />
-    <Compile Include="RandoCyclopsDoll.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="HintTextData.cs" />
-    <Compile Include="InfiniteBattery.cs" />
-    <Compile Include="InfiniteSurvival.cs" />
-    <Compile Include="RandomFishSize.cs" />
-    <Compile Include="RandoPrawnSuitDoll.cs" />
-    <Compile Include="RandoRocketBaseDoll.cs" />
-    <Compile Include="RandoRocketBaseLadderDoll.cs" />
-    <Compile Include="RandoRocketStage2Doll.cs" />
-    <Compile Include="RandoRocketStage3Doll.cs" />
-    <Compile Include="RandoSeamothDoll.cs" />
-    <Compile Include="RandoRocketStage1Doll.cs" />
-    <Compile Include="SpecialResizable.cs" />
-    <Compile Include="VehiclePickupDrop.cs" />
-    <Compile Include="LogicParser.cs" />
+    <Compile Include="Crates\CrateContents.cs" />
+    <Compile Include="Crates\CratePatcher.cs" />
+    <Compile Include="Crates\CratePlacementsData.cs" />
+    <Compile Include="Crates\MyVeryOwnSupplyCrate.cs" />
+    <Compile Include="Crates\Placement.cs" />
+    <Compile Include="Creatures\AmyThePeeperLeviathan.cs" />
+    <Compile Include="Mod Items\DollSetup.cs" />
+    <Compile Include="Mod Items\ModCache.cs" />
+    <Compile Include="Mod Items\ModCacheItem.cs" />
+    <Compile Include="Mod Items\RandoCyclopsDoll.cs" />
+    <Compile Include="Visual Studio Stuff\GlobalSuppressions.cs" />
+    <Compile Include="PDA\HintTextData.cs" />
+    <Compile Include="Assorted Patches\InfiniteBattery.cs" />
+    <Compile Include="Assorted Patches\InfiniteSurvival.cs" />
+    <Compile Include="Creatures\RandomFishSize.cs" />
+    <Compile Include="Mod Items\RandoPrawnSuitDoll.cs" />
+    <Compile Include="Mod Items\RandoRocketBaseDoll.cs" />
+    <Compile Include="Mod Items\RandoRocketBaseLadderDoll.cs" />
+    <Compile Include="Mod Items\RandoRocketStage2Doll.cs" />
+    <Compile Include="Mod Items\RandoRocketStage3Doll.cs" />
+    <Compile Include="Mod Items\RandoSeamothDoll.cs" />
+    <Compile Include="Mod Items\RandoRocketStage1Doll.cs" />
+    <Compile Include="Creatures\SpecialResizable.cs" />
+    <Compile Include="Assorted Patches\PickupDrop.cs" />
     <Compile Include="MainLogicLoop.cs" />
     <Compile Include="PluginSetup.cs" />
-    <Compile Include="PDAPatcher.cs" />
+    <Compile Include="PDA\PDAPatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveAndLoad.cs" />
-    <Compile Include="SaveData.cs" />
+    <Compile Include="Saving\SaveAndLoad.cs" />
+    <Compile Include="Saving\SaveData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="DefaultLogic.json" />
+    <None Include="Visual Studio Stuff\app.config" />
+    <None Include="Logic\DefaultLogic.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DefaultLogicHumanReadable.txt" />
-    <Content Include="TranslateLogicToHumanReadable.py" />
+    <Content Include="Logic\DefaultLogicHumanReadable.txt" />
+    <Content Include="Logic\TranslateLogicToHumanReadable.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>mkdir "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"
 copy /Y "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"
-copy "$(ProjectDir)\DefaultLogic.json"  "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"</PostBuildEvent>
+copy "$(ProjectDir)\Logic\DefaultLogic.json"  "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
