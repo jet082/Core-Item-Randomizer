@@ -6,6 +6,7 @@ using System.Reflection;
 using SMLHelper.V2.Handlers;
 using SMLHelper.V2.Json;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -13,10 +14,10 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static string SavePath = SaveUtils.GetCurrentSaveDataDir();
 		public static string PluginPath = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory?.FullName;
-		public static Dictionary<string, object> LoadLogic(string logicFileName)
+		public static Dictionary<string, JObject> LoadLogic(string logicFileName)
 		{
 			string json = File.ReadAllText(Path.Combine(PluginPath, logicFileName));
-			return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+			return JsonConvert.DeserializeObject<Dictionary<string, JObject>>(json);
 		}
 	}
 }

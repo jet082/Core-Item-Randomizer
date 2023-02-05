@@ -13,26 +13,10 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static void PatchHandTarget(HandTarget __instance)
 		{
-			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && CratePlacementsData.BoxPlacements.Keys.Contains(__instance.transform.position))
+			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && Placement.ChestContents.ContainsKey(__instance.transform.position))
 			{
-				string toAppendModItem;
-				TechType toAppendTechType;
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
-				if (__instance.transform.position.Equals(new Vector3(0f, 0f, 0f)))
-				{
-					toAppendModItem = "";
-					toAppendTechType = TechType.MapRoomHUDChip;
-					boxContentsSettings.isSealed = true;
-				}
-				else
-				{
-					toAppendModItem = "";
-					UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
-					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
-					toAppendTechType = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
-				}
-				boxContentsSettings.boxContentsModItem = toAppendModItem;
-				boxContentsSettings.boxContentsTechType = toAppendTechType;
+				boxContentsSettings.boxContentsClassId = Placement.ChestContents[__instance.transform.position];
 				boxContentsSettings.PlaceScaledItemInside();
 			}
 		}

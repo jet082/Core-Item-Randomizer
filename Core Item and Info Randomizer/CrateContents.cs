@@ -7,8 +7,7 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class CrateContents : MonoBehaviour
 	{
-		public string boxContentsModItem = "";
-		public TechType boxContentsTechType = TechType.None;
+		public string boxContentsClassId = "";
 		public bool isSealed;
 		private static readonly float[] boxContentsPadding = { 0.3f, 0.8f, 0.5f };
 		private static readonly HashSet<string> VFXAllowList = new() { "VFXSurface", "VFXFabricating", "VFXController" };
@@ -24,39 +23,27 @@ namespace CoreItemAndInfoRandomizer
 
 			//This is how we get items into boxes.
 			PrefabPlaceholdersGroup pre = gameObject.EnsureComponent<PrefabPlaceholdersGroup>();
-
-			TechType outTechType;
-			string prefabClassIdToCommit;
-			if (boxContentsModItem == "")
+			if (!WorldEntityDatabase.main.infos.ContainsKey(boxContentsClassId))
 			{
-				outTechType = boxContentsTechType;
-				prefabClassIdToCommit = CraftData.GetClassIdForTechType(outTechType);
-			}
-			else
-			{
-				//We need to do this for any custom items or else they won't show up in the box...
-				outTechType = ModCache.CacheData[boxContentsModItem].ModTechType;
-				prefabClassIdToCommit = ModCache.CacheData[boxContentsModItem].ClassId;
 				WorldEntityInfo worldInfoData = new()
 				{
-					classId = prefabClassIdToCommit,
-					cellLevel = LargeWorldEntity.CellLevel.Far,
-					techType = outTechType
+					classId = boxContentsClassId,
+					cellLevel = LargeWorldEntity.CellLevel.Far
 				};
-				WorldEntityDatabase.main.infos.Add(prefabClassIdToCommit, worldInfoData);
+				WorldEntityDatabase.main.infos.Add(boxContentsClassId, worldInfoData);
 			}
 
-			pre.prefabPlaceholders[0].prefabClassId = prefabClassIdToCommit;
+			pre.prefabPlaceholders[0].prefabClassId = boxContentsClassId;
 
-			//The cyclops doll needs special treatment since it's a scene or something.
 			GameObject prefabGameObject = pre.prefabPlaceholders[0].gameObject;
-			if (prefabClassIdToCommit == ModCache.CacheData["RandoCyclopsDoll"].ClassId)
+			//The cyclops doll needs special treatment since it's a scene or something.
+			if (boxContentsClassId == ModCache.CacheData["RandoCyclopsDoll"].ClassId)
 			{
 				prefabGameObject.transform.localScale = new Vector3(0.012f, 0.012f, 0.012f);
 			}
 			else
 			{
-				CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, prefabClassIdToCommit));
+				CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, boxContentsClassId));
 			}
 		}
 		public static Bounds FindItemSize(GameObject someGameObject)

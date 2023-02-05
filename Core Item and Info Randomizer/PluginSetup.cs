@@ -13,6 +13,7 @@ namespace CoreItemAndInfoRandomizer
 		private const string versionString = "1.0.0";
 		private static readonly Harmony harmony = new(myGUID);
 		public static ManualLogSource BepinExLogger;
+		public static bool DebugMode = true;
 		public static SaveData RandomizerLoadedSaveData = SaveDataHandler.Main.RegisterSaveDataCache<SaveData>();
 		private void Awake()
 		{
