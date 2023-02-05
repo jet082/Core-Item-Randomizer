@@ -91,6 +91,7 @@
     <Compile Include="Crates\MyVeryOwnSupplyCrate.cs" />
     <Compile Include="Crates\Placement.cs" />
     <Compile Include="Creatures\AmyThePeeperLeviathan.cs" />
+    <Compile Include="Creatures\RandomizeFishSpecies.cs" />
     <Compile Include="Mod Items\DollSetup.cs" />
     <Compile Include="Mod Items\ModCache.cs" />
     <Compile Include="Mod Items\ModCacheItem.cs" />

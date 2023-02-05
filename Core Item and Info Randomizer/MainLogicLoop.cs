@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using CoreItemAndInfoRandomizer.Creatures;
+using HarmonyLib;
 using Newtonsoft.Json.Linq;
 using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void RunMainLogic()
 		{
+			UnityEngine.Random.InitState(PluginSetup.Seed);
 			PDAPatcher.GeneratePDAEntries();
+			RandomizeFishSpecies.Randomize();
 			new MyVeryOwnSupplyCrate().Patch();
 			new RandoSeamothDoll().Patch();
 			new RandoRocketBaseDoll().Patch();

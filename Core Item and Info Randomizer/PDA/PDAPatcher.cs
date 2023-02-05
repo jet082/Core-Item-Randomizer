@@ -14,7 +14,6 @@ namespace CoreItemAndInfoRandomizer
 				Dictionary<string, Dictionary<int, string>> junkHintDicts = HintTextData.JunkHints;
 				Dictionary<string, string> listOfPdaEntries = HintTextData.PDAEntries;
 				Dictionary<string, string> saveJson = new();
-				UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
 				foreach (KeyValuePair<string, string> pdaEntry in listOfPdaEntries)
 				{
 					//Get a random dictionary from the possible junk hints, then extract the prefix for the title of the database entry

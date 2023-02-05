@@ -20,7 +20,7 @@ namespace CoreItemAndInfoRandomizer
 				foreach (string someContents in CratePlacementsData.DistributionTable.Keys)
 				{
 					Vector3 toDoVectorPlacement = new(-712.6f + offsetValue, -3f, -733.56f);
-					saveData.ChestPlacementData[toDoVectorPlacement] = someContents;
+					saveData.ChestPlacementData[toDoVectorPlacement.ToString()] = someContents;
 					SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, toDoVectorPlacement);
 					CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 					offsetValue += 3;
@@ -32,9 +32,8 @@ namespace CoreItemAndInfoRandomizer
 				{
 					SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someKey);
 					CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
-					UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
 					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
-					saveData.ChestPlacementData[someKey] = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
+					saveData.ChestPlacementData[someKey.ToString()] = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
 				}
 			}
 		}

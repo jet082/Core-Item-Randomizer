@@ -13,8 +13,10 @@ namespace CoreItemAndInfoRandomizer
 		private const string versionString = "0.0.1";
 		private static readonly Harmony harmony = new(myGUID);
 		public static ManualLogSource BepinExLogger;
-		public static bool DebugMode = true;
+		public static bool DebugMode = false;
 		public static SaveData RandomizerLoadedSaveData = SaveDataHandler.Main.RegisterSaveDataCache<SaveData>();
+		public static int Seed = 2139831802;
+		public static bool CompletelyRandomFishSizes = false;
 		private void Awake()
 		{
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");

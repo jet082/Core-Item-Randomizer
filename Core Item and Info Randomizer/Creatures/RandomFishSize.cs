@@ -1,5 +1,7 @@
-﻿using HarmonyLib;
+﻿using CoreItemAndInfoRandomizer.Creatures;
+using HarmonyLib;
 using System;
+using System.Linq;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -13,15 +15,25 @@ namespace CoreItemAndInfoRandomizer
 		{
 			if (!__instance.GetComponent<SpecialResizable>())
 			{
-				UnityEngine.Random.InitState(DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond);
-				float scaleFactor = UnityEngine.Random.Range(1f, 3f);
-				if (UnityEngine.Random.value > .5)
+				if (PluginSetup.CompletelyRandomFishSizes)
 				{
-					__instance.SetScale(1 / scaleFactor);
+					float scaleFactor = UnityEngine.Random.Range(1f, 3f);
+					if (UnityEngine.Random.value > .5)
+					{
+						__instance.SetScale(1 / scaleFactor);
+					}
+					else
+					{
+						__instance.SetScale(scaleFactor);
+					}
 				}
 				else
 				{
-					__instance.SetScale(scaleFactor);
+					string creatureTechType = CraftData.GetTechType(__instance.gameObject).ToString();
+					if (RandomizeFishSpecies.ArrayOfFishes.Contains(creatureTechType))
+					{
+						__instance.SetScale(float.Parse(PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType]));
+					}
 				}
 			}
 		}

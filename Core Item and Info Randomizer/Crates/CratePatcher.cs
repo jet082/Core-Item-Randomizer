@@ -11,10 +11,10 @@ namespace CoreItemAndInfoRandomizer
 		public static void PatchHandTarget(HandTarget __instance)
 		{
 			SaveData saveData = PluginSetup.RandomizerLoadedSaveData;
-			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && saveData.ChestPlacementData.ContainsKey(__instance.transform.position))
+			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && saveData.ChestPlacementData.ContainsKey(__instance.transform.position.ToString()))
 			{
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
-				boxContentsSettings.boxContentsClassId = saveData.ChestPlacementData[__instance.transform.position];
+				boxContentsSettings.boxContentsClassId = saveData.ChestPlacementData[__instance.transform.position.ToString()];
 				boxContentsSettings.PlaceScaledItemInside();
 			}
 		}
