@@ -11,5 +11,6 @@ namespace CoreItemAndInfoRandomizer
 		public Dictionary<string, string> ChestPlacementData = new();
 		public Dictionary<string, string> Codes = new();
 		public Dictionary<string, float> FishSpeciesScaling = new();
+		public List<string> ObtainedItems = new();
 	}
 }
