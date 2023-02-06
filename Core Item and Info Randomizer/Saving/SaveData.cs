@@ -10,6 +10,6 @@ namespace CoreItemAndInfoRandomizer
 		public Dictionary<string, string> PDAData = new();
 		public Dictionary<string, string> ChestPlacementData = new();
 		public Dictionary<string, string> Codes = new();
-		public Dictionary<string, string> FishSpeciesScaling = new();
+		public Dictionary<string, float> FishSpeciesScaling = new();
 	}
 }

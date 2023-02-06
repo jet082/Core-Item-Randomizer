@@ -150,7 +150,7 @@ namespace CoreItemAndInfoRandomizer.Creatures
 					{
 						finalScale = scaleFactor;
 					}
-					fishSaveData.FishSpeciesScaling[someFish] = finalScale.ToString();
+					fishSaveData.FishSpeciesScaling[someFish] = finalScale;
 				}
 			}
 		}

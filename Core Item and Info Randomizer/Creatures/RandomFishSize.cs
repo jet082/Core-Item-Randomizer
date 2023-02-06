@@ -36,7 +36,7 @@ namespace CoreItemAndInfoRandomizer
 					string creatureTechType = CraftData.GetTechType(__instance.gameObject).ToString();
 					if (RandomizeFishSpecies.ArrayOfFishes.Contains(creatureTechType))
 					{
-						__instance.SetScale(float.Parse(PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType]));
+						__instance.SetScale(PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType]);
 					}
 				}
 			}
@@ -99,7 +99,7 @@ namespace CoreItemAndInfoRandomizer
 				}
 				else
 				{
-					float todo = float.Parse(PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType]);
+					float todo = PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType];
 					thingToResize.transform.localScale = new Vector3(toAdjust.x * todo, toAdjust.y * todo, toAdjust.z * todo);
 				}
 			}
