@@ -158,14 +158,14 @@
 		]
 	},
 	"supplyCrateCoordinates": {
-		"0,0,0": {
+		"0, 0, 0": {
 			"logic": [
-				"true"
+				"safeshallows"
 			],
 			"zoneId": "safeShallows",
 			"zoneName": "The Safe Shallows"
 		},
-		"1001.9,-368.5,-1120.3": {
+		"1001.9, -368.5, -1120.3": {
 			"logic": [
 				[
 					"crashzone",
@@ -175,7 +175,7 @@
 			"zoneId": "crashZone",
 			"zoneName": "Crash Zone SE"
 		},
-		"1169.2,-354.6,-949.5": {
+		"1169.2, -354.6, -949.5": {
 			"logic": [
 				[
 					"crashzone",
@@ -185,7 +185,7 @@
 			"zoneId": "crashZone",
 			"zoneName": "Crash Zone SE"
 		},
-		"452.8,-84.6,-511.3": {
+		"452.8, -84.6, -511.3": {
 			"logic": [
 				[
 					"crashzone"

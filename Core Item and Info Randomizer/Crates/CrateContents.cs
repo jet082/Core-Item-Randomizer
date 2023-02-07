@@ -27,7 +27,7 @@ namespace CoreItemAndInfoRandomizer
 		public void PlaceScaledItemInside()
 		{
 			Vector3 crateCoordinates = gameObject.transform.position;
-			PluginSetup.BepinExLogger.LogInfo($"Coordinate of Crate is {crateCoordinates}");
+			MainLogicLoop.DebugWrite($"Coordinate of Crate is {crateCoordinates}");
 			gameObject.EnsureComponent<ImmuneToPropulsioncannon>().immuneToRepulsionCannon = true;
 			if (isSealed)
 			{
@@ -94,7 +94,7 @@ namespace CoreItemAndInfoRandomizer
 						bounds = renderer.bounds;
 						hasTriggeredFoundBounds = true;
 					}
-					PluginSetup.BepinExLogger.LogInfo($"Collider Size Check: {renderer.bounds.size.x}, {renderer.bounds.size.y}, {renderer.bounds.size.z} at center {renderer.bounds.center.x}, {renderer.bounds.center.y}, {renderer.bounds.center.z}: {renderer.gameObject.name}");
+					MainLogicLoop.DebugWrite($"Collider Size Check: {renderer.bounds.size.x}, {renderer.bounds.size.y}, {renderer.bounds.size.z} at center {renderer.bounds.center.x}, {renderer.bounds.center.y}, {renderer.bounds.center.z}: {renderer.gameObject.name}");
 					bounds.Encapsulate(renderer.bounds);
 				}
 			}
@@ -102,7 +102,7 @@ namespace CoreItemAndInfoRandomizer
 			bounds.center = localCenter;
 			someGameObject.transform.localScale = currentScale;
 			someGameObject.transform.rotation = currentRotation;
-			PluginSetup.BepinExLogger.LogInfo($"Bounds Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}, at center {bounds.center.x}, {bounds.center.y}, {bounds.center.z}");
+			MainLogicLoop.DebugWrite($"Bounds Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}, at center {bounds.center.x}, {bounds.center.y}, {bounds.center.z}");
 			return bounds;
 		}
 		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId)

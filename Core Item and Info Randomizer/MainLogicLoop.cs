@@ -1,7 +1,6 @@
 ﻿using CoreItemAndInfoRandomizer.Creatures;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
-using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 
 namespace CoreItemAndInfoRandomizer
@@ -10,6 +9,13 @@ namespace CoreItemAndInfoRandomizer
 	public class MainLogicLoop
 	{
 		public static Dictionary<string, JObject> GameLogic = SaveAndLoad.LoadLogic("DefaultLogic.json");
+		public static void DebugWrite(string someString)
+		{
+			if (PluginSetup.DebugMode)
+			{
+				PluginSetup.BepinExLogger.LogInfo(someString);
+			}
+		}
 		[HarmonyPatch(nameof(Player.Start))]
 		[HarmonyPostfix]
 		public static void RunMainLogic()

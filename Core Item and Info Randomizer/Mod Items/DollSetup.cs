@@ -18,7 +18,7 @@ namespace CoreItemAndInfoRandomizer
 				{
 					if (!AllowList.Contains(someComponent.GetType()))
 					{
-						//PluginSetup.BepinExLogger.LogInfo($"Let's look at {someComponent.GetType()}");
+						MainLogicLoop.DebugWrite($"Let's look at {someComponent.GetType()}");
 						GameObject.DestroyImmediate(someComponent);
 						stillHasComponents = true;
 					}

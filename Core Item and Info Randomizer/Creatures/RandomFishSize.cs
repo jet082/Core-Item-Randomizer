@@ -75,7 +75,7 @@ namespace CoreItemAndInfoRandomizer
 		{			
 			if (RandomizeFishSpecies.ArrayOfFishes.Contains(creatureTechType) || creatureTechType == "484975a7c9dc5644b934c51e42cef239")
 			{
-				PluginSetup.BepinExLogger.LogInfo($"Resizing {creatureTechType}");
+				MainLogicLoop.DebugWrite($"Resizing {creatureTechType}");
 				Vector3 toAdjust;
 				if (ToScaleScale.Contains(creatureTechType))
 				{

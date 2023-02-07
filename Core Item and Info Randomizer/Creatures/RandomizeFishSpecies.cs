@@ -125,7 +125,6 @@ namespace CoreItemAndInfoRandomizer.Creatures
 			TechType.SeaEmperorBaby.ToString(),
 			TechType.SeaEmperorJuvenile.ToString(),
 			TechType.SeaTreader.ToString(),
-
 			TechType.BlueBarnacle.ToString(),
 			TechType.BlueBarnacleCluster.ToString(),
 			TechType.LimestoneChunk.ToString(),

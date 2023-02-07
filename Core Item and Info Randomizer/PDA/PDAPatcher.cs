@@ -44,7 +44,7 @@ namespace CoreItemAndInfoRandomizer
 					{
 						finalString += UnityEngine.Random.Range(0, 9).ToString();
 					}
-					PluginSetup.BepinExLogger.LogInfo($"Setting {someCodeKey} to {finalString}");
+					MainLogicLoop.DebugWrite($"Setting {someCodeKey} to {finalString}");
 					int toOverwriteIndex = UnityEngine.Random.Range(0, pdaKeyOnlyList.Count);
 					string toBeCodeTitle = pdaKeyOnlyList[toOverwriteIndex];
 					string toBeCodeDescription = listOfPdaEntries[toBeCodeTitle];

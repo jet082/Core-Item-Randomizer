@@ -10,7 +10,7 @@ namespace CoreItemAndInfoRandomizer
 		{
 			SaveData saveData = PluginSetup.RandomizerLoadedSaveData;
 			var placementData = CratePlacementsData.BoxPlacements;
-			if (PluginSetup.DebugMode)
+			if (PluginSetup.DebugCrates)
 			{
 				float offsetValue = 0;
 				foreach (string someContents in CratePlacementsData.DistributionTable.Keys)
