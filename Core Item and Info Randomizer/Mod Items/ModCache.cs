@@ -23,7 +23,7 @@ namespace CoreItemAndInfoRandomizer
 		public static TechType RandoRocketBaseDollCache;
 		public static void Setup()
 		{
-			foreach(string someModItem in CacheData.Keys)
+			foreach (string someModItem in CacheData.Keys)
 			{
 				TechType someTempTechType;
 				_ = TechTypeHandler.TryGetModdedTechType(someModItem, out someTempTechType);

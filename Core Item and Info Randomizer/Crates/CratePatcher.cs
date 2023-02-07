@@ -14,7 +14,7 @@ namespace CoreItemAndInfoRandomizer
 			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && saveData.ChestPlacementData.ContainsKey(__instance.transform.position.ToString()))
 			{
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
-				boxContentsSettings.boxContentsClassId = saveData.ChestPlacementData[__instance.transform.position.ToString()];
+				boxContentsSettings.boxContentsClassId = saveData.ChestPlacementData[__instance.transform.position.ToString()][0];
 				boxContentsSettings.PlaceScaledItemInside();
 			}
 		}

@@ -1,6 +1,5 @@
 ﻿using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
-using System;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -40,7 +39,7 @@ namespace CoreItemAndInfoRandomizer
 				foreach (string someCodeKey in overwriteCodeKeys)
 				{
 					string finalString = "";
-					for(int i = 0; i < 4; i += 1)
+					for (int i = 0; i < 4; i += 1)
 					{
 						finalString += UnityEngine.Random.Range(0, 9).ToString();
 					}

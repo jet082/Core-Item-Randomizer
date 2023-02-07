@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UWE;
-using System.Collections;
-using HarmonyLib;
 
 namespace CoreItemAndInfoRandomizer
 {
@@ -13,7 +12,7 @@ namespace CoreItemAndInfoRandomizer
 		private static readonly float[] boxContentsPadding = { 0.3f, 0.8f, 0.5f };
 		private static readonly HashSet<string> VFXAllowList = new() { "VFXSurface", "VFXFabricating", "VFXController" };
 		private static readonly HashSet<string> FiddlyIgnoreList = new() { "Mesh", "x_flashlightCone", "beamLeft", "beamRight", "x_MapRoom_HoloTableGlow_Bottom", "x_Center", "xMapRoomDust", "Ping", "Line", "x_CameraSeaGlide" };
-		public static readonly Dictionary<string, float> FiddlySpecialCases = new () {
+		public static readonly Dictionary<string, float> FiddlySpecialCases = new() {
 			{ ModCache.CacheData["RandoCyclopsDoll"].ClassId, 0.012f },
 			{ CraftData.GetClassIdForTechType(TechType.PrecursorIonCrystal), 0.7f },
 			{ CraftData.GetClassIdForTechType(TechType.MapRoomCamera), 0.65f },

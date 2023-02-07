@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
 {

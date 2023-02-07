@@ -16,20 +16,19 @@ namespace CoreItemAndInfoRandomizer
 				foreach (string someContents in CratePlacementsData.DistributionTable.Keys)
 				{
 					Vector3 toDoVectorPlacement = new(-712.6f + offsetValue, -3f, -733.56f);
-					saveData.ChestPlacementData[toDoVectorPlacement.ToString()] = someContents;
 					SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, toDoVectorPlacement);
 					CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 					offsetValue += 3;
 				}
 			}
-			else
+			foreach (Vector3 someKey in placementData.Keys)
 			{
-				foreach (Vector3 someKey in placementData.Keys)
+				SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someKey);
+				CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
+				if (!saveData.ChestPlacementData.ContainsKey(someKey.ToString()))
 				{
-					SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someKey);
-					CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
 					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
-					saveData.ChestPlacementData[someKey.ToString()] = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
+					saveData.ChestPlacementData.Add(someKey.ToString(), new string[] { CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key, CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Value.HumanReadable });
 				}
 			}
 		}
@@ -37,6 +36,11 @@ namespace CoreItemAndInfoRandomizer
 		{
 			SpawnInfo amySpawn = new(ModCache.CacheData["AmyThePeeperLeviathan"].ClassId, new Vector3(-575f, -48f, -62f));
 			CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(amySpawn);
+		}
+		public static void PlaceEverything()
+		{
+			PlaceChests();
+			PlaceLeviathans();
 		}
 	}
 }

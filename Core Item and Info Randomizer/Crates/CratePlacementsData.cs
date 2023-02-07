@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using CoreItemAndInfoRandomizer.Crates;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ namespace CoreItemAndInfoRandomizer
 {
 	public class CratePlacementsData
 	{
-		public static Dictionary<string, int> DistributionTable = new();
-		public static Dictionary<string, int> RequiredItems = new();
+		public static Dictionary<string, CrateDistributionItem> DistributionTable = new();
+		public static Dictionary<string, CrateDistributionItem> RequiredItems = new();
 		public static Dictionary<Vector3, JToken> BoxPlacements;
 		public static TechType[] ArrayOfNonRequiredTechTypes = {
 			TechType.HatchingEnzymes,
@@ -46,7 +46,7 @@ namespace CoreItemAndInfoRandomizer
 			TechType.PropulsionCannon,
 			TechType.Welder,
 			TechType.RepulsionCannon,
-			TechType.Scanner    ,
+			TechType.Scanner,
 			TechType.Seaglide,
 			TechType.StasisRifle,
 			TechType.Knife,
@@ -98,38 +98,33 @@ namespace CoreItemAndInfoRandomizer
 		public static void Setup()
 		{
 			BoxPlacements = BoxPlacementDictionary();
-			DistributionTable = new() {
-				{ ModCache.CacheData["RandoSeamothDoll"].ClassId, 1 },
-				{ ModCache.CacheData["RandoPrawnSuitDoll"].ClassId, 1 },
-				{ ModCache.CacheData["RandoCyclopsDoll"].ClassId, 1 }
-			};
 			foreach (TechType someTechType in ArrayOfNonRequiredTechTypes)
 			{
 				if (NonStandardDistribution.ContainsKey(someTechType))
 				{
-					DistributionTable[CraftData.GetClassIdForTechType(someTechType)] = NonStandardDistribution[someTechType];
+					DistributionTable.Add(CraftData.GetClassIdForTechType(someTechType), new(NonStandardDistribution[someTechType], Language.main.Get(someTechType)));
 				}
 				else
 				{
-					DistributionTable[CraftData.GetClassIdForTechType(someTechType)] = 1;
+					DistributionTable.Add(CraftData.GetClassIdForTechType(someTechType), new(1, Language.main.Get(someTechType)));
 				}
 			}
-			RequiredItems = new()
-			{
-				{ CraftData.GetClassIdForTechType(TechType.EnzymeCureBall), 1 },
-				{ ModCache.CacheData["RandoRocketBaseDoll"].ClassId, 1 },
-				{ ModCache.CacheData["RandoRocketBaseLadderDoll"].ClassId, 1 },
-				{ ModCache.CacheData["RandoRocketStage1Doll"].ClassId, 1 },
-				{ ModCache.CacheData["RandoRocketStage2Doll"].ClassId, 1 },
-				{ ModCache.CacheData["RandoRocketStage3Doll"].ClassId, 1 }
-			};
+			DistributionTable.Add(ModCache.CacheData["RandoSeamothDoll"].ClassId, new(1, "Seamoth"));
+			DistributionTable.Add(ModCache.CacheData["RandoPrawnSuitDoll"].ClassId, new(1, "Prawn Suit"));
+			DistributionTable.Add(ModCache.CacheData["RandoCyclopsDoll"].ClassId, new(1, "Cyclops"));
+			RequiredItems.Add(CraftData.GetClassIdForTechType(TechType.EnzymeCureBall), new(1, Language.main.Get(TechType.EnzymeCureBall)));
+			RequiredItems.Add(ModCache.CacheData["RandoRocketBaseDoll"].ClassId, new(1, Language.main.Get("Neptune Launch Platform")));
+			RequiredItems.Add(ModCache.CacheData["RandoRocketBaseLadderDoll"].ClassId, new(1, Language.main.Get("Neptune Gantry")));
+			RequiredItems.Add(ModCache.CacheData["RandoRocketStage1Doll"].ClassId, new(1, Language.main.Get("Neptune Ion Boosters")));
+			RequiredItems.Add(ModCache.CacheData["RandoRocketStage2Doll"].ClassId, new(1, Language.main.Get("Neptune Fuel Reserve")));
+			RequiredItems.Add(ModCache.CacheData["RandoRocketStage3Doll"].ClassId, new(1, Language.main.Get("Neptune Cockpit")));
 		}
 		public static Dictionary<Vector3, JToken> BoxPlacementDictionary()
 		{
 			Dictionary<Vector3, JToken> finalDict = new();
 			foreach (var someData in MainLogicLoop.GameLogic["supplyCrateCoordinates"])
 			{
-				string[] vectorData = someData.Key.Split(',');
+				string[] vectorData = someData.Key.Replace(" ", "").Split(',');
 				Vector3 vectorized = new(float.Parse(vectorData[0]), float.Parse(vectorData[1]), float.Parse(vectorData[2]));
 				finalDict.Add(vectorized, someData.Value);
 			}

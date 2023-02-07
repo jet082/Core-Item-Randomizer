@@ -72,7 +72,7 @@ namespace CoreItemAndInfoRandomizer
 					}
 				}*/
 		public static void ResizeStuff(GameObject thingToResize, string creatureTechType)
-		{			
+		{
 			if (RandomizeFishSpecies.ArrayOfFishes.Contains(creatureTechType) || creatureTechType == "484975a7c9dc5644b934c51e42cef239")
 			{
 				MainLogicLoop.DebugWrite($"Resizing {creatureTechType}");

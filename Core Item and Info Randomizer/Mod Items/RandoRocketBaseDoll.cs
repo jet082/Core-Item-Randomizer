@@ -22,7 +22,7 @@ namespace CoreItemAndInfoRandomizer
 			_ = task.TryGetPrefab(out GameObject prefab);
 
 			GameObject wip = DollSetup.SetupDoll(prefab, 0.05f);
-			foreach(string someLadder in OuterLadders)
+			foreach (string someLadder in OuterLadders)
 			{
 				GameObject someLadderObject = wip.transform.Find("Base/Triggers/" + someLadder + "/rocketship_platform_outerLadder").gameObject;
 				BoxCollider someLadderObjectCollider = someLadderObject.GetComponent<BoxCollider>();

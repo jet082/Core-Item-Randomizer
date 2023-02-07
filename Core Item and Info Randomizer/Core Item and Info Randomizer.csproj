@@ -88,7 +88,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\InitializeSavedData.cs" />
     <Compile Include="Crates\CrateContents.cs" />
+    <Compile Include="Crates\CrateDistributionItem.cs" />
     <Compile Include="Crates\CratePatcher.cs" />
     <Compile Include="Crates\CratePlacementsData.cs" />
     <Compile Include="Crates\MyVeryOwnSupplyCrate.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Creatures\RandomizeFishSpecies.cs" />
     <Compile Include="Logic\LogicParser.cs" />
     <Compile Include="Mod Items\DollSetup.cs" />
+    <Compile Include="Core\InitializeCustomElements.cs" />
     <Compile Include="Mod Items\ModCache.cs" />
     <Compile Include="Mod Items\ModCacheItem.cs" />
     <Compile Include="Mod Items\RandoCyclopsDoll.cs" />
@@ -114,8 +117,8 @@
     <Compile Include="Mod Items\RandoRocketStage1Doll.cs" />
     <Compile Include="Creatures\SpecialResizable.cs" />
     <Compile Include="Assorted Patches\PickupDrop.cs" />
-    <Compile Include="MainLogicLoop.cs" />
-    <Compile Include="PluginSetup.cs" />
+    <Compile Include="Core\MainLogicLoop.cs" />
+    <Compile Include="Core\PluginSetup.cs" />
     <Compile Include="PDA\PDAPatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saving\SaveAndLoad.cs" />

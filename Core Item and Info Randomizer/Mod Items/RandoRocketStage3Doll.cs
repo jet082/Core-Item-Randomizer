@@ -1,5 +1,4 @@
-﻿using mset;
-using SMLHelper.V2.Assets;
+﻿using SMLHelper.V2.Assets;
 using System.Collections;
 using UnityEngine;
 using UWE;
@@ -36,7 +35,7 @@ namespace CoreItemAndInfoRandomizer
 			rigidBodyData.isKinematic = true;
 			GameObject.DestroyImmediate(wip.transform.Find("RocketReactorFXspawner").gameObject);
 			GameObject.DestroyImmediate(wip.transform.Find("BaseRoomLadderBottom/logic").gameObject.GetComponent<Collider>());
-			
+
 
 
 			gameObject.Set(wip);
