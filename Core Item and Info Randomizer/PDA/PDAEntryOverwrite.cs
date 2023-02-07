@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CoreItemAndInfoRandomizer
 {
-	public class PDAPatcher
+	public class PDAEntryOverwrite
 	{
 		public static void GeneratePDAEntries()
 		{

@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc\RandomizePrecursorKeyTerminals.cs" />
     <Compile Include="Core\InitializeSavedData.cs" />
     <Compile Include="Crates\CrateContents.cs" />
     <Compile Include="Crates\CrateDistributionItem.cs" />
@@ -105,8 +106,8 @@
     <Compile Include="Mod Items\RandoCyclopsDoll.cs" />
     <Compile Include="Visual Studio Stuff\GlobalSuppressions.cs" />
     <Compile Include="PDA\HintTextData.cs" />
-    <Compile Include="Assorted Patches\InfiniteBattery.cs" />
-    <Compile Include="Assorted Patches\InfiniteSurvival.cs" />
+    <Compile Include="Misc\InfiniteBattery.cs" />
+    <Compile Include="Misc\InfiniteSurvival.cs" />
     <Compile Include="Creatures\RandomFishSize.cs" />
     <Compile Include="Mod Items\RandoPrawnSuitDoll.cs" />
     <Compile Include="Mod Items\RandoRocketBaseDoll.cs" />
@@ -116,10 +117,10 @@
     <Compile Include="Mod Items\RandoSeamothDoll.cs" />
     <Compile Include="Mod Items\RandoRocketStage1Doll.cs" />
     <Compile Include="Creatures\SpecialResizable.cs" />
-    <Compile Include="Assorted Patches\PickupDrop.cs" />
+    <Compile Include="Misc\PickupDrop.cs" />
     <Compile Include="Core\MainLogicLoop.cs" />
     <Compile Include="Core\PluginSetup.cs" />
-    <Compile Include="PDA\PDAPatcher.cs" />
+    <Compile Include="PDA\PDAEntryOverwrite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saving\SaveAndLoad.cs" />
     <Compile Include="Saving\SaveData.cs" />

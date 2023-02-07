@@ -6,8 +6,9 @@ namespace CoreItemAndInfoRandomizer.Core
 	{
 		public static void Initialize()
 		{
-			PDAPatcher.GeneratePDAEntries();
+			PDAEntryOverwrite.GeneratePDAEntries();
 			RandomizeFishSpecies.Randomize();
+			//PrecursorKeyTerminal.PrecursorKeyType heresHowYouGetThis = PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Red;
 		}
 	}
 }
