@@ -55,11 +55,12 @@ namespace CoreItemAndInfoRandomizer
 			}
 			else
 			{
-				CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, boxContentsClassId));
+				CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, boxContentsClassId, gameObject));
 			}
 		}
 		public static Bounds FindItemSize(GameObject someGameObject)
 		{
+			someGameObject.SetActive(false);
 			Quaternion currentRotation = someGameObject.transform.rotation;
 			Vector3 currentScale = someGameObject.transform.localScale;
 			someGameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -102,16 +103,17 @@ namespace CoreItemAndInfoRandomizer
 			someGameObject.transform.localScale = currentScale;
 			someGameObject.transform.rotation = currentRotation;
 			MainLogicLoop.DebugWrite($"Bounds Size Check: {bounds.size.x}, {bounds.size.y}, {bounds.size.z}, at center {bounds.center.x}, {bounds.center.y}, {bounds.center.z}");
+			someGameObject.SetActive(true);
 			return bounds;
 		}
-		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId)
+		public static IEnumerator ResizeToBox(GameObject someGameObject, string someClassId, GameObject boxObject)
 		{
-			IPrefabRequest boxTask = PrefabDatabase.GetPrefabAsync(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId);
+			/*IPrefabRequest boxTask = PrefabDatabase.GetPrefabAsync(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId);
 			yield return boxTask;
 			_ = boxTask.TryGetPrefab(out GameObject prefabBox);
-			GameObject supplyBox = GameObject.Instantiate(prefabBox);
+			GameObject supplyBox = GameObject.Instantiate(prefabBox);*/
 			//Try to get box size...
-			Bounds boxBounds = FindItemSize(supplyBox);
+			Bounds boxBounds = FindItemSize(boxObject);
 
 			//Start with prefab. Need to instantiate to get proper collider values.
 			IPrefabRequest task = PrefabDatabase.GetPrefabAsync(someClassId);
@@ -145,7 +147,7 @@ namespace CoreItemAndInfoRandomizer
 			someGameObject.transform.localScale = scaler;
 			//Delete the duplicate lest it appear out in the wild.
 			GameObject.DestroyImmediate(prefabObject);
-			GameObject.DestroyImmediate(supplyBox);
+			//GameObject.DestroyImmediate(supplyBox);
 		}
 	}
 }

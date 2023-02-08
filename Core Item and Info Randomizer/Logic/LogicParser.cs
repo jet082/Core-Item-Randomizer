@@ -23,7 +23,6 @@ namespace CoreItemAndInfoRandomizer.Logic
 			{
 				tabs += "\t";
 			}
-			SaveData saveData = PluginSetup.RandomizerLoadedSaveData;
 			foreach (JToken rootLogicToken in someArray)
 			{
 				if (rootLogicToken.Type == JTokenType.Array)
@@ -45,7 +44,7 @@ namespace CoreItemAndInfoRandomizer.Logic
 				else if (rootLogicToken.Type == JTokenType.String)
 				{
 					string toCheck = rootLogicToken.Value<string>();
-					if (saveData.ObtainedItems.Contains(toCheck))
+					if (PluginSetup.CachedRandoData.ObtainedItems.Contains(toCheck))
 					{
 						MainLogicLoop.DebugWrite($"{tabs}{toCheck} {toAppendDebugString}");
 						MainLogicLoop.DebugWrite($"{tabs}\tFOUND");

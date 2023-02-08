@@ -7,12 +7,12 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static void GeneratePDAEntries()
 		{
-			SaveData pdaSaveData = PluginSetup.RandomizerLoadedSaveData;
-			if (pdaSaveData.PDAData.Count == 0)
+			if (PluginSetup.CachedRandoData.PDAData.Count == 0)
 			{
 				Dictionary<string, Dictionary<int, string>> junkHintDicts = HintTextData.JunkHints;
 				Dictionary<string, string> listOfPdaEntries = HintTextData.PDAEntries;
-				Dictionary<string, string> saveJson = new();
+				Dictionary<string, string> saveJsonCache = new();
+				Dictionary<string, string> saveJsonSpoilerLog = new();
 				foreach (KeyValuePair<string, string> pdaEntry in listOfPdaEntries)
 				{
 					//Get a random dictionary from the possible junk hints, then extract the prefix for the title of the database entry
@@ -24,8 +24,9 @@ namespace CoreItemAndInfoRandomizer
 					int randomJunkHintNumber = junkHintNumberList[UnityEngine.Random.Range(0, junkHintNumberList.Count)];
 					string newTitle = $"{randomJunkHintPrefix} #{randomJunkHintNumber.ToString().PadLeft(3, '0')}";
 					string newDescription = junkHintTable[randomJunkHintNumber];
-					saveJson[pdaEntry.Key] = newTitle;
-					saveJson[pdaEntry.Value] = newDescription;
+					saveJsonCache[pdaEntry.Key] = newTitle;
+					saveJsonCache[pdaEntry.Value] = newDescription;
+					saveJsonSpoilerLog[pdaEntry.Key] = newTitle;
 					LanguageHandler.SetLanguageLine(pdaEntry.Key, newTitle);
 					LanguageHandler.SetLanguageLine(pdaEntry.Value, newDescription);
 					junkHintTable.Remove(randomJunkHintNumber);
@@ -47,17 +48,20 @@ namespace CoreItemAndInfoRandomizer
 					int toOverwriteIndex = UnityEngine.Random.Range(0, pdaKeyOnlyList.Count);
 					string toBeCodeTitle = pdaKeyOnlyList[toOverwriteIndex];
 					string toBeCodeDescription = listOfPdaEntries[toBeCodeTitle];
-					saveJson[toBeCodeTitle] = someCodeKey;
-					saveJson[toBeCodeDescription] = $"The {someCodeKey} is {finalString}.";
+					saveJsonCache[toBeCodeTitle] = someCodeKey;
+					saveJsonCache[toBeCodeDescription] = $"The {someCodeKey} is {finalString}.";
+					saveJsonSpoilerLog[toBeCodeTitle] = someCodeKey;
 					LanguageHandler.SetLanguageLine(toBeCodeTitle, someCodeKey);
 					LanguageHandler.SetLanguageLine(toBeCodeDescription, $"The {someCodeKey} is {finalString}.");
-					pdaSaveData.Codes[someCodeKey] = finalString;
+					PluginSetup.CachedRandoData.Codes[someCodeKey] = finalString;
+					PluginSetup.SpoilerLogData.Codes[someCodeKey] = finalString;
 				}
-				pdaSaveData.PDAData = saveJson;
+				PluginSetup.CachedRandoData.PDAData = saveJsonCache;
+				PluginSetup.SpoilerLogData.PDAData = saveJsonSpoilerLog;
 			}
 			else
 			{
-				foreach (KeyValuePair<string, string> pdaEntry in PluginSetup.RandomizerLoadedSaveData.PDAData)
+				foreach (KeyValuePair<string, string> pdaEntry in PluginSetup.SpoilerLogData.PDAData)
 				{
 					LanguageHandler.SetLanguageLine(pdaEntry.Key, pdaEntry.Value);
 				}

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace CoreItemAndInfoRandomizer.Creatures
+namespace CoreItemAndInfoRandomizer.FloraAndFauna
 {
-	public class RandomizeFishSpecies
+	public class RandomizeSizes
 	{
-		public static HashSet<string> ArrayOfFishes = new()
+		public static HashSet<string> ArrayOfSpecies = new()
 		{
 			TechType.AcidMushroom.ToString(),
 			TechType.BloodRoot.ToString(),
@@ -134,10 +134,9 @@ namespace CoreItemAndInfoRandomizer.Creatures
 		};
 		public static void Randomize()
 		{
-			SaveData fishSaveData = PluginSetup.RandomizerLoadedSaveData;
-			if (fishSaveData.FishSpeciesScaling.Count == 0)
+			if (PluginSetup.CachedRandoData.Scaling.Count == 0)
 			{
-				foreach (string someFish in ArrayOfFishes)
+				foreach (string someSpecies in ArrayOfSpecies)
 				{
 					float scaleFactor = UnityEngine.Random.Range(1f, 3f);
 					float finalScale;
@@ -149,7 +148,8 @@ namespace CoreItemAndInfoRandomizer.Creatures
 					{
 						finalScale = scaleFactor;
 					}
-					fishSaveData.FishSpeciesScaling[someFish] = finalScale;
+					PluginSetup.CachedRandoData.Scaling[someSpecies] = finalScale;
+					PluginSetup.SpoilerLogData.Scaling[someSpecies] = finalScale;
 				}
 			}
 		}

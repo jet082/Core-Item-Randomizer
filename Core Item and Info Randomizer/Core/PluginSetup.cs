@@ -18,7 +18,8 @@ namespace CoreItemAndInfoRandomizer
 		public static int Seed = 2139831802;
 		public static bool CompletelyRandomFishSizes = false;
 		public static ManualLogSource BepinExLogger;
-		public static SaveData RandomizerLoadedSaveData = SaveDataHandler.Main.RegisterSaveDataCache<SaveData>();
+		public static SpoilerLog SpoilerLogData = SaveDataHandler.Main.RegisterSaveDataCache<SpoilerLog>();
+		public static RandomizerCacheData CachedRandoData = SaveDataHandler.Main.RegisterSaveDataCache<RandomizerCacheData>();
 		private void Awake()
 		{
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");

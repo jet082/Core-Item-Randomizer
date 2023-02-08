@@ -16,7 +16,6 @@ namespace CoreItemAndInfoRandomizer
 			yield return task;
 			_ = task.TryGetPrefab(out GameObject prefab);
 			GameObject wip = GameObject.Instantiate(prefab);
-
 			gameObject.Set(wip);
 			yield break;
 		}

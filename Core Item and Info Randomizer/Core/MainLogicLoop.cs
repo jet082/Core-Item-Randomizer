@@ -1,5 +1,6 @@
 ﻿using CoreItemAndInfoRandomizer.Core;
-using CoreItemAndInfoRandomizer.Mod_Items;
+using CoreItemAndInfoRandomizer.ModItems;
+using CoreItemAndInfoRandomizer.Saving;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPostfix]
 		public static void RunMainLogic()
 		{
-			UnityEngine.Random.InitState(PluginSetup.Seed);
+			SetupSeedRandomization.InitializeSeed();
 			InitializeCustomElements.Initialize();
-			InitializeSavedData.Initialize();
+			Randomize.Initialize();
 			CratePlacementsData.Setup();
 			Placement.PlaceEverything();
 		}

@@ -1,4 +1,4 @@
-﻿using CoreItemAndInfoRandomizer.Creatures;
+﻿using CoreItemAndInfoRandomizer.FloraAndFauna;
 using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CoreItemAndInfoRandomizer
 {
 	[HarmonyPatch]
-	public class RandomFishSize
+	public class PatchSizes
 	{
 		public static HashSet<string> ToScaleScale = new() {
 			TechType.SnakeMushroom.ToString(),
@@ -34,9 +34,9 @@ namespace CoreItemAndInfoRandomizer
 				else
 				{
 					string creatureTechType = CraftData.GetTechType(__instance.gameObject).ToString();
-					if (RandomizeFishSpecies.ArrayOfFishes.Contains(creatureTechType))
+					if (RandomizeSizes.ArrayOfSpecies.Contains(creatureTechType))
 					{
-						__instance.SetScale(PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType]);
+						__instance.SetScale(PluginSetup.CachedRandoData.Scaling[creatureTechType]);
 					}
 				}
 			}
@@ -73,7 +73,7 @@ namespace CoreItemAndInfoRandomizer
 				}*/
 		public static void ResizeStuff(GameObject thingToResize, string creatureTechType)
 		{
-			if (RandomizeFishSpecies.ArrayOfFishes.Contains(creatureTechType) || creatureTechType == "484975a7c9dc5644b934c51e42cef239")
+			if (RandomizeSizes.ArrayOfSpecies.Contains(creatureTechType) || creatureTechType == "484975a7c9dc5644b934c51e42cef239")
 			{
 				MainLogicLoop.DebugWrite($"Resizing {creatureTechType}");
 				Vector3 toAdjust;
@@ -99,7 +99,7 @@ namespace CoreItemAndInfoRandomizer
 				}
 				else
 				{
-					float todo = PluginSetup.RandomizerLoadedSaveData.FishSpeciesScaling[creatureTechType];
+					float todo = PluginSetup.CachedRandoData.Scaling[creatureTechType];
 					thingToResize.transform.localScale = new Vector3(toAdjust.x * todo, toAdjust.y * todo, toAdjust.z * todo);
 				}
 			}

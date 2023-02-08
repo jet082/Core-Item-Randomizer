@@ -2,8 +2,8 @@
 using SMLHelper.V2.Utility;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer.Assorted_Patches
 {
@@ -23,7 +23,7 @@ namespace CoreItemAndInfoRandomizer.Assorted_Patches
 			{ new Vector3(448.8f, -93.9f, 1219.6f), "Quarantine Enforcement Platform Moonpool Outside" },
 			{ new Vector3(437.8f, -95.5f, 1222.9f), "Quarantine Enforcement Platform Moonpool Inside" },
 			{ new Vector3(384.9f, 3.0f, 1112.1f), "Quarantine Enforcement Platform Main Entrance Outside" },
-			{ new Vector3(391.6f, 3.0f, 1106.6f), "Quarantine Enforcement Platform Main Entrance Outside" },
+			{ new Vector3(391.6f, 3.0f, 1106.6f), "Quarantine Enforcement Platform Main Entrance Inside" },
 			{ new Vector3(402.4f, -74.3f, 1096.8f), "Quarantine Enforcement Platform Control Room" },
 			{ new Vector3(-64.4f, -1227.2f, 106.8f), "Thermal Plant Generator Room" },
 			{ new Vector3(-63.7f, -1212.4f, 119.2f), "Thermal Plant Blue Tablet Room" },

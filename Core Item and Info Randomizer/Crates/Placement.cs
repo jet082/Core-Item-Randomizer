@@ -8,7 +8,6 @@ namespace CoreItemAndInfoRandomizer
 	{
 		public static void PlaceChests()
 		{
-			SaveData saveData = PluginSetup.RandomizerLoadedSaveData;
 			var placementData = CratePlacementsData.BoxPlacements;
 			if (PluginSetup.DebugCrates)
 			{
@@ -25,10 +24,14 @@ namespace CoreItemAndInfoRandomizer
 			{
 				SpawnInfo chestSpawn = new(ModCache.CacheData["MyVeryOwnSupplyCrate"].ClassId, someKey);
 				CoordinatedSpawnsHandler.RegisterCoordinatedSpawn(chestSpawn);
-				if (!saveData.ChestPlacementData.ContainsKey(someKey.ToString()))
+				if (!PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(someKey.ToString()))
 				{
 					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
-					saveData.ChestPlacementData.Add(someKey.ToString(), new string[] { CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key, CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Value.HumanReadable });
+					string toAddPre1 = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
+					string toAddPre2 = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Value.HumanReadable;
+					string[] toAdd = new string[] { toAddPre1, toAddPre2 };
+					PluginSetup.CachedRandoData.ChestPlacements.Add(someKey.ToString(), toAdd);
+					PluginSetup.SpoilerLogData.ChestPlacements.Add(someKey.ToString(), toAddPre2);
 				}
 			}
 		}

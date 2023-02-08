@@ -89,26 +89,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Misc\RandomizePrecursorKeyTerminals.cs" />
-    <Compile Include="Core\InitializeSavedData.cs" />
+    <Compile Include="Core\Randomize.cs" />
     <Compile Include="Crates\CrateContents.cs" />
     <Compile Include="Crates\CrateDistributionItem.cs" />
     <Compile Include="Crates\CratePatcher.cs" />
     <Compile Include="Crates\CratePlacementsData.cs" />
     <Compile Include="Crates\MyVeryOwnSupplyCrate.cs" />
     <Compile Include="Crates\Placement.cs" />
-    <Compile Include="Creatures\AmyThePeeperLeviathan.cs" />
-    <Compile Include="Creatures\RandomizeFishSpecies.cs" />
+    <Compile Include="Flora and Fauna\AmyThePeeperLeviathan.cs" />
+    <Compile Include="Flora and Fauna\RandomizeSizes.cs" />
     <Compile Include="Logic\LogicParser.cs" />
     <Compile Include="Mod Items\DollSetup.cs" />
     <Compile Include="Core\InitializeCustomElements.cs" />
     <Compile Include="Mod Items\ModCache.cs" />
     <Compile Include="Mod Items\ModCacheItem.cs" />
     <Compile Include="Mod Items\RandoCyclopsDoll.cs" />
+    <Compile Include="Saving\RandomizerCacheData.cs" />
+    <Compile Include="Saving\SetupSeedRandomization.cs" />
     <Compile Include="Visual Studio Stuff\GlobalSuppressions.cs" />
     <Compile Include="PDA\HintTextData.cs" />
     <Compile Include="Misc\InfiniteBattery.cs" />
     <Compile Include="Misc\InfiniteSurvival.cs" />
-    <Compile Include="Creatures\RandomFishSize.cs" />
+    <Compile Include="Flora and Fauna\PatchSizes.cs" />
     <Compile Include="Mod Items\RandoPrawnSuitDoll.cs" />
     <Compile Include="Mod Items\RandoRocketBaseDoll.cs" />
     <Compile Include="Mod Items\RandoRocketBaseLadderDoll.cs" />
@@ -116,14 +118,14 @@
     <Compile Include="Mod Items\RandoRocketStage3Doll.cs" />
     <Compile Include="Mod Items\RandoSeamothDoll.cs" />
     <Compile Include="Mod Items\RandoRocketStage1Doll.cs" />
-    <Compile Include="Creatures\SpecialResizable.cs" />
+    <Compile Include="Flora and Fauna\SpecialResizable.cs" />
     <Compile Include="Misc\PickupDrop.cs" />
     <Compile Include="Core\MainLogicLoop.cs" />
     <Compile Include="Core\PluginSetup.cs" />
     <Compile Include="PDA\PDAEntryOverwrite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saving\SaveAndLoad.cs" />
-    <Compile Include="Saving\SaveData.cs" />
+    <Compile Include="Saving\SpoilerLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Visual Studio Stuff\app.config" />

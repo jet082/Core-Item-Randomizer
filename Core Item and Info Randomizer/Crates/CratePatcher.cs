@@ -1,22 +1,27 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
 {
 	[HarmonyPatch]
 	public class CratePatcher
 	{
-		[HarmonyPatch(typeof(HandTarget))]
-		[HarmonyPatch(nameof(HandTarget.Awake))]
+		[HarmonyPatch(typeof(HandTarget), nameof(HandTarget.Awake))]
 		[HarmonyPrefix]
 		public static void PatchHandTarget(HandTarget __instance)
 		{
-			SaveData saveData = PluginSetup.RandomizerLoadedSaveData;
-			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && saveData.ChestPlacementData.ContainsKey(__instance.transform.position.ToString()))
+			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(__instance.transform.position.ToString()))
 			{
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
-				boxContentsSettings.boxContentsClassId = saveData.ChestPlacementData[__instance.transform.position.ToString()][0];
+				boxContentsSettings.boxContentsClassId = PluginSetup.CachedRandoData.ChestPlacements[__instance.transform.position.ToString()][0];
 				boxContentsSettings.PlaceScaledItemInside();
 			}
+		}
+		[HarmonyPatch(typeof(SupplyCrate), nameof(SupplyCrate.Start))]
+		[HarmonyPostfix]
+		public static void DestroyTheErrantBattery(SupplyCrate __instance)
+		{
+			GameObject.DestroyImmediate(__instance.gameObject.transform.Find("Battery(Placeholder)").gameObject);
 		}
 		[HarmonyPatch(typeof(SupplyCrate), nameof(SupplyCrate.FindInsideItemAfterStart))]
 		[HarmonyPostfix]
