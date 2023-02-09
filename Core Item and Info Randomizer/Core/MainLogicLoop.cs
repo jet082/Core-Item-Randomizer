@@ -1,4 +1,5 @@
 ﻿using CoreItemAndInfoRandomizer.Core;
+using CoreItemAndInfoRandomizer.Logic;
 using CoreItemAndInfoRandomizer.ModItems;
 using CoreItemAndInfoRandomizer.Saving;
 using HarmonyLib;
@@ -10,7 +11,6 @@ namespace CoreItemAndInfoRandomizer
 	[HarmonyPatch(typeof(Player))]
 	public class MainLogicLoop
 	{
-		public static Dictionary<string, JObject> GameLogic = SaveAndLoad.LoadLogic("DefaultLogic.json");
 		public static void DebugWrite(string someString)
 		{
 			if (PluginSetup.DebugMode)
@@ -27,6 +27,7 @@ namespace CoreItemAndInfoRandomizer
 			Randomize.Initialize();
 			CratePlacementsData.Setup();
 			Placement.PlaceEverything();
+			LogicPlacementData.InitializeData();
 		}
 	}
 }

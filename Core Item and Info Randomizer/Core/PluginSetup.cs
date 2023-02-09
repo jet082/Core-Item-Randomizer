@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
+using CoreItemAndInfoRandomizer.Misc;
 using HarmonyLib;
 using SMLHelper.V2.Handlers;
 
@@ -20,6 +21,7 @@ namespace CoreItemAndInfoRandomizer
 		public static ManualLogSource BepinExLogger;
 		public static SpoilerLog SpoilerLogData = SaveDataHandler.Main.RegisterSaveDataCache<SpoilerLog>();
 		public static RandomizerCacheData CachedRandoData = SaveDataHandler.Main.RegisterSaveDataCache<RandomizerCacheData>();
+		public static bool RandomStartingLocation = true;
 		private void Awake()
 		{
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");

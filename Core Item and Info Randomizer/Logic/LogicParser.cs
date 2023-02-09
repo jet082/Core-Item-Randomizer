@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer.Logic
@@ -7,6 +8,7 @@ namespace CoreItemAndInfoRandomizer.Logic
 	{
 		public static string SuccessMessage = "CONDITION MET!";
 		public static string FailureMessage = "CONDITION NOT MET!";
+		public static Dictionary<string, JObject> GameLogic = SaveAndLoad.LoadLogic("DefaultLogic.json");
 		public static bool ParseAccessArray(JArray someArray, bool isOr = true, int iteration = 0)
 		{
 			string toAppendDebugString;
@@ -54,7 +56,7 @@ namespace CoreItemAndInfoRandomizer.Logic
 							return true;
 						}
 					}
-					else if (MainLogicLoop.GameLogic["logic"].ContainsKey(toCheck))
+					else if (GameLogic["logic"].ContainsKey(toCheck))
 					{
 						MainLogicLoop.DebugWrite($"{tabs}(LOGIC) {toCheck} {toAppendDebugString}");
 						bool result = CanAccess(toCheck, iteration + 1);
@@ -95,12 +97,12 @@ namespace CoreItemAndInfoRandomizer.Logic
 		}
 		public static bool CanAccess(string someCheck, int iteration = 0)
 		{
-			JArray rootLogic = (JArray)MainLogicLoop.GameLogic["logic"][someCheck];
+			JArray rootLogic = (JArray)GameLogic["logic"][someCheck];
 			return ParseAccessArray(rootLogic, iteration: iteration);
 		}
 		public static bool CanAccessLocation(Vector3 someVector)
 		{
-			JArray toProcessLocation = (JArray)MainLogicLoop.GameLogic["supplyCrateCoordinates"][$"{someVector.x},{someVector.y},{someVector.z}"]["logic"];
+			JArray toProcessLocation = (JArray)GameLogic["supplyCrateCoordinates"][someVector.ToString()]["logic"];
 			return ParseAccessArray(toProcessLocation);
 		}
 	}

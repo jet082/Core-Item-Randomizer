@@ -1,4 +1,5 @@
 ﻿using CoreItemAndInfoRandomizer.Crates;
+using CoreItemAndInfoRandomizer.Logic;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -122,9 +123,9 @@ namespace CoreItemAndInfoRandomizer
 		public static Dictionary<Vector3, JToken> BoxPlacementDictionary()
 		{
 			Dictionary<Vector3, JToken> finalDict = new();
-			foreach (var someData in MainLogicLoop.GameLogic["supplyCrateCoordinates"])
+			foreach (var someData in LogicParser.GameLogic["supplyCrateCoordinates"])
 			{
-				string[] vectorData = someData.Key.Replace(" ", "").Split(',');
+				string[] vectorData = someData.Key.Substring(1, someData.Key.Length - 2).Split(',');
 				Vector3 vectorized = new(float.Parse(vectorData[0]), float.Parse(vectorData[1]), float.Parse(vectorData[2]));
 				finalDict.Add(vectorized, someData.Value);
 			}

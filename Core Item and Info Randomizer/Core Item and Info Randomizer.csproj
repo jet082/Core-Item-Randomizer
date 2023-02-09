@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logic\LogicPlacementData.cs" />
     <Compile Include="Misc\RandomizePrecursorKeyTerminals.cs" />
     <Compile Include="Core\Randomize.cs" />
     <Compile Include="Crates\CrateContents.cs" />
@@ -95,10 +96,11 @@
     <Compile Include="Crates\CratePatcher.cs" />
     <Compile Include="Crates\CratePlacementsData.cs" />
     <Compile Include="Crates\MyVeryOwnSupplyCrate.cs" />
-    <Compile Include="Crates\Placement.cs" />
+    <Compile Include="Misc\Placement.cs" />
     <Compile Include="Flora and Fauna\AmyThePeeperLeviathan.cs" />
     <Compile Include="Flora and Fauna\RandomizeSizes.cs" />
     <Compile Include="Logic\LogicParser.cs" />
+    <Compile Include="Misc\RandomStartingLocation.cs" />
     <Compile Include="Mod Items\DollSetup.cs" />
     <Compile Include="Core\InitializeCustomElements.cs" />
     <Compile Include="Mod Items\ModCache.cs" />
