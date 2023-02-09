@@ -10,13 +10,13 @@ namespace CoreItemAndInfoRandomizer.Assorted_Patches
 	[HarmonyPatch]
 	public class RandomizePrecursorKeyTerminals
 	{
-		public static Dictionary<PrecursorKeyTerminal.PrecursorKeyType, string> KeyTextureTranslation = new()
+		public static Dictionary<PrecursorKeyTerminal.PrecursorKeyType, Texture> KeyTextureTranslation = new()
 		{
-			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Red, "Precursor_Symbol01.png" },
-			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Orange, "Precursor_Symbol02.png" },
-			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Blue, "Precursor_Symbol03.png" },
-			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White, "Precursor_Symbol04.png" },
-			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Purple, "Precursor_Symbol05.png" },
+			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Red, ImageUtils.LoadTextureFromFile(Path.Combine(SaveAndLoad.PluginPath, "Assets", "Precursor_Symbol01.png")) },
+			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Orange, ImageUtils.LoadTextureFromFile(Path.Combine(SaveAndLoad.PluginPath, "Assets", "Precursor_Symbol02.png")) },
+			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Blue, ImageUtils.LoadTextureFromFile(Path.Combine(SaveAndLoad.PluginPath, "Assets", "Precursor_Symbol03.png")) },
+			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_White, ImageUtils.LoadTextureFromFile(Path.Combine(SaveAndLoad.PluginPath, "Assets", "Precursor_Symbol04.png")) },
+			{ PrecursorKeyTerminal.PrecursorKeyType.PrecursorKey_Purple, ImageUtils.LoadTextureFromFile(Path.Combine(SaveAndLoad.PluginPath, "Assets", "Precursor_Symbol05.png")) },
 		};
 		public static Dictionary<Vector3, string> ListOfTerminals = new()
 		{
@@ -42,8 +42,7 @@ namespace CoreItemAndInfoRandomizer.Assorted_Patches
 		{
 			Array values = Enum.GetValues(typeof(PrecursorKeyTerminal.PrecursorKeyType));
 			PrecursorKeyTerminal.PrecursorKeyType newKey = (PrecursorKeyTerminal.PrecursorKeyType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
-			Texture newTexture = ImageUtils.LoadTextureFromFile(Path.Combine(SaveAndLoad.PluginPath, "Assets", KeyTextureTranslation[newKey]));
-			__instance.transform.Find("Precursor_key_terminal_01/glyph/Face_F").GetComponent<MeshRenderer>().material.mainTexture = newTexture;
+			__instance.transform.Find("Precursor_key_terminal_01/glyph/Face_F").GetComponent<MeshRenderer>().material.mainTexture = KeyTextureTranslation[newKey];
 			__instance.acceptKeyType = newKey;
 		}
 	}
