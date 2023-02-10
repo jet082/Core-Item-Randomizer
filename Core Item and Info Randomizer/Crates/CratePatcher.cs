@@ -15,20 +15,24 @@ namespace CoreItemAndInfoRandomizer
 			{
 				//This *nonsense* is required to get around the duplication bug.
 				HashSet<GameObject> toDestroyChests = new();
-				Dictionary<Vector3, int> foundChests = new();
+				Dictionary<string, int> foundChests = new();
 				foreach (Collider someCollider in Physics.OverlapSphere(Camera.main.transform.position, 50f))
 				{
 					if (someCollider.gameObject.GetComponent<SupplyCrate>())
 					{
-						if (foundChests.ContainsKey(someCollider.gameObject.transform.position) && !foundChests.ContainsValue(someCollider.gameObject.GetInstanceID()))
+						PluginSetup.BepinExLogger.LogInfo($"Working on {someCollider.gameObject.GetComponent<PrefabIdentifier>().Id}");
+						if (someCollider.GetComponent<PrefabIdentifier>().Id == "")
 						{
-							toDestroyChests.Add(someCollider.gameObject);
-						}
-						else
-						{
-							if (!foundChests.ContainsKey(someCollider.gameObject.transform.position))
+							if (foundChests.ContainsKey(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id) && !foundChests.ContainsValue(someCollider.gameObject.GetInstanceID()))
 							{
-								foundChests.Add(someCollider.gameObject.transform.position, someCollider.gameObject.GetInstanceID());
+								toDestroyChests.Add(someCollider.gameObject);
+							}
+							else
+							{
+								if (!foundChests.ContainsKey(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id))
+								{
+									foundChests.Add(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id, someCollider.gameObject.GetInstanceID());
+								}
 							}
 						}
 					}
