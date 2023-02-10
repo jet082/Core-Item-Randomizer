@@ -55,7 +55,7 @@ namespace CoreItemAndInfoRandomizer
 			}
 			else
 			{
-				CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, boxContentsClassId, gameObject));
+				//CoroutineHost.StartCoroutine(ResizeToBox(prefabGameObject, boxContentsClassId, gameObject));
 			}
 		}
 		public static Bounds FindItemSize(GameObject someGameObject)

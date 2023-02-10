@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CoreItemAndInfoRandomizer
@@ -12,6 +13,29 @@ namespace CoreItemAndInfoRandomizer
 		{
 			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(__instance.transform.position))
 			{
+				//This *nonsense* is required to get around the duplication bug.
+				bool foundChest = false;
+				HashSet<GameObject> toDestroyChests = new();
+				int foundChestId = -1;
+				foreach (Collider someCollider in Physics.OverlapSphere(Camera.main.transform.position, 50f))
+				{
+					if (someCollider.gameObject.GetComponent<SupplyCrate>())
+					{
+						if (foundChest && someCollider.gameObject.GetInstanceID() != foundChestId)
+						{
+							toDestroyChests.Add(someCollider.gameObject);
+						}
+						else
+						{
+							foundChest = true;
+							foundChestId = someCollider.gameObject.GetInstanceID();
+						}
+					}
+					foreach (GameObject someChest in toDestroyChests) {
+						GameObject.Destroy(someChest.gameObject);
+					}
+				}
+				//Okay the duplication bug is handled now. Moving on...
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
 				boxContentsSettings.boxContentsClassId = PluginSetup.CachedRandoData.ChestPlacements[__instance.transform.position][0];
 				boxContentsSettings.PlaceScaledItemInside();

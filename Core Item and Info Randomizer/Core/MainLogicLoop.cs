@@ -3,8 +3,6 @@ using CoreItemAndInfoRandomizer.Logic;
 using CoreItemAndInfoRandomizer.ModItems;
 using CoreItemAndInfoRandomizer.Saving;
 using HarmonyLib;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
 namespace CoreItemAndInfoRandomizer
 {
