@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UWE;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class MyVeryOwnSupplyCrate : Spawnable
 	{

@@ -1,4 +1,4 @@
-﻿namespace CoreItemAndInfoRandomizer.Saving
+﻿namespace CoreItemRandomizer.Saving
 {
 	internal class SetupSeedRandomization
 	{

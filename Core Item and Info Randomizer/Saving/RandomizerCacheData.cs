@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[FileName("Randomizer Cache Data")]
 	public class RandomizerCacheData : SaveDataCache

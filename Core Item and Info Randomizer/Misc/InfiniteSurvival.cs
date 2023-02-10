@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[HarmonyPatch(typeof(Survival))]
 	public class InfiniteSurvival

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class RandoCyclopsDoll : Spawnable
 	{

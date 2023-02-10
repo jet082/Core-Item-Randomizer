@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CoreItemAndInfoRandomizer.FloraAndFauna
+namespace CoreItemRandomizer.FloraAndFauna
 {
 	public class RandomizeSizes
 	{

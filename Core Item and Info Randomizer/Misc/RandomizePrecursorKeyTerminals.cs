@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer.Assorted_Patches
+namespace CoreItemRandomizer.Assorted_Patches
 {
 	[HarmonyPatch]
 	public class RandomizePrecursorKeyTerminals

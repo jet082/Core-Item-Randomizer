@@ -1,9 +1,9 @@
-﻿using CoreItemAndInfoRandomizer.FloraAndFauna;
+﻿using CoreItemRandomizer.FloraAndFauna;
 using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[HarmonyPatch]
 	public class PatchSizes

@@ -1,16 +1,15 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
-using CoreItemAndInfoRandomizer.Misc;
 using HarmonyLib;
 using SMLHelper.V2.Handlers;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[BepInPlugin(myGUID, pluginName, versionString)]
 	public class PluginSetup : BaseUnityPlugin
 	{
-		private const string myGUID = "com.jet082.coreitemandinforandomizer";
-		private const string pluginName = "Core Item and Info Randomizer";
+		private const string myGUID = "com.jet082.coreItemRandomizer";
+		private const string pluginName = "Core Item Randomizer";
 		private const string versionString = "0.0.1";
 		private static readonly Harmony harmony = new(myGUID);
 

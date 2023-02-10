@@ -1,4 +1,4 @@
-﻿namespace CoreItemAndInfoRandomizer.ModItems
+﻿namespace CoreItemRandomizer.ModItems
 {
 	internal class InitializeCustomElements
 	{

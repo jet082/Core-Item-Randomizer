@@ -1,10 +1,10 @@
-﻿using CoreItemAndInfoRandomizer.Crates;
-using CoreItemAndInfoRandomizer.Logic;
+﻿using CoreItemRandomizer.Crates;
+using CoreItemRandomizer.Logic;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class CratePlacementsData
 	{

@@ -2,7 +2,7 @@
 using SMLHelper.V2.Json.Attributes;
 using System.Collections.Generic;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[FileName("Spoiler Log")]
 	public class SpoilerLog : SaveDataCache

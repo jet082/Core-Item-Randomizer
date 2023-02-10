@@ -1,4 +1,4 @@
-﻿namespace CoreItemAndInfoRandomizer
+﻿namespace CoreItemRandomizer
 {
 	public class ModCacheItem
 	{

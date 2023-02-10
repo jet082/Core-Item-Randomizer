@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class Placement
 	{

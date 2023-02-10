@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UWE;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class CrateContents : MonoBehaviour
 	{

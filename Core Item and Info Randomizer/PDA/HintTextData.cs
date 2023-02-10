@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class HintTextData
 	{

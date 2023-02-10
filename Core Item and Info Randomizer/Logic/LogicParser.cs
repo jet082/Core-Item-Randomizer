@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer.Logic
+namespace CoreItemRandomizer.Logic
 {
 	public class LogicParser
 	{

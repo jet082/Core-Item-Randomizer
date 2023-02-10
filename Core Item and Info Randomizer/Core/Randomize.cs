@@ -1,6 +1,6 @@
-﻿using CoreItemAndInfoRandomizer.FloraAndFauna;
+﻿using CoreItemRandomizer.FloraAndFauna;
 
-namespace CoreItemAndInfoRandomizer.Core
+namespace CoreItemRandomizer.Core
 {
 	internal class Randomize
 	{

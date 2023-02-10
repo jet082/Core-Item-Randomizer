@@ -1,7 +1,7 @@
 ﻿using SMLHelper.V2.Handlers;
 using System.Collections.Generic;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	public class PDAEntryOverwrite
 	{

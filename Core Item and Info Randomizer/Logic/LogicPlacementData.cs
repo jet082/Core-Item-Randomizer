@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer.Logic
+namespace CoreItemRandomizer.Logic
 {
 	public class LogicPlacementData
 	{

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using HarmonyLib;
 using System.Linq;
 
-namespace CoreItemAndInfoRandomizer.Misc
+namespace CoreItemRandomizer.Misc
 {
 	[HarmonyPatch]
 	internal class RandomStartingLocation
 	{
 		public static readonly Dictionary<Vector3, string> StartingLocations = new()
 		{
-			{ new Vector3(-728.0f, -761f, -274.7f), "Lost River Skull" },
 			{ new Vector3(-110.6f, 0f, -347.1f), "The Safe Shallows" },
+			{ new Vector3(-728.0f, -761f, -274.7f), "Lost River Skull" },
 			{ new Vector3(401.2f, 0f, -524.1f), "Crash Zone Trench" },
 			{ new Vector3(1001.9f, 0, -1120.3f), "Crash Zone SE" }
 		};

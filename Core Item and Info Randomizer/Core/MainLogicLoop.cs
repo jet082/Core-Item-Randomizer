@@ -1,10 +1,10 @@
-﻿using CoreItemAndInfoRandomizer.Core;
-using CoreItemAndInfoRandomizer.Logic;
-using CoreItemAndInfoRandomizer.ModItems;
-using CoreItemAndInfoRandomizer.Saving;
+﻿using CoreItemRandomizer.Core;
+using CoreItemRandomizer.Logic;
+using CoreItemRandomizer.ModItems;
+using CoreItemRandomizer.Saving;
 using HarmonyLib;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[HarmonyPatch(typeof(Player))]
 	public class MainLogicLoop

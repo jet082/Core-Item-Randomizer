@@ -1,4 +1,4 @@
-﻿namespace CoreItemAndInfoRandomizer.Crates
+﻿namespace CoreItemRandomizer.Crates
 {
 	public class CrateDistributionItem
 	{

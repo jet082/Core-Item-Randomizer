@@ -2,45 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreItemAndInfoRandomizer
+namespace CoreItemRandomizer
 {
 	[HarmonyPatch]
 	public class CratePatcher
 	{
+		public static void CleanDuplicates()
+		{
+			//This *nonsense* is required to get around the duplication bug.
+			HashSet<GameObject> toDestroy = new();
+			Dictionary<string, int> found = new();
+			foreach (Collider someCollider in Physics.OverlapSphere(Camera.main.transform.position, 50f))
+			{
+				if (someCollider.gameObject.GetComponent<SupplyCrate>())
+				{
+					if (someCollider.GetComponent<PrefabIdentifier>().Id == "")
+					{
+						if (found.ContainsKey(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id) && !found.ContainsValue(someCollider.gameObject.GetInstanceID()))
+						{
+							toDestroy.Add(someCollider.gameObject);
+						}
+						else
+						{
+							if (!found.ContainsKey(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id))
+							{
+								found.Add(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id, someCollider.gameObject.GetInstanceID());
+							}
+						}
+					}
+				}
+				foreach (GameObject someGameObject in toDestroy)
+				{
+					MainLogicLoop.DebugWrite($"Destroying duplicate on {someGameObject.GetComponent<PrefabIdentifier>().Id}");
+					GameObject.Destroy(someGameObject.gameObject);
+				}
+			}
+		}
 		[HarmonyPatch(typeof(HandTarget), nameof(HandTarget.Awake))]
 		[HarmonyPrefix]
 		public static void PatchHandTarget(HandTarget __instance)
 		{
 			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(__instance.transform.position.ToString()))
 			{
-				//This *nonsense* is required to get around the duplication bug.
-				HashSet<GameObject> toDestroyChests = new();
-				Dictionary<string, int> foundChests = new();
-				foreach (Collider someCollider in Physics.OverlapSphere(Camera.main.transform.position, 50f))
-				{
-					if (someCollider.gameObject.GetComponent<SupplyCrate>())
-					{
-						PluginSetup.BepinExLogger.LogInfo($"Working on {someCollider.gameObject.GetComponent<PrefabIdentifier>().Id}");
-						if (someCollider.GetComponent<PrefabIdentifier>().Id == "")
-						{
-							if (foundChests.ContainsKey(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id) && !foundChests.ContainsValue(someCollider.gameObject.GetInstanceID()))
-							{
-								toDestroyChests.Add(someCollider.gameObject);
-							}
-							else
-							{
-								if (!foundChests.ContainsKey(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id))
-								{
-									foundChests.Add(someCollider.gameObject.GetComponent<PrefabIdentifier>().Id, someCollider.gameObject.GetInstanceID());
-								}
-							}
-						}
-					}
-					foreach (GameObject someChest in toDestroyChests) {
-						GameObject.Destroy(someChest.gameObject);
-					}
-				}
-				//Okay the duplication bug is handled now. Moving on...
+				CleanDuplicates();
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
 				boxContentsSettings.boxContentsClassId = PluginSetup.CachedRandoData.ChestPlacements[__instance.transform.position.ToString()][0];
 				boxContentsSettings.PlaceScaledItemInside();
