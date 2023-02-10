@@ -27,13 +27,13 @@ namespace CoreItemAndInfoRandomizer.Logic
 		{
 			foreach (Vector3 someKey in CratePlacementsData.BoxPlacements.Keys)
 			{
-				if (!PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(someKey))
+				if (!PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(someKey.ToString()))
 				{
 					int randomKeyIndex = UnityEngine.Random.Range(0, CratePlacementsData.DistributionTable.Count);
 					string toAddPre1 = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Key;
 					string toAddPre2 = CratePlacementsData.DistributionTable.ElementAt(randomKeyIndex).Value.HumanReadable;
 					string[] toAdd = new string[] { toAddPre1, toAddPre2 };
-					PluginSetup.CachedRandoData.ChestPlacements.Add(someKey, toAdd);
+					PluginSetup.CachedRandoData.ChestPlacements.Add(someKey.ToString(), toAdd);
 					string humanReadableChestName = (string)LogicParser.GameLogic["supplyCrateCoordinates"][someKey.ToString()]["chestName"];
 					PluginSetup.SpoilerLogData.ChestPlacements.Add(humanReadableChestName, toAddPre2);
 				}

@@ -10,7 +10,7 @@ namespace CoreItemAndInfoRandomizer
 	public class RandomizerCacheData : SaveDataCache
 	{
 		public Tuple<bool, int> SeedData = new(false, 0);
-		public Dictionary<Vector3, string[]> ChestPlacements = new();
+		public Dictionary<string, string[]> ChestPlacements = new();
 		public Dictionary<string, string> PDAData = new();
 		public Dictionary<string, string> Codes = new();
 		public Dictionary<string, float> Scaling = new();

@@ -11,5 +11,6 @@ namespace CoreItemAndInfoRandomizer
 		public Dictionary<string, string> PDAData = new();
 		public Dictionary<string, string> Codes = new();
 		public Dictionary<string, float> Scaling = new();
+		public string StartingLocation = "";
 	}
 }

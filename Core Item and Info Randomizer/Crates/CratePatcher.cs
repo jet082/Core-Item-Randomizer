@@ -11,24 +11,25 @@ namespace CoreItemAndInfoRandomizer
 		[HarmonyPrefix]
 		public static void PatchHandTarget(HandTarget __instance)
 		{
-			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(__instance.transform.position))
+			if (__instance is SupplyCrate && !__instance.gameObject.GetComponent<CrateContents>() && PluginSetup.CachedRandoData.ChestPlacements.ContainsKey(__instance.transform.position.ToString()))
 			{
 				//This *nonsense* is required to get around the duplication bug.
-				bool foundChest = false;
 				HashSet<GameObject> toDestroyChests = new();
-				int foundChestId = -1;
+				Dictionary<Vector3, int> foundChests = new();
 				foreach (Collider someCollider in Physics.OverlapSphere(Camera.main.transform.position, 50f))
 				{
 					if (someCollider.gameObject.GetComponent<SupplyCrate>())
 					{
-						if (foundChest && someCollider.gameObject.GetInstanceID() != foundChestId)
+						if (foundChests.ContainsKey(someCollider.gameObject.transform.position) && !foundChests.ContainsValue(someCollider.gameObject.GetInstanceID()))
 						{
 							toDestroyChests.Add(someCollider.gameObject);
 						}
 						else
 						{
-							foundChest = true;
-							foundChestId = someCollider.gameObject.GetInstanceID();
+							if (!foundChests.ContainsKey(someCollider.gameObject.transform.position))
+							{
+								foundChests.Add(someCollider.gameObject.transform.position, someCollider.gameObject.GetInstanceID());
+							}
 						}
 					}
 					foreach (GameObject someChest in toDestroyChests) {
@@ -37,7 +38,7 @@ namespace CoreItemAndInfoRandomizer
 				}
 				//Okay the duplication bug is handled now. Moving on...
 				CrateContents boxContentsSettings = __instance.gameObject.EnsureComponent<CrateContents>();
-				boxContentsSettings.boxContentsClassId = PluginSetup.CachedRandoData.ChestPlacements[__instance.transform.position][0];
+				boxContentsSettings.boxContentsClassId = PluginSetup.CachedRandoData.ChestPlacements[__instance.transform.position.ToString()][0];
 				boxContentsSettings.PlaceScaledItemInside();
 			}
 		}
