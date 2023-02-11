@@ -1,7 +1,9 @@
 ﻿using CoreItemRandomizer.Crates;
 using CoreItemRandomizer.Logic;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CoreItemRandomizer
@@ -82,12 +84,7 @@ namespace CoreItemRandomizer
 			TechType.SeamothSolarCharge,
 			TechType.SeamothElectricalDefense,
 			TechType.SeamothTorpedoModule,
-			TechType.SeamothSonarModule,
-			TechType.MapRoomUpgradeScanRange,
-			TechType.MapRoomUpgradeScanSpeed,
-			TechType.MapRoomCamera,
-			TechType.PrecursorIonCrystal,
-			TechType.SeaTreaderPoop
+			TechType.SeamothSonarModule
 		};
 		public static Dictionary<TechType, int> NonStandardDistribution = new() {
 			{ TechType.MapRoomUpgradeScanRange, 4 },
@@ -111,7 +108,7 @@ namespace CoreItemRandomizer
 				}
 			}
 			DistributionTable.Add(ModCache.CacheData["RandoSeamothDoll"].ClassId, new(1, "Seamoth"));
-			DistributionTable.Add(ModCache.CacheData["RandoPrawnSuitDoll"].ClassId, new(1, "Prawn Suit"));
+			DistributionTable.Add(ModCache.CacheData["RandoPrawnSuitDoll"].ClassId, new(1, "Exosuit"));
 			DistributionTable.Add(ModCache.CacheData["RandoCyclopsDoll"].ClassId, new(1, "Cyclops"));
 			RequiredItems.Add(CraftData.GetClassIdForTechType(TechType.EnzymeCureBall), new(1, Language.main.Get(TechType.EnzymeCureBall)));
 			RequiredItems.Add(ModCache.CacheData["RandoRocketBaseDoll"].ClassId, new(1, Language.main.Get("Neptune Launch Platform")));
@@ -123,7 +120,7 @@ namespace CoreItemRandomizer
 		public static Dictionary<Vector3, JToken> BoxPlacementDictionary()
 		{
 			Dictionary<Vector3, JToken> finalDict = new();
-			foreach (var someData in LogicParser.GameLogic["supplyCrateCoordinates"])
+			foreach (var someData in LogicParser.GameLogic["SupplyCrateCoordinates"])
 			{
 				string[] vectorData = someData.Key.Substring(1, someData.Key.Length - 2).Split(',');
 				Vector3 vectorized = new(float.Parse(vectorData[0]), float.Parse(vectorData[1]), float.Parse(vectorData[2]));

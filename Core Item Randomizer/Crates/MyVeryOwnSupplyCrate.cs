@@ -18,6 +18,8 @@ namespace CoreItemRandomizer
 			GameObject wip = GameObject.Instantiate(prefab);
 			wip.SetActive(false);
 			gameObject.Set(wip);
+			if (wip.activeInHierarchy)
+				ModPrefabCache.AddPrefab(wip);
 			yield break;
 		}
 	}

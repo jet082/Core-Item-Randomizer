@@ -1,270 +1,812 @@
 {
-	"logic": {
-		"air0": [
-			"air1",
-			"tank"
-		],
-		"air1": [
-			"air2",
-			"doubletank"
-		],
-		"air2": [
-			"highcapacitytank"
-		],
-		"basePower0": [
-			"basePower1",
-			"solarPoweredBase"
-		],
-		"basePower1": [
-			"bioPoweredBase",
-			"thermalPoweredBase"
-		],
-		"bioPoweredBase": [
+	"Logic": {
+		"ActiveLavaZone": [
+			"ActiveLavaZoneStart",
+			"ExosuitDepth2",
+			"CyclopsDepth3",
 			[
-				"baseroom",
-				"basehatch",
-				"basebioreactor"
+				"LongAndDeepSwim2",
+				"InactiveLavaZone"
 			]
 		],
-		"crashzone": [
-			"speed1",
+		"BloodKelpTrench": [
 			[
-				"speed0",
+				"BloodKelpTrenchStart",
 				[
-					"cragfield",
-					"grassyplateausS",
-					"mushroomforestE",
-					"kooshzone",
-					"kelpS"
+					"Speed0",
+					[
+						"SeaTreadersPath",
+						"Dunes",
+						"SparseReef",
+						"GrassyPlateausW"
+					]
+				],
+				[
+					"LongAndDeepSwim1",
+					"LostRiverS"
 				]
 			]
 		],
-		"depth0": [
-			"depth1",
-			"basePower0",
-			"air2",
+		"BloodKelpZone": [
+			"BloodKelpZoneStart",
 			[
-				"pipe(4)",
-				"pipesurfacefloater"
+				"Speed0",
+				[
+					"Dunes",
+					"Mountains",
+					"UnderwaterIslands",
+					"MushroomForestW"
+				]
 			],
 			[
-				"rebreather",
-				"air1",
+				"LongAndDeepSwim1",
+				"LostRiverN"
+			]
+		],
+		"BulbZone": [
+			"BulbZoneStart",
+			[
+				"Speed0",
 				[
-					"fins",
-					"ultraglidefins"
+					"Mountains",
+					"CrashZone",
+					"KelpForestN",
+					"MushroomForestE"
+				]
+			],
+			[
+				"LongAndDeepSwim1",
+				"LostRiverN"
+			]
+		],
+		"CragField": [
+			"CragFieldStart",
+			[
+				"Speed0",
+				[
+					"GrandReef",
+					"GrassyPlateausS",
+					"CrashZone",
+					"KelpForestS"
 				]
 			]
 		],
-		"depth1": [
-			"depth2",
+		"CrashZone": [
+			"CrashZoneStart",
 			[
-				"air2",
+				"Speed1",
 				[
-					"seaglide",
+					"CragField",
+					"GrassyPlateausE",
+					"GrassyPlateausS",
+					"SafeShallowsE",
+					"MushroomForestE",
+					"BulbZone",
+					"KelpForestS"
+				]
+			]
+		],
+		"DeepGrandReef": [
+			"DeepGrandReefStart",
+			[
+				"Speed1",
+				"GrandReef"
+			],
+			[
+				"LongAndDeepSwim1",
+				"LostRiverS"
+			]
+		],
+		"Dunes": [
+			"DunesStart",
+			[
+				"Speed1",
+				[
+					"BloodKelpZone",
+					"MushroomForestW",
+					"GrassyPlateausW",
+					"SafeShallowsW"
+				]
+			]
+		],
+		"FloatingIsland": [
+			"FloatingIslandStart",
+			"GrandReef",
+			[
+				"Speed1",
+				[
+					"SparseReef",
+					"CragField",
+					"SeaTreadersPath"
+				]
+			]
+		],
+		"GrandReef": [
+			"GrandReefStart",
+			[
+				"Speed1",
+				[
+					"DeepGrandReef",
+					"SeaTreadersPath",
+					"SparseReef",
+					"CragField",
+					"KelpForestS"
+				]
+			]
+		],
+		"GrassyPlateausN": [
+			"GrassyPlateausNStart",
+			[
+				"Speed1",
+				[
+					"UnderwaterIslands",
+					"MushroomForestW",
+					"KelpForestN",
+					"KelpForestW"
+				]
+			]
+		],
+		"GrassyPlateausS": [
+			"GrassyPlateausSStart",
+			[
+				"Speed1",
+				[
+					"CrashZone",
+					"KelpForestS",
+					"CragField",
+					"SafeShallowsE"
+				]
+			]
+		],
+		"GrassyPlateausE": [
+			"GrassyPlateausEStart",
+			[
+				"Speed1",
+				[
+					"KelpForestN",
+					"MushroomForestE",
+					"SafeShallowsE"
+				]
+			]
+		],
+		"GrassyPlateausW": [
+			"GrassyPlateausWStart",
+			[
+				"Speed1",
+				[
+					"Dunes",
+					"SafeShallowsW",
+					"SparseReef",
+					"BloodKelpTrench",
+					"KelpForestW",
+					"KelpForestS"
+				]
+			]
+		],
+		"InactiveLavaZone": [
+			"InactiveLavaZoneStart",
+			"ExosuitDepth1",
+			"CyclopsDepth2",
+			[
+				"LongAndDeepSwim2",
+				[
+					"ActiveLavaZone",
+					"LostRiverN"
+				]
+			]
+		],
+		"JellyshroomCavesE": [
+			"JellyshroomCavesEStart",
+			[
+				"Speed1",
+				[
+					"JellyshroomCavesW",
+					"KelpForestS",
+					"SafeShallowsE",
+					"GrassyPlateausS"
+				]
+			]
+		],
+		"JellyshroomCavesW": [
+			"JellyshroomCavesWStart",
+			[
+				"Speed1",
+				[
+					"GrassyPlateausW",
+					"SafeShallowsW",
+					"KelpForestW"
+				]
+			]
+		],
+		"KelpForestN": [
+			"KelpForestNStart",
+			[
+				"Speed1",
+				[
+					"Mountains",
+					"UnderwaterIslands",
+					"GrassyPlateausN",
+					"GrassyPlateausE",
+					"MushroomForestE",
+					"SafeShallowsE"
+				]
+			]
+		],
+		"KelpForestS": [
+			"KelpForestSStart",
+			[
+				"Speed1",
+				[
+					"GrandReef",
+					"SparseReef",
+					"CrashZone",
+					"GrassyPlateausS",
+					"GrassyPlateausW",
+					"SafeShallowsE"
+				]
+			]
+		],
+		"KelpForestW": [
+			"KelpForestWStart",
+			[
+				"Speed1",
+				[
+					"MushroomForestW",
+					"GrassyPlateausN",
+					"GrassyPlateausW",
+					"SafeShallowsE",
+					"SafeShallowsW"
+				]
+			]
+		],
+		"LostRiverN": [
+			"LostRiverNStart",
+			"SeamothDepth3",
+			"ExosuitDepth0",
+			"CyclopsDepth1",
+			[
+				"Speed1",
+				"LostRiverS"
+			],
+			[
+				"Air2",
+				"Rebreather",
+				"Speed1",
+				"InactiveLavaZone"
+			]
+		],
+		"LostRiverS": [
+			"LostRiverSStart",
+			"SeamothDepth3",
+			"ExosuitDepth0",
+			"CyclopsDepth1",
+			[
+				"Speed1",
+				"LostRiverN"
+			]
+		],
+		"Mountains": [
+			"MountainsStart",
+			[
+				"Speed1",
+				[
+					"BloodKelpZone",
+					"UnderwaterIslands",
+					"KelpForestN",
+					"MushroomForestE",
+					"BulbZone"
+				]
+			]
+		],
+		"MushroomForestE": [
+			"MushroomForestEStart",
+			[
+				"Speed1",
+				[
+					"GrassyPlateausE",
+					"KelpForestN",
+					"Mountains",
+					"BulbZone",
+					"CrashZone"
+				]
+			]
+		],
+		"MushroomForestW": [
+			"MushroomForestWStart",
+			[
+				"Speed1",
+				[
+					"Dunes",
+					"BloodKelpZone",
+					"UnderwaterIslands",
+					"GrassyPlateausN",
+					"KelpForestW"
+				]
+			]
+		],
+		"SafeShallowsE": [
+			"SafeShallowsEStart",
+			[
+				"Speed1",
+				[
+					"CrashZone",
+					"GrassyPlateausE",
+					"KelpForestN",
+					"KelpForestS",
+					"KelpForestW"
+				]
+			]
+		],
+		"SafeShallowsW": [
+			"SafeShallowsWStart",
+			[
+				"Speed1",
+				[
+					"GrassyPlateausW",
+					"KelpForestW",
+					"Dunes"
+				]
+			]
+		],
+		"SeaTreadersPath": [
+			"SeaTreadersPathStart",
+			[
+				"Speed1",
+				[
+					"GrandReef",
+					"BloodKelpTrench",
+					"SparseReef",
+					"Dunes"
+				]
+			]
+		],
+		"SparseReef": [
+			"SparseReefStart",
+			[
+				"Speed1",
+				[
+					"GrandReef",
+					"BloodKelpTrench",
+					"SeaTreadersPath",
+					"GrassyPlateausW",
+					"KelpForestS"
+				]
+			]
+		],
+		"UnderwaterIslands": [
+			"UnderwaterIslandsStart",
+			[
+				"Speed1",
+				[
+					"BloodKelpZone",
+					"MushroomForestW",
+					"GrassyPlateausN",
+					"KelpForestN",
+					"Mountains"
+				]
+			]
+		],
+		"Air0": [
+			"Air1",
+			"Tank"
+		],
+		"Air1": [
+			"Air2",
+			"DoubleTank"
+		],
+		"Air2": [
+			"HighCapacityTank"
+		],
+		"LongAndDeepSwim0": [
+			[
+				"Air2",
+				"Rebreather",
+				"Seaglide"
+			],
+			[
+				"Vehicle"
+			]
+		],
+		"LongAndDeepSwim1": [
+			[
+				"Air2",
+				"Rebreather",
+				"Seaglide"
+			],
+			[
+				"Depth5"
+			]
+		],
+		"LongAndDeepSwim2": [
+			[
+				"Air2",
+				"Rebreather",
+				"Seaglide"
+			],
+			[
+				"Depth6"
+			]
+		],
+		"Speed0": [
+			"Speed1",
+			"Fins",
+			"UltraGlideFins"
+		],
+		"Speed1": [
+			"Speed2",
+			"Seaglide",
+			[
+				"Exosuit",
+				"ExosuitJetUpgradeModule",
+				"ExosuitGrapplingArmModule"
+			]
+		],
+		"Speed2": [
+			"Seamoth",
+			"Cyclops"
+		],
+		"Depth0": [
+			"Depth1",
+			"BasePower0",
+			"Air2",
+			[
+				"Pipe(4)",
+				"PipeSurfaceFloater"
+			],
+			[
+				"Rebreather",
+				"Air1",
+				[
+					"Fins",
+					"UltraGlideFins"
+				]
+			]
+		],
+		"Depth1": [
+			"Depth2",
+			[
+				"Air2",
+				[
+					"Seaglide",
 					[
-						"rebreather",
+						"Rebreather",
 						[
-							"fins",
-							"ultraglidefins"
+							"Fins",
+							"UltraGlideFins"
 						]
 					],
 					[
-						"pipe(8)",
-						"pipesurfacefloater"
+						"Pipe(8)",
+						"PipeSurfaceFloater"
 					],
 					[
-						"pipe(6)",
-						"basePower0",
-						"basepipeconnector"
+						"Pipe(6)",
+						"BasePower0",
+						"BasePipeConnector"
 					]
 				]
 			]
 		],
-		"depth2": [
-			"depth3",
+		"Depth2": [
+			"Depth3",
 			[
-				"air1",
-				"pipe(20)",
-				"pipesurfacefloater"
+				"Air1",
+				"Pipe(20)",
+				"PipeSurfaceFloater"
 			]
 		],
-		"depth3": [
-			"vehicle",
+		"Depth3": [
+			"Vehicle",
 			[
-				"air1",
-				"basePower1"
+				"Air1",
+				"BasePower1"
 			]
 		],
-		"gravityGun": [
-			"propulsioncannon",
-			"repulsioncannon",
+		"Depth4": [
+			"CyclopsDepth1",
+			"SeamothDepth3",
+			"ExosuitDepth0"
+		],
+		"Depth5": [
+			"CyclopsDepth2",
+			"ExosuitDepth1"
+		],
+		"Depth6": [
+			"CyclopsDepth3",
+			"ExosuitDepth2"
+		],
+		"SeamothDepth0": [
+			"SeamothDepth1",
+			"Seamoth"
+		],
+		"SeamothDepth1": [
+			"SeamothDepth2",
 			[
-				"exosuit",
-				"exosuitpropulsionarmmodule"
+				"Seamoth",
+				"VehicleHullModule1"
 			]
 		],
-		"solarPoweredBase": [
+		"SeamothDepth2": [
+			"SeamothDepth3",
 			[
-				"unpoweredBase",
-				"solarpanel"
+				"Seamoth",
+				"VehicleHullModule2"
 			]
 		],
-		"speed0": [
-			"speed1",
-			"fins"
-		],
-		"speed1": [
-			"speed2",
-			"seaglide",
-			"ultraglidefins",
+		"SeamothDepth3": [
 			[
-				"exosuit",
-				"exosuitjetupgrademodule",
-				"exosuitgrapplingarmmodule"
+				"Seamoth",
+				"VehicleHullModule3"
 			]
 		],
-		"speed2": [
-			"seamoth",
-			"cyclops"
+		"CyclopsDepth0": [
+			"CyclopsDepth1",
+			"Cyclops"
 		],
-		"thermalPoweredBase": [
+		"CyclopsDepth1": [
+			"CyclopsDepth2",
 			[
-				"unpoweredBase",
-				"thermalplant"
+				"Cyclops",
+				"CyclopsHullModule1"
 			]
 		],
-		"unpoweredBase": [
-			"basemoonpool",
+		"CyclopsDepth2": [
+			"CyclopsDepth3",
 			[
-				"basehatch",
+				"Cyclops",
+				"CyclopsHullModule2"
+			]
+		],
+		"CyclopsDepth3": [
+			[
+				"Cyclops",
+				"CyclopsHullModule3"
+			]
+		],
+		"ExosuitDepth0": [
+			"ExosuitDepth1",
+			"Exosuit"
+		],
+		"ExosuitDepth1": [
+			"ExosuitDepth2",
+			[
+				"Exosuit",
+				"ExoHullModule1"
+			]
+		],
+		"ExosuitDepth2": [
+			[
+				"Exosuit",
+				"ExoHullModule2"
+			]
+		],
+		"UnpoweredBase": [
+			[
+				"Builder",
 				[
-					"basecorridor",
-					"basecorridorl",
-					"basecorridort",
-					"basecorridorx",
-					"basecorridorglassi",
-					"basecorridorglassl",
-					"basemaproom",
-					"baselargeroom",
-					"baseroom"
+					"BaseMoonpool",
+					[
+						"BaseHatch",
+						[
+							"BaseCorridor",
+							"BaseCorridorL",
+							"BaseCorridorT",
+							"BaseCorridorX",
+							"BaseCorridorGlassI",
+							"BaseCorridorGlassL",
+							"BaseMapRoom",
+							"BaseLargeRoom",
+							"BaseRoom"
+						]
+					]
 				]
 			]
 		],
-		"vehicle": [
-			"seamoth",
-			"cyclops",
-			"exosuit"
+		"BasePower0": [
+			"BasePower1",
+			"SolarPoweredBase"
+		],
+		"BasePower1": [
+			"BioPoweredBase",
+			"ThermalPoweredBase"
+		],
+		"BioPoweredBase": [
+			[
+				"BaseRoom",
+				"BaseHatch",
+				"BaseBioReactor"
+			]
+		],
+		"SolarPoweredBase": [
+			[
+				"UnpoweredBase",
+				"SolarPanel"
+			]
+		],
+		"ThermalPoweredBase": [
+			[
+				"UnpoweredBase",
+				"ThermalPlant"
+			]
+		],
+		"GravityGun": [
+			"PropulsionCannon",
+			"RepulsionCannon",
+			[
+				"Exosuit",
+				"ExosuitPropulsionArmModule"
+			]
+		],
+		"Vehicle": [
+			"Seamoth",
+			"Cyclops",
+			"Exosuit"
 		]
 	},
-	"supplyCrateCoordinates": {
-		"(0.0, 0.0, 0.0)": {
-			"logic": [
-				"safeshallows"
+	"SupplyCrateCoordinates": {
+		"(75.9, -72.4, 0.1)": {
+			"Logic": [
+				"SafeShallowsE"
 			],
-			"zoneId": "safeShallows",
-			"chestName": "The Safe Shallows (1)"
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (1)"
+		},
+		"(93.3, -74.7, 3.4)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (2)"
+		},
+		"(128.0, -73.6, 2.0)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (3)"
+		},
+		"(-140.3, -19.5, -188.0)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (4)"
+		},
+		"(-132.7, -20.7, -230.1)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (5)"
+		},
+		"(-92.5, -24.5, -119.9)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (6)"
+		},
+		"(-121.4, -31.7, -143.6)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (7)"
+		},
+		"(-66.4, -24.0, -105.1)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (8)"
+		},
+		"(-160.1, -46.5, -129.3)": {
+			"Logic": [
+				"SafeShallowsE"
+			],
+			"ZoneId": "SafeShallowsE",
+			"ChestName": "The Safe Shallows (8)"
 		},
 		"(1001.9, -368.5, -1120.3)": {
-			"logic": [
+			"Logic": [
 				[
-					"crashzone",
-					"depth1"
+					"CrashZone",
+					"Depth1"
 				]
 			],
-			"zoneId": "crashZone",
-			"chestName": "Crash Zone SE (1)"
+			"ZoneId": "CrashZone",
+			"ChestName": "Crash Zone SE (1)"
 		},
 		"(1169.2, -354.6, -949.5)": {
-			"logic": [
+			"Logic": [
 				[
-					"crashzone",
-					"depth1"
+					"CrashZone",
+					"Depth1"
 				]
 			],
-			"zoneId": "crashZone",
-			"chestName": "Crash Zone SE (2)"
+			"ZoneId": "CrashZone",
+			"ChestName": "Crash Zone SE (2)"
 		},
 		"(452.8, -84.6, -511.3)": {
-			"logic": [
+			"Logic": [
 				[
-					"crashzone"
+					"CrashZone"
 				]
 			],
-			"zoneId": "CrashZone_Trench",
-			"chestName": "Crash Zone Trench (1)"
+			"ZoneId": "CrashZone_Trench",
+			"ChestName": "Crash Zone Trench (1)"
 		},
 		"(-671.9, -752.6, -144.9)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Bone Island (1)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Bone Island (1)"
 		},
 		"(-680.7, -753.7, -131.2)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Bone Island (2)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Bone Island (2)"
 		},
 		"(-667.4, -753.6, -144.0)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Bone Island (3)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Bone Island (3)"
 		},
 		"(-684.7, -758.1, -124.2)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Bone Island (4)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Bone Island (4)"
 		},
 		"(-689.9, -758.0, -132.3)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Bone Island (5)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Bone Island (5)"
 		},
 		"(-742.2, -732.6, -285.2)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Skull (1)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Skull (1)"
 		},
 		"(-705.2, -768.8, -272.0)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Skull (2)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Skull (2)"
 		},
 		"(-716.5, -766.0, -253.4)": {
-			"logic": [
+			"Logic": [
 				[
-					"lostriver"
+					"LostRiverS"
 				]
 			],
-			"zoneId": "LostRiver_BonesField",
-			"chestName": "Lost River Skull (3)"
+			"ZoneId": "LostRiver_BonesField",
+			"ChestName": "Lost River Skull (3)"
 		}
 	}
 }

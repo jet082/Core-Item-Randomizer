@@ -21,6 +21,7 @@ namespace CoreItemRandomizer
 		public static SpoilerLog SpoilerLogData = SaveDataHandler.Main.RegisterSaveDataCache<SpoilerLog>();
 		public static RandomizerCacheData CachedRandoData = SaveDataHandler.Main.RegisterSaveDataCache<RandomizerCacheData>();
 		public static bool RandomStartingLocation = true;
+		public static int Iterations = 90000;
 		private void Awake()
 		{
 			base.Logger.LogInfo(pluginName + " " + versionString + " " + "loaded.");
